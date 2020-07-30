@@ -116,7 +116,7 @@ class MatplotlibDraw(object):
         else:
             self.instruction_file = None
 
-        self.mpl.ion()  # important for interactive drawing and animation
+        self.mpl.ioff()  # important for interactive drawing and animation
         if self.instruction_file:
             self.instruction_file.write("""\
 import matplotlib
