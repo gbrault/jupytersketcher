@@ -12,7 +12,7 @@ from builtins import object
 import os
 import matplotlib
 
-matplotlib.use('TkAgg')
+matplotlib.use('module://ipympl.backend_nbagg')
 matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
 
 import matplotlib.pyplot as mpl
@@ -120,7 +120,7 @@ class MatplotlibDraw(object):
         if self.instruction_file:
             self.instruction_file.write("""\
 import matplotlib
-matplotlib.use('TkAgg')
+matplotlib.use('module://ipympl.backend_nbagg')
 # Allow \boldsymbol{} etc in title, labels, etc
 matplotlib.rc('text', usetex=True)
 matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
@@ -140,7 +140,7 @@ mpl.ion()  # for interactive drawing
         self._make_axes(new_figure=new_figure)
 
         manager = self.mpl.get_current_fig_manager()
-        manager.window.wm_geometry(geometry)
+        #manager.window.wm_geometry(geometry)
 
     def _make_axes(self, new_figure=False):
         if new_figure:
@@ -488,7 +488,8 @@ ax.annotate('%s', xy=%s, xycoords='data',
             linewidth = self.linewidth
 
         if style == '->' or style == '<->':
-            self.mpl.arrow(x, y, dx, dy, hold=True,
+            self.mpl.arrow(x, y, dx, dy, 
+                           #hold=True,
                            facecolor=linecolor,
                            edgecolor=linecolor,
                            linestyle=linestyle,
