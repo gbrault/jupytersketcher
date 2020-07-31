@@ -141,6 +141,10 @@ def animate(fig, time_points, action, moviefiles=False,
 
     if moviefiles:
         return '%s%%04d.png' % framefilestem
+        """
+        def save():
+            os.system("ffmpeg -r 1 -i img%01d.png -vcodec mpeg4 -y movie.mp4")
+        """
 
 
 class Shape(object):
