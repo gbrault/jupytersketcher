@@ -15,6 +15,7 @@ import pprint, copy, glob, os
 from math import radians
 from io import BytesIO
 from ruamel.yaml import YAML
+from PIL import Image
 
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
@@ -23,6 +24,12 @@ def sketch2SVG():
     f = BytesIO()
     drawing_tool.mpl.savefig(f, format="svg")
     return f.getvalue()
+
+def sketch2PNG():
+    f = BytesIO()
+    drawing_tool.mpl.gcf().canvas.print_png(f)
+    img = Image.open(f)
+    return img
 
 def sketchParse(sketch, container):
     yaml = YAML()
