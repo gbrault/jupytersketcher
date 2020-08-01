@@ -6,7 +6,7 @@ Use the term Pysketcher as jupytersketcher in this documentation
 
 ### Install
 
-use pip install git+https://\<server url>
+use pip install git+https://\<server url> as no release in PyPI yet (nor planned)
 
 ### Purpose
 
