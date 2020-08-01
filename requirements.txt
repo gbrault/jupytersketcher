@@ -1,3 +1,4 @@
 ruamel.yaml
 future
 numpy
+PIL
