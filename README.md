@@ -2,10 +2,11 @@
 
 Tool for creating sketches of physics problems in terms of Python code. This work is based upon pysketcher originally developped by HPL [see Wikipedia](https://en.wikipedia.org/wiki/Hans_Petter_Langtangen).
 The main goal is to make this work compatible with Jupyter Notebook and Lab.
+Use the term Pysketcher as jupytersketcher in this documentation
 
 ### Install
 
-use pip install git+https://<server url>
+use pip install git+https://\<server url>
 
 ### Purpose
 
