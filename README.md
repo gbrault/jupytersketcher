@@ -1,8 +1,15 @@
 ## jupytersketcher
 
 Tool for creating sketches of physics problems in terms of Python code. This work is based upon pysketcher originally developped by HPL [see Wikipedia](https://en.wikipedia.org/wiki/Hans_Petter_Langtangen).
-The main goal is to make this work compatible with Jupyter Notebook and Lab.
-Use the term Pysketcher as jupytersketcher in this documentation
+
+Note: Use the term Pysketcher as jupytersketcher in this documentation
+
+## Main differences with Pysketcher
+
+The main goals are:
+- make a Jupyter Notebook and Lab compatible version. We do not plan to support the standalone version
+- allow 'simulation' inside Jupyter
+- create a yaml simplified syntax to create sketches
 
 ### Install
 
