@@ -24,7 +24,7 @@ def sketch2SVG():
     drawing_tool.mpl.savefig(f, format="svg")
     return f.getvalue()
 
-def loadSketch(sketch, container):
+def sketchParse(sketch, container):
     yaml = YAML()
     gwd = yaml.load(sketch)
     for _k in list(gwd.keys()):
