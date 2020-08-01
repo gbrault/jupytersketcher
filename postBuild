@@ -2,6 +2,8 @@ conda update -n base conda
 conda update -y notebook
 conda update -y jupyterlab
 pip install ipywidgets
+conda install -c conda-forge texlive-core
+pip install --upgrade ruamel.yaml
 jupyter labextension update --all
 jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
 jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
