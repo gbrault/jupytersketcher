@@ -19,7 +19,7 @@ from ruamel.yaml import YAML
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
 
-def toSVG():
+def sketch2SVG():
     f = BytesIO()
     drawing_tool.mpl.savefig(f, format="svg")
     return f.getvalue()
