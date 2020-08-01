@@ -4,12 +4,13 @@ Tool for creating sketches of physics problems in terms of Python code. This wor
 
 Note: Use the term Pysketcher as jupytersketcher in this documentation
 
-## Main differences with Pysketcher
+## Differences compared to Pysketcher
 
 The main goals are:
 - make a Jupyter Notebook and Lab compatible version. We do not plan to support the standalone version
 - allow 'simulation' inside Jupyter
 - create a yaml simplified syntax to create sketches
+- increment basic classes to support our goals
 
 ### Install
 
