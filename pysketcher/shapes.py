@@ -70,7 +70,7 @@ def sketchParse(sketch, container):
                 else:
                     for _transform in _c["transform"]:
                     #  x_const.rotate(-theta, contact)
-                        _t = f"{_k}.{_c['transform']}"
+                        _t = f"{_k}.{_transform}"
                         #print(_t)
                         exec(_t,container)
             if "action" in _keys:
@@ -1631,13 +1631,28 @@ class Arc_wText(Shape):
     def __init__(self, text, center, radius,
                  start_angle, arc_angle, fontsize=0,
                  resolution=180, text_spacing=1/60.):
-        arc = Arc(center, radius, start_angle, arc_angle,
-                  resolution)
+        self.text = text
+        self.center = center
+        self.radius = radius
+        self.fontsize=fontsize
+        self.resolution=resolution
+        self.text_spacing=text_spacing
+        self.changeAngles(start_angle,arc_angle)
+    def changeAngles(self,start_angle,arc_angle):
+        arc = Arc(self.center, self.radius, start_angle, arc_angle,
+                  self.resolution)
         mid = arr2D(arc(arc_angle/2.))
-        normal = unit_vec(mid - arr2D(center))
-        text_pos = mid + normal*drawing_tool.xrange*text_spacing
+        normal = unit_vec(mid - arr2D(self.center))
+        text_pos = mid + normal*drawing_tool.xrange*self.text_spacing
+        if hasattr(self, 'linewidth'):
+            arc.set_linewidth(self.linewidth)
         self.shapes = {'arc': arc,
-                       'text': Text(text, text_pos, fontsize=fontsize)}
+                       'text': Text(self.text, text_pos, fontsize=self.fontsize)}
+    def set_linewidth(self, width):
+        self.linewidth = width
+        self.change_linewidth()
+    def change_linewidth(self):
+        super().set_linewidth(self.linewidth)
 
 class Composition(Shape):
     def __init__(self, shapes):

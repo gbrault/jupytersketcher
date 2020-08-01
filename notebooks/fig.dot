@@ -33,4 +33,6 @@ digraph G {
 "Arrow3:\narrow" -> "Line:\nhead right";
 "Line:\nhead right" -> "Curve:\nline (7)";
 "Axis:\nx axis" -> "Text:\nlabel";
+"Composition:\nfixed elements" -> "Text:\nmA";
+"Composition:\nfixed elements" -> "Text:\nmB";
 }
