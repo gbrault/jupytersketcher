@@ -13,9 +13,70 @@ from builtins import object
 from numpy import linspace, sin, cos, pi, array, asarray, ndarray, sqrt, abs
 import pprint, copy, glob, os
 from math import radians
+from io import BytesIO
+from ruamel.yaml import YAML
 
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
+
+def toSVG():
+    f = BytesIO()
+    drawing_tool.mpl.savefig(f, format="svg")
+    return f.getvalue()
+
+def loadSketch(sketch, container):
+    yaml = YAML()
+    gwd = yaml.load(sketch)
+    for _k in list(gwd.keys()):
+        if _k == "stop":
+            break
+        _c = gwd[_k]
+        _t = str(type(_c))
+        if _k == "libraries":
+            for l in _c:
+                exec(l,container)
+        #print(_k, _c, _t)
+        if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
+        _t == "<class 'str'>" or _t == "<class 'int'>":
+            _formula = f"{_k} = {_c}".replace("<bslash>","\\") 
+            #print(_formula)
+            exec(_formula,container)
+        elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
+            #print(_c)
+            _keys = list(_c.keys())
+            #print(_keys)
+            if 'formula' in _keys:
+                _formula = f"{_k} = {_c['formula']}".replace("<bslash>","\\")
+                #print(_formula)
+                exec(_formula,container)
+            if 'style' in _keys:
+                for _style in _c["style"]:
+                    #  x_const.set_linestyle('dotted')
+                    _param = _c["style"][_style]
+                    __t = str(type(_param))
+                    #print(__t)
+                    if __t == "<class 'int'>":
+                        _style = f"{_k}.set_{_style}({_param})"
+                    else:
+                        _style = f"{_k}.set_{_style}('{_param}')"
+                    #print(_style)
+                    exec(_style,container)
+            if 'transform' in _keys:
+                #print(_c['transform'])
+                if str(type(_c['transform'])) == "<class 'str'>":
+                    _t = f"{_k}.{_c['transform']}"
+                    #print(_t)
+                    exec(_t,container)
+                else:
+                    for _transform in _c["transform"]:
+                    #  x_const.rotate(-theta, contact)
+                        _t = f"{_k}.{_c['transform']}"
+                        #print(_t)
+                        exec(_t,container)
+            if "action" in _keys:
+                _action = _c["action"]
+                #print(_action)
+                exec(_action,container)
 
 def point(x, y, check_inside=False):
     for obj, name in zip([x, y], ['x', 'y']):

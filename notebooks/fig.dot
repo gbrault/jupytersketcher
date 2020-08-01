@@ -1,0 +1,36 @@
+digraph G {
+"Composition:\nfig" -> "Composition:\nbody";
+"Composition:\nbody" -> "Composition:\nwheel";
+"Composition:\nwheel" -> "Circle:\nouter";
+"Circle:\nouter" -> "Curve:\narc (1)";
+"Composition:\nwheel" -> "Circle:\ninner";
+"Circle:\ninner" -> "Curve:\narc (2)";
+"Composition:\nbody" -> "Force:\nN";
+"Force:\nN" -> "Line:\narrow (1)";
+"Line:\narrow (1)" -> "Curve:\nline (1)";
+"Force:\nN" -> "Text:\ntext (1)";
+"Composition:\nbody" -> "Gravity:\nmg";
+"Gravity:\nmg" -> "Line:\narrow (2)";
+"Line:\narrow (2)" -> "Curve:\nline (2)";
+"Gravity:\nmg" -> "Text:\ntext (2)";
+"Composition:\nfig" -> "Composition:\nfixed elements";
+"Composition:\nfixed elements" -> "Arc_wText:\nangle";
+"Arc_wText:\nangle" -> "Arc:\narc";
+"Arc:\narc" -> "Curve:\narc (3)";
+"Arc_wText:\nangle" -> "Text:\ntext (3)";
+"Composition:\nfixed elements" -> "Wall:\ninclined wall";
+"Wall:\ninclined wall" -> "Curve:\nwall";
+"Composition:\nfixed elements" -> "Line:\nground";
+"Line:\nground" -> "Curve:\nline (3)";
+"Composition:\nfixed elements" -> "Line:\nx start";
+"Line:\nx start" -> "Curve:\nline (4)";
+"Composition:\nfixed elements" -> "Axis:\nx axis";
+"Axis:\nx axis" -> "Arrow3:\narrow";
+"Arrow3:\narrow" -> "Line:\nline";
+"Line:\nline" -> "Curve:\nline (5)";
+"Arrow3:\narrow" -> "Line:\nhead left";
+"Line:\nhead left" -> "Curve:\nline (6)";
+"Arrow3:\narrow" -> "Line:\nhead right";
+"Line:\nhead right" -> "Curve:\nline (7)";
+"Axis:\nx axis" -> "Text:\nlabel";
+}
