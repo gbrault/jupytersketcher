@@ -3,3 +3,4 @@ future
 numpy
 Pillow
 matplotlib
+ipympl
