@@ -1,0 +1,8 @@
+conda update -n base conda
+conda update -y notebook
+conda update -y jupyterlab
+pip install ipywidgets
+jupyter labextension update --all
+jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+pip install git+https://github.com/gbrault/jupytersketcher.git
+jupyter lab build
