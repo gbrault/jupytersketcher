@@ -11,5 +11,3 @@ ghostscript
 ffmpeg
 cm-super
 imagemagick
-libfreetype6-dev
-libqhull-dev
