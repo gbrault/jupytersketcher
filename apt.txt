@@ -1,3 +1,0 @@
-dvipng
-ghostscript
-texlive-full
