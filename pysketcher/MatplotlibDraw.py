@@ -12,9 +12,9 @@ from builtins import object
 import os
 import matplotlib
 
-#matplotlib.verbose.level = 'debug-annoying'
 matplotlib.use('module://ipympl.backend_nbagg')
 matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
+matplotlib.rcParams['verbose.level'] = 'debug-annoying'
 
 import matplotlib.pyplot as mpl
 import matplotlib.transforms as transforms
