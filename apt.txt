@@ -8,3 +8,4 @@ texlive-science
 texlive-xetex
 dvipng
 ghostscript
+ffmpeg
