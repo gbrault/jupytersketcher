@@ -4,4 +4,9 @@ nav:
     - Sketcher definition: sketcher.md 
     - About: about.md
 theme:
-  name: material    
+  name: material
+markdown_extensions:
+    - admonition
+    - pymdownx.arithmatex
+extra_javascript:
+    - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'    
