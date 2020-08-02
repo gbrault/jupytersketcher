@@ -9,3 +9,5 @@ texlive-xetex
 dvipng
 ghostscript
 ffmpeg
+cm-super
+imagemagick
