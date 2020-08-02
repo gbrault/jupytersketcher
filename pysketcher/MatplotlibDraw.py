@@ -124,7 +124,7 @@ import matplotlib
 matplotlib.use('module://ipympl.backend_nbagg')
 # Allow \boldsymbol{} etc in title, labels, etc
 matplotlib.rc('text', usetex=True)
-matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
+#matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
 import matplotlib.pyplot as mpl
 import matplotlib.transforms as transforms
 
