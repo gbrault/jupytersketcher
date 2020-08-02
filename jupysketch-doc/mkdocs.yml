@@ -1,0 +1,6 @@
+site_name: Jypyter Sketcher
+nav:
+    - Home: index.md
+    - About: about.md
+theme:
+  name: material    
