@@ -13,7 +13,7 @@ import os
 import matplotlib
 
 matplotlib.use('module://ipympl.backend_nbagg')
-matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
+#matplotlib.rcParams['text.latex.preamble'] = '\\usepackage{amsmath}'
 #matplotlib.rcParams['verbose.level'] = 'debug-annoying'
 
 import matplotlib.pyplot as mpl
