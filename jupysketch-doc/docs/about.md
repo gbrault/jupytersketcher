@@ -6,7 +6,7 @@ Pysketch was developped in 2012 by [Hans Petter Langtangen](https://en.wikipedia
 
 I just need to upgrade it to make it compatible with Jupyter: This is the inception of Jupyter Sketch project!
 
-A sketch capturing the dry friction case
+A sketch capturing the "dry friction case"
 
 ![](images/dryfriction.png)
 
