@@ -1105,12 +1105,15 @@ class Arc(Shape):
         self.radius = radius
         self.start_angle = radians(start_angle)
         self.arc_angle = radians(arc_angle)
+        self.resolution = resolution
+        self.setCurve()
 
+    def setCurve(self):
         t = linspace(self.start_angle,
                      self.start_angle + self.arc_angle,
-                     resolution+1)
-        x0 = center[0];  y0 = center[1]
-        R = radius
+                     self.resolution+1)
+        x0 = self.center[0];  y0 = self.center[1]
+        R = self.radius
         x = x0 + R*cos(t)
         y = y0 + R*sin(t)
         self.shapes = {'arc': Curve(x, y)}
@@ -1644,17 +1647,23 @@ class Arc_wText(Shape):
         self.fontsize=fontsize
         self.resolution=resolution
         self.text_spacing=text_spacing
-        self.changeAngles(start_angle,arc_angle)
-    def changeAngles(self,start_angle,arc_angle):
-        arc = Arc(self.center, self.radius, start_angle, arc_angle,
+        self.start_angle = start_angle
+        self.arc_angle = arc_angle
+        self.setArc()
+    def setArc(self):
+        arc = Arc(self.center, self.radius, self.start_angle, self.arc_angle,
                   self.resolution)
-        mid = arr2D(arc(arc_angle/2.))
+        mid = arr2D(arc(self.arc_angle/2.))
         normal = unit_vec(mid - arr2D(self.center))
         text_pos = mid + normal*drawing_tool.xrange*self.text_spacing
         if hasattr(self, 'linewidth'):
             arc.set_linewidth(self.linewidth)
         self.shapes = {'arc': arc,
                        'text': Text(self.text, text_pos, fontsize=self.fontsize)}
+    def changeAngle(self,start_angle,arc_angle):
+        self.arc_angle = arc_angle
+        self.start_angle = start_angle
+        self.setArc()
     def set_linewidth(self, width):
         self.linewidth = width
         self.change_linewidth()
