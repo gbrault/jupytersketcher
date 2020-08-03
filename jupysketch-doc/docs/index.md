@@ -29,4 +29,4 @@ You can use the binder link in jupytersketcher Github to see some experiments wi
 
 ## Main benefit
 
-With Pysketcher for Jupyter mechanical notebooks, you get a single copy of the description of the problem which is as well a space to simulate and system behaviour
+With Pysketcher for Jupyter mechanical notebooks, you get a single copy of the description of the problem which is as well a space to simulate the system behaviour
