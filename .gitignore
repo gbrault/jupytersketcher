@@ -38,4 +38,4 @@ _minted-*
 .*.exerinfo
 .*.copyright
 # notebook checkepoints
-*.ipynb_checkpoints
+*checkpoints
