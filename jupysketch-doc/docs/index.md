@@ -1,6 +1,6 @@
 # Welcome to Jupyter Sketcher Documentation
 
-[![](images/github_small.png)](https://github.com/gbrault/jupytersketcher)
+[![](images/github_small.png)](https://github.com/gbrault/jupytersketcher) **Home Page of jupytersketcher project**
 
 ## Problem solved
 
