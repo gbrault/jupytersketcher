@@ -51,9 +51,9 @@ The general layout of a sketcher file is as follow:
         * One mandatory action is the setting of the drawing frame (drawing_tool.set_coordinate_system): it must be declared before any other pysketcher object is used.
         * Other use case of action is the setting of global parameters like default line color: (drawing_tool.set_linecolor('black')) for example
     * this is stored in the head string thereafter
-* **Objects**
-    * Usually starting with the declaration of Pysketcher leaf objects
-    * Then aggregated using the composition object
+* **Sketcher Objects**
+    * Usually starting with the declaration of Pysketcher leaf objects (Geometry object like Line, Circle, Rectangle...)
+    * May be aggregated using the composition object
     * Composition can be made of composition object (recursive behaviour)
     * Grouping leafs and composition will be further used to apply transformation latter on (based on the "physics")
     * The example presents three group of objects
