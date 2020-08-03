@@ -1,5 +1,7 @@
 # Welcome to Jupyter Sketcher Documentation
 
+[![](images/github_small.png)](https://github.com/gbrault/jupytersketcher)
+
 ## Problem solved
 
 When you need to solve a mechanical problem, sooner or later you are going to sketch a figure to capture problem's parameters and variables.
@@ -22,9 +24,9 @@ You can use the binder link in jupytersketcher Github to see some experiments wi
 ## pysketcher features
 
 * Drawing sketches on a matplotlib widget for Jupyter Notebook server or Lab
-* Defining a yaml based "grammar" to define sketches
-* Animating sketches within the notebook
+* Defining a yaml based "grammar" to define sketches and simplify reuse
+* Animating sketches within Jupyter notebooks
 
 ## Main benefit
 
-With Pysketcher for Jupyter mechanical notebooks, you get a single copy of the description of the problem and a space to simulate and show the user how the system behaves
+With Pysketcher for Jupyter mechanical notebooks, you get a single copy of the description of the problem which is as well a space to simulate and system behaviour

@@ -216,6 +216,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#support-files" class="md-nav__link">
+    Support files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-yaml-definition" class="md-nav__link">
     The yaml definition
   </a>
@@ -245,8 +252,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-friction-main-object" class="md-nav__link">
-    The friction main object
+  <a href="#the-friction-sketch" class="md-nav__link">
+    The friction sketch
   </a>
   
 </li>
@@ -257,8 +264,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-hierarchy-of-the-friction-main-object" class="md-nav__link">
-    The hierarchy of the "friction" main object
+  <a href="#using-the-parser" class="md-nav__link">
+    Using the parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friction-sketch-hierarchy" class="md-nav__link">
+    "friction" sketch hierarchy
   </a>
   
 </li>
@@ -333,6 +347,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#support-files" class="md-nav__link">
+    Support files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-yaml-definition" class="md-nav__link">
     The yaml definition
   </a>
@@ -362,8 +383,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-friction-main-object" class="md-nav__link">
-    The friction main object
+  <a href="#the-friction-sketch" class="md-nav__link">
+    The friction sketch
   </a>
   
 </li>
@@ -374,8 +395,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-hierarchy-of-the-friction-main-object" class="md-nav__link">
-    The hierarchy of the "friction" main object
+  <a href="#using-the-parser" class="md-nav__link">
+    Using the parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#friction-sketch-hierarchy" class="md-nav__link">
+    "friction" sketch hierarchy
   </a>
   
 </li>
@@ -406,23 +434,35 @@
                 <h2 id="a-language-to-describe-a-sketch">A language to describe a sketch</h2>
 <p>Pysketcher initial version <a href="">HPL Pysketcher</a> enable sketch definition in python. HPL is showing the hierachical nature of sketches. This is implemented via the Composition function. One can further grasp this using the graphviz_dot function applied to discover the composition herarchy implemented as a graphviz image <a href="#the-hierarchy-of-the-friction-main-object">see The hierarchy of the "friction" main object</a> at the end of this page.</p>
 <p>Due to the hierarchical nature of sketches, it is quite straightforward to think about using yaml as the syntax for defining a sketch.</p>
-<p>The benefits are as follow:</p>
+<p>Benefits are the following:</p>
 <ul>
-<li>A leaner presentation of the sketch as only the data making sense is going to be used</li>
-<li>A more straightforward reading of the composition hierachy</li>
-<li>A more robust sketch definition as only a set of rules will be applied to define a sketch and no further python idiom will be intermingled</li>
+<li>Leaner sketch writing as only data relevant to the context needs to be defined</li>
+<li>A more straightforward reading for the same reason</li>
+<li>A more robust sketch definition <ul>
+<li>The same set of rules is applied to generate a sketch</li>
+<li>No further python idiom is be intermingled as opposed to the case of python defined sketches</li>
+<li>Of course, data defined versus program defined there is no winner, it's just a matter of context</li>
+</ul>
+</li>
 </ul>
 <h2 id="example">Example</h2>
 <p>This example provides the yaml content to define the Dry Friction case</p>
 <h3 id="the-final-sketch">The final sketch</h3>
 <p><img alt="" src="../images/dryfriction.png" /></p>
-<p>An inclined plan (the A-B edge) supports a blue rectangle which is pulled donward by the gravity. The plan makes an angle <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span>. The sketch design enable the <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> angle to change. The whole plan including the body can rotate arround the point B.</p>
-<h3 id="the-yaml-definition">The yaml definition</h3>
-<p>Sketcher language is defined as a yaml compliant file or string. The yaml file is a dictionnary of </p>
+<p>An inclined plan (the A-B edge) supports a blue rectangle which is dragged down by gravity. The plan makes an angle <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> with the ground level. Sketch implementation notebook includes a controller enabling the <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> angle to change. The whole plan, including the body, can rotate arround point B.</p>
+<h3 id="support-files">Support files</h3>
+<p>The example we are developing now is based upon the "Dry Friction mockup" notebook</p>
 <ul>
-<li>functionnal objects (leaf objects, like Rectangle, Circle, Line etc or composition)</li>
-<li>extended with object style (line or fill colors, line stroke...)</li>
-<li>to which transformation are applied (translation, rotation...)</li>
+<li>the rendered html version of the notbook can be viewed <a href="../resources/DryFriction.html">here</a></li>
+<li>the notebook can be download <a href="../resources/DryFriction.ipynb">here</a></li>
+</ul>
+<h3 id="the-yaml-definition">The yaml definition</h3>
+<p>Sketcher language is defined as a yaml compliant file or string. The yaml file is a dictionnary of "objects". Objects can be regular python objects or sketcher objects.
+A skertcher object is composed as follow:</p>
+<ul>
+<li><strong>a formula</strong>: it's a leaf object, like Rectangle, Circle, Line etc or a composition</li>
+<li><strong>a style list</strong>: line or fill colors, line stroke... declared as a yaml hierarchy</li>
+<li><strong>a transformation list</strong>: the defined object can be transformed using sketcher transformation: translation, rotation...</li>
 </ul>
 <p>As a general rule, a new object suppose all parameters to be defined before they are used to construct it.</p>
 <p><strong>For example, you can create a circle if the center and the radius have been defined earlier in the file.</strong></p>
@@ -436,13 +476,14 @@
 <li>Other use case of action is the setting of global parameters like default line color: (drawing_tool.set_linecolor('black')) for example</li>
 </ul>
 </li>
+<li>this is stored in the head string thereafter</li>
 </ul>
 </li>
 <li><strong>Objects</strong><ul>
-<li>Usually starting with the declaration of leaf simple objects</li>
-<li>then aggregated using the composition object</li>
-<li>Composition can be made of composition object</li>
-<li>grouping leafs and composition will be further used to apply transformation latter on (based on the "physics")</li>
+<li>Usually starting with the declaration of Pysketcher leaf objects</li>
+<li>Then aggregated using the composition object</li>
+<li>Composition can be made of composition object (recursive behaviour)</li>
+<li>Grouping leafs and composition will be further used to apply transformation latter on (based on the "physics")</li>
 <li>The example presents three group of objects<ul>
 <li>The body object</li>
 <li>The plan object</li>
@@ -455,8 +496,8 @@
 </li>
 </ul>
 <h4 id="libraries-construction-variables-frame">Libraries, Construction Variables, Frame</h4>
-<pre><code class="yaml">libraries: [&quot;from math import tan, radians, sin, cos&quot;,
-            &quot;from pysketcher import *&quot;]
+<pre><code class="python">head = &quot;&quot;&quot;\
+libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;]
 fontsize: 18
 g: 9.81              # constant gravity
 theta: 30.0          # inclined plane angle
@@ -479,10 +520,12 @@ x: a + 3*L/10.
 y: help_line(x=x)    
 contact: point(x, y)    
 c: contact + rL/2*normal_vec
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="the-body-object">The body object</h4>
-<pre><code class="yaml">rectangle: 
+<pre><code class="python">body=&quot;&quot;&quot;\
+rectangle: 
     formula: Rectangle(contact, rl, rL)
     style:
         linecolor: blue
@@ -493,22 +536,22 @@ N:
     formula: Force(contact - rl*normal_vec, contact, r'$N$', text_pos='start')
     style:
         linecolor: black
-mg: 
-    formula: Gravity(c, rl, text='$Mg$')
-    style:
-        linecolor: black
 wheel: 
     formula: &quot;Composition({'outer': rectangle})&quot;   
     style:
         shadow: 1
+mc:
+    formula: Text(r'$c$', c)
 body: 
-    formula: &quot;Composition({'wheel': wheel, 'N': N, 'mg': mg})&quot;
+    formula: &quot;Composition({'wheel': wheel, 'N': N, 'mc': mc})&quot;
     style:
         linecolor: black
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="the-plan-object">The plan object</h4>
-<pre><code class="yaml">mB:
+<pre><code class="python">plan=&quot;&quot;&quot;\
+mB:
     formula: Text(r'$B$',B)
 mA:
     formula: Text(r'$A$', A)
@@ -516,6 +559,24 @@ wall:
     formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.25,transparent=False)
     style:
         linecolor: black    
+x_const: 
+    formula: Line(contact, contact + point(0,4))
+    style:
+        linestyle: dotted
+    transform: rotate(-theta, contact)
+x_axis: 
+    formula: &quot;Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)&quot;
+plan: 
+    formula: &quot;Composition({'body': body, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})&quot;
+&quot;&quot;&quot;
+</code></pre>
+
+<h4 id="the-friction-sketch">The friction sketch</h4>
+<pre><code class="python">friction=&quot;&quot;&quot;\
+mg: 
+    formula: Gravity(c, rl, text='$Mg$')
+    style:
+        linecolor: black
 angle: 
     formula: &quot;Arc_wText(r'$&lt;bslash&gt;theta$', center=B, radius=3, start_angle=180-theta, arc_angle=theta, fontsize=fontsize)&quot;
     style:
@@ -527,24 +588,24 @@ ground:
          linecolor: black
          linestyle: dashed
          linewidth: 1
-x_const: 
-    formula: Line(contact, contact + point(0,4))
-    style:
-        linestyle: dotted
-    transform: rotate(-theta, contact)
-x_axis: 
-    formula: &quot;Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)&quot;
-plan: 
-    formula: &quot;Composition({'body': body, 'angle': angle, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})&quot;
-</code></pre>
-
-<h4 id="the-friction-main-object">The friction main object</h4>
-<pre><code class="yaml">
 friction: 
-    formula: &quot;Composition({'plan': plan, 'ground': ground})&quot;
+    formula: &quot;Composition({'plan': plan, 'ground': ground, 'mg': mg, 'angle': angle})&quot;
+&quot;&quot;&quot;
 </code></pre>
 
-<h3 id="the-hierarchy-of-the-friction-main-object">The hierarchy of the "friction" main object</h3>
+<h3 id="using-the-parser">Using the parser</h3>
+<p>To parse the above example, the following code do the job.
+1. the head must be used first as all the other bits needs one or more variable it defines.
+2. After, any other string can be parsed, the order just need to respect precedence (if one object uses another one it must be parsed after)
+3. this setting allows naturally a modular definition of sketch objects</p>
+<pre><code class="python">myfig = {}
+sketchParse(head,myfig)
+sketchParse(body,myfig)
+sketchParse(plan,myfig)
+sketchParse(friction,myfig)
+</code></pre>
+
+<h3 id="friction-sketch-hierarchy">"friction" sketch hierarchy</h3>
 <p><img alt="" src="../images/dotfriction.png" /></p>
                 
               
