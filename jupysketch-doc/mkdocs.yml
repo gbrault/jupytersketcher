@@ -2,8 +2,9 @@ site_name: Jypyter Sketcher
 nav:
     - Home: index.md
     - About: about.md
-    - Definition: sketcher.md
-    - Reference: reference.md
+    - Presentation: presentation.md
+    - Learning by Example: sketcher.md
+    - Shapes Reference: shapereference.md
 theme:
   name: material
 markdown_extensions:

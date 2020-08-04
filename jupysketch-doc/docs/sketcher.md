@@ -1,6 +1,6 @@
 ## A language to describe a sketch
 
-Pysketcher initial version [HPL Pysketcher]() enable sketch definition in python. HPL is showing the hierachical nature of sketches. This is implemented via the Composition function. One can further grasp this using the graphviz_dot function applied to discover the composition herarchy implemented as a graphviz image [see The hierarchy of the "friction" main object](#the-hierarchy-of-the-friction-main-object) at the end of this page.
+Pysketcher initial version [HPL Pysketcher]() enable sketch definition in python. HPL is showing the hierachical nature of sketches. This is implemented via the Composition function. One can further grasp this using the graphviz_dot function applied to discover the composition herarchy implemented as a graphviz image [see The hierarchy of the "friction" sketch](#friction-sketch-hierarchy) at the end of this page.
 
 Due to the hierarchical nature of sketches, it is quite straightforward to think about using yaml as the syntax for defining a sketch.
 
@@ -11,14 +11,14 @@ Benefits are the following:
 * A more robust sketch definition 
     * The same set of rules is applied to generate a sketch
     * No further python idiom is be intermingled as opposed to the case of python defined sketches
-    * Of course, data defined versus program defined there is no winner, it's just a matter of context
+    * Don't make me wrong! Data defined versus program defined there is no winner, it's just a matter of context
 
 ## Example
 
 This example provides the yaml content to define the Dry Friction case
 
 ### The final sketch
-![](images/dryfriction.png)
+![dryfriction sketch](images/dryfriction.png)
 
 An inclined plan (the A-B edge) supports a blue rectangle which is dragged down by gravity. The plan makes an angle $\theta$ with the ground level. Sketch implementation notebook includes a controller enabling the $\theta$ angle to change. The whole plan, including the body, can rotate arround point B.
 
