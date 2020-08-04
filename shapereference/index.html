@@ -15,7 +15,7 @@
     
     
       
-        <title>Reference - Jypyter Sketcher</title>
+        <title>Shapes Reference - Jypyter Sketcher</title>
       
     
     
@@ -77,7 +77,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Reference
+              Shapes Reference
             
           </span>
         </div>
@@ -175,6 +175,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../presentation/" title="Presentation" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
     <a href="../sketcher/" title="Learning by Example" class="md-nav__link">
       Learning by Example
     </a>
@@ -194,14 +206,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Reference
+        Shapes Reference
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Reference" class="md-nav__link md-nav__link--active">
-      Reference
+    <a href="./" title="Shapes Reference" class="md-nav__link md-nav__link--active">
+      Shapes Reference
     </a>
     
       
@@ -1033,7 +1045,7 @@
                   
                 
                 
-                  <h1>Reference</h1>
+                  <h1>Shapes Reference</h1>
                 
                 <h2 id="list-of-shapes">List of Shapes</h2>
 <p><a href="#code-to-display-the-above-defined-shapes">Code to display shapes</a></p>
@@ -1067,7 +1079,7 @@ B = point(5,5)
 line = Line(A,B)
 </code></pre>
 
-<p><img alt="line" src="line.svg" /></p>
+<p><img alt="line" src="../reference/line.svg" /></p>
 <h2 id="rectangle">Rectangle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a rectangle providing bottom left corner, x dimension, y dimension</p>
 <h3 id="yaml_1">Yaml</h3>
@@ -1084,7 +1096,7 @@ p = point(-(L/2),-(h/2))
 rectangle = Rectangle(p,L,h)
 </code></pre>
 
-<p><img alt="rectangle" src="rectangle.svg" /></p>
+<p><img alt="rectangle" src="../reference/rectangle.svg" /></p>
 <h2 id="circle">Circle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a circle proving center and radius</p>
 <h3 id="yaml_2">Yaml</h3>
@@ -1095,7 +1107,7 @@ rectangle = Rectangle(p,L,h)
 <pre><code class="python">circle = Circle(point(0,0),5)
 </code></pre>
 
-<p><img alt="circle" src="circle.svg" /></p>
+<p><img alt="circle" src="../reference/circle.svg" /></p>
 <h2 id="triangle">Triangle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a triangle providing three corner</p>
 <h3 id="yaml_3">Yaml</h3>
@@ -1110,7 +1122,7 @@ W = 4.0
 triangle = Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
 </code></pre>
 
-<p><img alt="triangle" src="triangle.svg" /></p>
+<p><img alt="triangle" src="../reference/triangle.svg" /></p>
 <h2 id="distance-with-text">Distance with text</h2>
 <p><a href="#list-of-shapes">home</a> Defines a sizing mark with a label </p>
 <h3 id="yaml_4">Yaml</h3>
@@ -1125,7 +1137,7 @@ t = r'$ 2\pi R^2 $'  # sample text
 dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
 </code></pre>
 
-<p><img alt="Distance with text" src="distancewithtext.svg" /></p>
+<p><img alt="Distance with text" src="../reference/distancewithtext.svg" /></p>
 <h2 id="text">Text</h2>
 <p><a href="#list-of-shapes">home</a> Defines a given text positionned at the provided point</p>
 <h3 id="yaml_5">Yaml</h3>
@@ -1136,7 +1148,7 @@ dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
 <pre><code class="python">text = Text(r'$c$', point(0,0))
 </code></pre>
 
-<p><img alt="Text" src="text.svg" /></p>
+<p><img alt="Text" src="../reference/text.svg" /></p>
 <h2 id="cross">Cross</h2>
 <p><a href="#list-of-shapes">home</a> Defines a cross positionned at the provided point</p>
 <h3 id="yaml_6">Yaml</h3>
@@ -1147,7 +1159,7 @@ dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
 <pre><code class="python">cross = Cross(point(1,0))
 </code></pre>
 
-<p><img alt="Cross" src="cross.svg" /></p>
+<p><img alt="Cross" src="../reference/cross.svg" /></p>
 <h2 id="axis">Axis</h2>
 <p><a href="#list-of-shapes">home</a> Defines an axis at the given point with a given label</p>
 <h3 id="yaml_7">Yaml</h3>
@@ -1158,7 +1170,7 @@ dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
 <pre><code class="python">axis = Axis((0,0), 5, 'x', rotation_angle=0)
 </code></pre>
 
-<p><img alt="Axis" src="axis.svg" /></p>
+<p><img alt="Axis" src="../reference/axis.svg" /></p>
 <h2 id="arc">Arc</h2>
 <p><a href="#list-of-shapes">home</a> Defines an Arc providing a center point, a radius, a starting angle and an angle (rotates clock-wise)</p>
 <h3 id="yaml_8">Yaml</h3>
@@ -1179,7 +1191,7 @@ arc_angle = angle
 arc = Arc(center, radius, start_angle, arc_angle)
 </code></pre>
 
-<p><img alt="Arc" src="arc.svg" /></p>
+<p><img alt="Arc" src="../reference/arc.svg" /></p>
 <h2 id="arc_wtext">Arc_wText</h2>
 <p><a href="#list-of-shapes">home</a> Defines an arc with text positionned left (moving clock-wise) of arc half-way</p>
 <h3 id="yaml_9">Yaml</h3>
@@ -1200,7 +1212,7 @@ arc_angle = angle
 arc_wtxt = Arc_wText(r'$\theta$', center, radius, start_angle, arc_angle)
 </code></pre>
 
-<p><img alt="Arc with Text" src="arcwtext.svg" /></p>
+<p><img alt="Arc with Text" src="../reference/arcwtext.svg" /></p>
 <h2 id="arrow1">Arrow1</h2>
 <p><a href="#list-of-shapes">home</a> defines a line with arrow(s) given starting and ending point and arrow termination(s) -&gt;, \&lt;-&gt;, \&lt;-</p>
 <h3 id="yaml_10">Yaml</h3>
@@ -1215,7 +1227,7 @@ end = point(5,5)
 arrow1 = Arrow1(start, end, style='&lt;-&gt;')
 </code></pre>
 
-<p><img alt="Arrow1" src="arrow1.svg" /></p>
+<p><img alt="Arrow1" src="../reference/arrow1.svg" /></p>
 <h2 id="force">Force</h2>
 <p><a href="#list-of-shapes">home</a> defines an Indication of a force by an arrow and a text (symbol)</p>
 <h3 id="yaml_11">Yaml</h3>
@@ -1234,7 +1246,7 @@ vector = point(-3,-5)
 force = Force(contact - vector, contact, r'$Force$', text_pos='start')
 </code></pre>
 
-<p><img alt="Force" src="force.svg" /></p>
+<p><img alt="Force" src="../reference/force.svg" /></p>
 <h2 id="wall">Wall</h2>
 <p><a href="#list-of-shapes">home</a> defines an hached box given starting, ending point and thickness, filled with a pattern</p>
 <h3 id="yaml_12">Yaml</h3>
@@ -1257,7 +1269,7 @@ wall= Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
 wall.set_linecolor('black')
 </code></pre>
 
-<p><img alt="Wall" src="wall.svg" /></p>
+<p><img alt="Wall" src="../reference/wall.svg" /></p>
 <h2 id="code-to-display-the-above-defined-shapes">Code to display the above defined shapes</h2>
 <p><a href="#list-of-shapes">home</a> In order to display the various shapes, use the following code in a jupyter notebook</p>
 <pre><code class="python">[1]: %matplotlib widget

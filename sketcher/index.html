@@ -173,6 +173,18 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../presentation/" title="Presentation" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -307,8 +319,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../reference/" title="Reference" class="md-nav__link">
-      Reference
+    <a href="../shapereference/" title="Shapes Reference" class="md-nav__link">
+      Shapes Reference
     </a>
   </li>
 
@@ -444,7 +456,7 @@
                   <h1>Learning by Example</h1>
                 
                 <h2 id="a-language-to-describe-a-sketch">A language to describe a sketch</h2>
-<p>Pysketcher initial version <a href="">HPL Pysketcher</a> enable sketch definition in python. HPL is showing the hierachical nature of sketches. This is implemented via the Composition function. One can further grasp this using the graphviz_dot function applied to discover the composition herarchy implemented as a graphviz image <a href="#the-hierarchy-of-the-friction-main-object">see The hierarchy of the "friction" main object</a> at the end of this page.</p>
+<p>Pysketcher initial version <a href="">HPL Pysketcher</a> enable sketch definition in python. HPL is showing the hierachical nature of sketches. This is implemented via the Composition function. One can further grasp this using the graphviz_dot function applied to discover the composition herarchy implemented as a graphviz image <a href="#friction-sketch-hierarchy">see The hierarchy of the "friction" sketch</a> at the end of this page.</p>
 <p>Due to the hierarchical nature of sketches, it is quite straightforward to think about using yaml as the syntax for defining a sketch.</p>
 <p>Benefits are the following:</p>
 <ul>
@@ -453,14 +465,14 @@
 <li>A more robust sketch definition <ul>
 <li>The same set of rules is applied to generate a sketch</li>
 <li>No further python idiom is be intermingled as opposed to the case of python defined sketches</li>
-<li>Of course, data defined versus program defined there is no winner, it's just a matter of context</li>
+<li>Don't make me wrong! Data defined versus program defined there is no winner, it's just a matter of context</li>
 </ul>
 </li>
 </ul>
 <h2 id="example">Example</h2>
 <p>This example provides the yaml content to define the Dry Friction case</p>
 <h3 id="the-final-sketch">The final sketch</h3>
-<p><img alt="" src="../images/dryfriction.png" /></p>
+<p><img alt="dryfriction sketch" src="../images/dryfriction.png" /></p>
 <p>An inclined plan (the A-B edge) supports a blue rectangle which is dragged down by gravity. The plan makes an angle <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> with the ground level. Sketch implementation notebook includes a controller enabling the <span><span class="MathJax_Preview">\theta</span><script type="math/tex">\theta</script></span> angle to change. The whole plan, including the body, can rotate arround point B.</p>
 <h3 id="support-files">Support files</h3>
 <p>The example we are developing now is based upon the "Dry Friction mockup" notebook</p>
@@ -637,7 +649,7 @@ sketchParse(friction,myfig)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../about/" title="About" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../presentation/" title="Presentation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -646,19 +658,19 @@ sketchParse(friction,myfig)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                About
+                Presentation
               </div>
             </div>
           </a>
         
         
-          <a href="../reference/" title="Reference" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../shapereference/" title="Shapes Reference" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Reference
+                Shapes Reference
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
