@@ -2,8 +2,8 @@ site_name: Jypyter Sketcher
 nav:
     - Home: index.md
     - About: about.md
-    - Sketcher definition: sketcher.md
-    - Sketcher reference: reference.md
+    - Definition: sketcher.md
+    - Reference: reference.md
 theme:
   name: material
 markdown_extensions:
