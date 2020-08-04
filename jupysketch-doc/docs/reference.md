@@ -14,6 +14,7 @@
 - [Arc_wText](#arc_wtext): defines an arc with text positionned left (moving clock-wise) of arc half-way
 - [Arrow1](#arrow1): defines a line with arrow(s) given starting and ending point and arrow termination(s) ->, \<->, \<-
 - [Force](#force): defines an Indication of a force by an arrow and a text (symbol)
+- [Wall](#wall): defines an hached box given starting, ending point and thickness, filled with a pattern
 - [](#)
 
 ## Line
@@ -205,6 +206,31 @@ force = Force(contact - vector, contact, r'$Force$', text_pos='start')
 ```
 ![Force](reference/force.svg)
 
+## Wall
+[home](#list-of-shapes) defines an hached box given starting, ending point and thickness, filled with a pattern
+
+### Yaml
+```yaml
+theta: 30
+L: 8
+B: point(L-4,-2)                      # wall right end
+A: point(-4,tan(radians(theta))*L-2)  # wall left end
+wall: 
+    formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
+    style:
+        linecolor: black
+```
+### Python
+```python
+theta = 30
+L = 8
+B = point(L-4,-2)                      # wall right end
+A = point(-4,tan(radians(theta))*L-2)  # wall left end
+wall= Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
+wall.set_linecolor('black')
+```
+![Wall](reference/wall.svg)
+
 ## Code to display the above defined shapes
 
 [home](#list-of-shapes) In order to display the various shapes, use the following code in a jupyter notebook
@@ -213,8 +239,9 @@ force = Force(contact - vector, contact, r'$Force$', text_pos='start')
 ```python
 [1]: %matplotlib widget
 [2]: from pysketcher import *
-[3]: drawing_tool.set_coordinate_system(xmin=-10, xmax=10,ymin=-10, ymax=10,axis=True)
-[4]: drawing_tool.mpl.gcf().canvas
+[3]: from math import tan, radians, sin, cos # needed for python code
+[4]: drawing_tool.set_coordinate_system(xmin=-10, xmax=10,ymin=-10, ymax=10,axis=True)
+[5]: drawing_tool.mpl.gcf().canvas
 ```
 for Yaml, you need to add those extra steps
 
@@ -224,7 +251,7 @@ libraries: ["from math import tan, radians, sin, cos","from pysketcher import *"
 myfig={}
 sketchParse(head,myfig)
 ```
-The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher)
+The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher): this is used by the yaml definition of shapes
 
 ### Yaml
 
