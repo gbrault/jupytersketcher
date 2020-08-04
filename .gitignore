@@ -40,3 +40,4 @@ _minted-*
 # notebook checkepoints
 *checkpoints
 Scripts
+Lib/site-packages
