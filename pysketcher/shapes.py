@@ -1383,6 +1383,21 @@ class Arrow3(Shape):
     def geometric_features(self):
         return self.shapes['line'].geometric_features()
 
+class Cross(Shape):
+    """
+    Place a cross at the (x,y) point `position`. 
+    The cross fits in a 0.2 square which center is (x,y).    
+    the color is black
+    the linewidth is 1    
+    """
+    def __init__(self,c):
+        l = 0.1
+        line1 = Line(c+point(-l,l),c+point(l,-l))
+        line2 = Line(c+point(l,l), c+point(-l,-l))
+        cross = Composition({'line1': line1, 'line2': line2})
+        cross.set_linecolor('black')
+        cross.set_linewidth(1)
+        self.shapes = {'cross': cross}
 
 class Text(Point):
     """

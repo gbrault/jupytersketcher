@@ -13,3 +13,8 @@ A sketch capturing the "dry friction case"
 How it is structured: the composition hierarchy
 
 ![](images/dotfriction.png)
+
+Built with
+
+* mkdocs 1.1.0
+* mkdocs-material 5.4.0
