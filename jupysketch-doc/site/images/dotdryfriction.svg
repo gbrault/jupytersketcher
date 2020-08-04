@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1247pt" height="510pt" viewBox="0.00 0.00 1246.65 510.44">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 506.441)">
+<title>G</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-506.441 1242.65,-506.441 1242.65,4 -4,4"/>
+<!-- Composition:\nfriction -->
+<g id="node1" class="node"><title>Composition:\nfriction</title>
+<ellipse fill="none" stroke="black" cx="867.054" cy="-475.571" rx="65.1077" ry="26.7407"/>
+<text text-anchor="middle" x="867.054" y="-479.371" font-family="Times New Roman,serif" font-size="14.00">Composition:</text>
+<text text-anchor="middle" x="867.054" y="-464.371" font-family="Times New Roman,serif" font-size="14.00">friction</text>
+</g>
+<!-- Composition:\nplan -->
+<g id="node2" class="node"><title>Composition:\nplan</title>
+<ellipse fill="none" stroke="black" cx="559.054" cy="-385.831" rx="65.1077" ry="26.7407"/>
+<text text-anchor="middle" x="559.054" y="-389.631" font-family="Times New Roman,serif" font-size="14.00">Composition:</text>
+<text text-anchor="middle" x="559.054" y="-374.631" font-family="Times New Roman,serif" font-size="14.00">plan</text>
+</g>
+<!-- Composition:\nfriction&#45;&gt;Composition:\nplan -->
+<g id="edge1" class="edge"><title>Composition:\nfriction-&gt;Composition:\nplan</title>
+<path fill="none" stroke="black" d="M814.457,-459.587C761.051,-444.373 678.356,-420.816 621.619,-404.653"/>
+<polygon fill="black" stroke="black" points="622.268,-401.199 611.692,-401.825 620.35,-407.931 622.268,-401.199"/>
+</g>
+<!-- Line:\nground -->
+<g id="node27" class="node"><title>Line:\nground</title>
+<ellipse fill="none" stroke="black" cx="816.054" cy="-385.831" rx="39.6962" ry="26.7407"/>
+<text text-anchor="middle" x="816.054" y="-389.631" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="816.054" y="-374.631" font-family="Times New Roman,serif" font-size="14.00">ground</text>
+</g>
+<!-- Composition:\nfriction&#45;&gt;Line:\nground -->
+<g id="edge26" class="edge"><title>Composition:\nfriction-&gt;Line:\nground</title>
+<path fill="none" stroke="black" d="M852.303,-449.193C847.041,-440.141 841.033,-429.804 835.441,-420.184"/>
+<polygon fill="black" stroke="black" points="838.297,-418.132 830.245,-411.246 832.245,-421.65 838.297,-418.132"/>
+</g>
+<!-- Gravity:\nmg -->
+<g id="node29" class="node"><title>Gravity:\nmg</title>
+<ellipse fill="none" stroke="black" cx="919.054" cy="-385.831" rx="43.2674" ry="26.7407"/>
+<text text-anchor="middle" x="919.054" y="-389.631" font-family="Times New Roman,serif" font-size="14.00">Gravity:</text>
+<text text-anchor="middle" x="919.054" y="-374.631" font-family="Times New Roman,serif" font-size="14.00">mg</text>
+</g>
+<!-- Composition:\nfriction&#45;&gt;Gravity:\nmg -->
+<g id="edge28" class="edge"><title>Composition:\nfriction-&gt;Gravity:\nmg</title>
+<path fill="none" stroke="black" d="M882.094,-449.193C887.514,-440.048 893.712,-429.591 899.463,-419.887"/>
+<polygon fill="black" stroke="black" points="902.496,-421.633 904.584,-411.246 896.475,-418.064 902.496,-421.633"/>
+</g>
+<!-- Arc_wText:\nangle -->
+<g id="node33" class="node"><title>Arc_wText:\nangle</title>
+<ellipse fill="none" stroke="black" cx="1112.05" cy="-385.831" rx="58.8803" ry="26.7407"/>
+<text text-anchor="middle" x="1112.05" y="-389.631" font-family="Times New Roman,serif" font-size="14.00">Arc_wText:</text>
+<text text-anchor="middle" x="1112.05" y="-374.631" font-family="Times New Roman,serif" font-size="14.00">angle</text>
+</g>
+<!-- Composition:\nfriction&#45;&gt;Arc_wText:\nangle -->
+<g id="edge32" class="edge"><title>Composition:\nfriction-&gt;Arc_wText:\nangle</title>
+<path fill="none" stroke="black" d="M915.166,-457.341C955.891,-442.756 1014.27,-421.85 1056.88,-406.589"/>
+<polygon fill="black" stroke="black" points="1058.3,-409.798 1066.54,-403.132 1055.94,-403.208 1058.3,-409.798"/>
+</g>
+<!-- Composition:\nbody -->
+<g id="node3" class="node"><title>Composition:\nbody</title>
+<ellipse fill="none" stroke="black" cx="199.054" cy="-296.09" rx="65.1077" ry="26.7407"/>
+<text text-anchor="middle" x="199.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Composition:</text>
+<text text-anchor="middle" x="199.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">body</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Composition:\nbody -->
+<g id="edge2" class="edge"><title>Composition:\nplan-&gt;Composition:\nbody</title>
+<path fill="none" stroke="black" d="M501.756,-372.883C446.538,-361.113 360.749,-342.154 287.054,-322.96 278.34,-320.691 269.182,-318.162 260.201,-315.598"/>
+<polygon fill="black" stroke="black" points="261.134,-312.225 250.555,-312.814 259.192,-318.95 261.134,-312.225"/>
+</g>
+<!-- Wall:\ninclined wall -->
+<g id="node12" class="node"><title>Wall:\ninclined wall</title>
+<ellipse fill="none" stroke="black" cx="356.054" cy="-296.09" rx="60.2083" ry="26.7407"/>
+<text text-anchor="middle" x="356.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Wall:</text>
+<text text-anchor="middle" x="356.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">inclined wall</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Wall:\ninclined wall -->
+<g id="edge11" class="edge"><title>Composition:\nplan-&gt;Wall:\ninclined wall</title>
+<path fill="none" stroke="black" d="M515.006,-365.792C483.484,-352.168 440.94,-333.78 407.799,-319.456"/>
+<polygon fill="black" stroke="black" points="408.847,-316.096 398.279,-315.341 406.07,-322.521 408.847,-316.096"/>
+</g>
+<!-- Line:\nx start -->
+<g id="node14" class="node"><title>Line:\nx start</title>
+<ellipse fill="none" stroke="black" cx="470.054" cy="-296.09" rx="36.125" ry="26.7407"/>
+<text text-anchor="middle" x="470.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="470.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">x start</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Line:\nx start -->
+<g id="edge13" class="edge"><title>Composition:\nplan-&gt;Line:\nx start</title>
+<path fill="none" stroke="black" d="M534.734,-360.855C523.588,-349.867 510.299,-336.766 498.675,-325.306"/>
+<polygon fill="black" stroke="black" points="500.893,-322.579 491.315,-318.051 495.979,-327.564 500.893,-322.579"/>
+</g>
+<!-- Axis:\nx axis -->
+<g id="node16" class="node"><title>Axis:\nx axis</title>
+<ellipse fill="none" stroke="black" cx="559.054" cy="-296.09" rx="34.7971" ry="26.7407"/>
+<text text-anchor="middle" x="559.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Axis:</text>
+<text text-anchor="middle" x="559.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">x axis</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Axis:\nx axis -->
+<g id="edge15" class="edge"><title>Composition:\nplan-&gt;Axis:\nx axis</title>
+<path fill="none" stroke="black" d="M559.054,-358.506C559.054,-350.539 559.054,-341.648 559.054,-333.159"/>
+<polygon fill="black" stroke="black" points="562.554,-333.094 559.054,-323.094 555.554,-333.094 562.554,-333.094"/>
+</g>
+<!-- Text:\nmA -->
+<g id="node25" class="node"><title>Text:\nmA</title>
+<ellipse fill="none" stroke="black" cx="643.054" cy="-296.09" rx="31.6406" ry="26.7407"/>
+<text text-anchor="middle" x="643.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="643.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">mA</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Text:\nmA -->
+<g id="edge24" class="edge"><title>Composition:\nplan-&gt;Text:\nmA</title>
+<path fill="none" stroke="black" d="M582.453,-360.39C593.045,-349.326 605.616,-336.195 616.555,-324.769"/>
+<polygon fill="black" stroke="black" points="619.083,-327.189 623.471,-317.546 614.027,-322.349 619.083,-327.189"/>
+</g>
+<!-- Text:\nmB -->
+<g id="node26" class="node"><title>Text:\nmB</title>
+<ellipse fill="none" stroke="black" cx="725.054" cy="-296.09" rx="31.6406" ry="26.7407"/>
+<text text-anchor="middle" x="725.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="725.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">mB</text>
+</g>
+<!-- Composition:\nplan&#45;&gt;Text:\nmB -->
+<g id="edge25" class="edge"><title>Composition:\nplan-&gt;Text:\nmB</title>
+<path fill="none" stroke="black" d="M601.281,-365.269C625.773,-353.592 657.023,-338.125 684.054,-322.96 686.531,-321.571 689.068,-320.098 691.605,-318.588"/>
+<polygon fill="black" stroke="black" points="693.434,-321.572 700.15,-313.377 689.79,-315.595 693.434,-321.572"/>
+</g>
+<!-- Composition:\nwheel -->
+<g id="node4" class="node"><title>Composition:\nwheel</title>
+<ellipse fill="none" stroke="black" cx="65.0538" cy="-206.35" rx="65.1077" ry="26.7407"/>
+<text text-anchor="middle" x="65.0538" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Composition:</text>
+<text text-anchor="middle" x="65.0538" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">wheel</text>
+</g>
+<!-- Composition:\nbody&#45;&gt;Composition:\nwheel -->
+<g id="edge3" class="edge"><title>Composition:\nbody-&gt;Composition:\nwheel</title>
+<path fill="none" stroke="black" d="M165.24,-272.95C147.704,-261.468 126.11,-247.328 107.465,-235.12"/>
+<polygon fill="black" stroke="black" points="109.14,-232.034 98.8569,-229.484 105.306,-237.89 109.14,-232.034"/>
+</g>
+<!-- Force:\nN -->
+<g id="node7" class="node"><title>Force:\nN</title>
+<ellipse fill="none" stroke="black" cx="186.054" cy="-206.35" rx="37.4533" ry="26.7407"/>
+<text text-anchor="middle" x="186.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Force:</text>
+<text text-anchor="middle" x="186.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">N</text>
+</g>
+<!-- Composition:\nbody&#45;&gt;Force:\nN -->
+<g id="edge6" class="edge"><title>Composition:\nbody-&gt;Force:\nN</title>
+<path fill="none" stroke="black" d="M195.224,-269.24C194.018,-261.102 192.664,-251.962 191.374,-243.255"/>
+<polygon fill="black" stroke="black" points="194.829,-242.698 189.901,-233.319 187.905,-243.724 194.829,-242.698"/>
+</g>
+<!-- Text:\nmc -->
+<g id="node11" class="node"><title>Text:\nmc</title>
+<ellipse fill="none" stroke="black" cx="273.054" cy="-206.35" rx="31.6406" ry="26.7407"/>
+<text text-anchor="middle" x="273.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="273.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">mc</text>
+</g>
+<!-- Composition:\nbody&#45;&gt;Text:\nmc -->
+<g id="edge10" class="edge"><title>Composition:\nbody-&gt;Text:\nmc</title>
+<path fill="none" stroke="black" d="M220.061,-270.182C228.932,-259.664 239.322,-247.345 248.541,-236.415"/>
+<polygon fill="black" stroke="black" points="251.236,-238.648 255.008,-228.747 245.885,-234.135 251.236,-238.648"/>
+</g>
+<!-- Rectangle:\nouter -->
+<g id="node5" class="node"><title>Rectangle:\nouter</title>
+<ellipse fill="none" stroke="black" cx="65.0538" cy="-116.61" rx="52.1524" ry="26.7407"/>
+<text text-anchor="middle" x="65.0538" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Rectangle:</text>
+<text text-anchor="middle" x="65.0538" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">outer</text>
+</g>
+<!-- Composition:\nwheel&#45;&gt;Rectangle:\nouter -->
+<g id="edge4" class="edge"><title>Composition:\nwheel-&gt;Rectangle:\nouter</title>
+<path fill="none" stroke="black" d="M65.0538,-179.025C65.0538,-171.059 65.0538,-162.168 65.0538,-153.679"/>
+<polygon fill="black" stroke="black" points="68.5539,-153.614 65.0538,-143.614 61.5539,-153.614 68.5539,-153.614"/>
+</g>
+<!-- Curve:\nrectangle -->
+<g id="node6" class="node"><title>Curve:\nrectangle</title>
+<ellipse fill="none" stroke="black" cx="65.0538" cy="-26.8701" rx="46.8387" ry="26.7407"/>
+<text text-anchor="middle" x="65.0538" y="-30.6701" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="65.0538" y="-15.6701" font-family="Times New Roman,serif" font-size="14.00">rectangle</text>
+</g>
+<!-- Rectangle:\nouter&#45;&gt;Curve:\nrectangle -->
+<g id="edge5" class="edge"><title>Rectangle:\nouter-&gt;Curve:\nrectangle</title>
+<path fill="none" stroke="black" d="M65.0538,-89.2852C65.0538,-81.3185 65.0538,-72.4275 65.0538,-63.9391"/>
+<polygon fill="black" stroke="black" points="68.5539,-63.874 65.0538,-53.874 61.5539,-63.8741 68.5539,-63.874"/>
+</g>
+<!-- Line:\narrow (1) -->
+<g id="node8" class="node"><title>Line:\narrow (1)</title>
+<ellipse fill="none" stroke="black" cx="185.054" cy="-116.61" rx="48.1667" ry="26.7407"/>
+<text text-anchor="middle" x="185.054" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="185.054" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">arrow (1)</text>
+</g>
+<!-- Force:\nN&#45;&gt;Line:\narrow (1) -->
+<g id="edge7" class="edge"><title>Force:\nN-&gt;Line:\narrow (1)</title>
+<path fill="none" stroke="black" d="M185.754,-179.025C185.663,-171.059 185.562,-162.168 185.465,-153.679"/>
+<polygon fill="black" stroke="black" points="188.964,-153.574 185.35,-143.614 181.964,-153.653 188.964,-153.574"/>
+</g>
+<!-- Text:\ntext (1) -->
+<g id="node10" class="node"><title>Text:\ntext (1)</title>
+<ellipse fill="none" stroke="black" cx="291.054" cy="-116.61" rx="39.6962" ry="26.7407"/>
+<text text-anchor="middle" x="291.054" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="291.054" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">text (1)</text>
+</g>
+<!-- Force:\nN&#45;&gt;Text:\ntext (1) -->
+<g id="edge9" class="edge"><title>Force:\nN-&gt;Text:\ntext (1)</title>
+<path fill="none" stroke="black" d="M209.88,-185.441C224.307,-173.385 242.901,-157.847 258.653,-144.685"/>
+<polygon fill="black" stroke="black" points="261.164,-147.148 266.593,-138.05 256.675,-141.776 261.164,-147.148"/>
+</g>
+<!-- Curve:\nline (1) -->
+<g id="node9" class="node"><title>Curve:\nline (1)</title>
+<ellipse fill="none" stroke="black" cx="185.054" cy="-26.8701" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="185.054" y="-30.6701" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="185.054" y="-15.6701" font-family="Times New Roman,serif" font-size="14.00">line (1)</text>
+</g>
+<!-- Line:\narrow (1)&#45;&gt;Curve:\nline (1) -->
+<g id="edge8" class="edge"><title>Line:\narrow (1)-&gt;Curve:\nline (1)</title>
+<path fill="none" stroke="black" d="M185.054,-89.2852C185.054,-81.3185 185.054,-72.4275 185.054,-63.9391"/>
+<polygon fill="black" stroke="black" points="188.554,-63.874 185.054,-53.874 181.554,-63.8741 188.554,-63.874"/>
+</g>
+<!-- Curve:\nwall -->
+<g id="node13" class="node"><title>Curve:\nwall</title>
+<ellipse fill="none" stroke="black" cx="360.054" cy="-206.35" rx="37.4533" ry="26.7407"/>
+<text text-anchor="middle" x="360.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="360.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">wall</text>
+</g>
+<!-- Wall:\ninclined wall&#45;&gt;Curve:\nwall -->
+<g id="edge12" class="edge"><title>Wall:\ninclined wall-&gt;Curve:\nwall</title>
+<path fill="none" stroke="black" d="M357.254,-268.765C357.617,-260.799 358.022,-251.908 358.409,-243.419"/>
+<polygon fill="black" stroke="black" points="361.909,-243.503 358.868,-233.354 354.916,-243.184 361.909,-243.503"/>
+</g>
+<!-- Curve:\nline (2) -->
+<g id="node15" class="node"><title>Curve:\nline (2)</title>
+<ellipse fill="none" stroke="black" cx="458.054" cy="-206.35" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="458.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="458.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">line (2)</text>
+</g>
+<!-- Line:\nx start&#45;&gt;Curve:\nline (2) -->
+<g id="edge14" class="edge"><title>Line:\nx start-&gt;Curve:\nline (2)</title>
+<path fill="none" stroke="black" d="M466.518,-269.24C465.405,-261.102 464.155,-251.962 462.964,-243.255"/>
+<polygon fill="black" stroke="black" points="466.428,-242.753 461.606,-233.319 459.493,-243.701 466.428,-242.753"/>
+</g>
+<!-- Arrow3:\narrow -->
+<g id="node17" class="node"><title>Arrow3:\narrow</title>
+<ellipse fill="none" stroke="black" cx="559.054" cy="-206.35" rx="43.6818" ry="26.7407"/>
+<text text-anchor="middle" x="559.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Arrow3:</text>
+<text text-anchor="middle" x="559.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">arrow</text>
+</g>
+<!-- Axis:\nx axis&#45;&gt;Arrow3:\narrow -->
+<g id="edge16" class="edge"><title>Axis:\nx axis-&gt;Arrow3:\narrow</title>
+<path fill="none" stroke="black" d="M559.054,-268.765C559.054,-260.799 559.054,-251.908 559.054,-243.419"/>
+<polygon fill="black" stroke="black" points="562.554,-243.354 559.054,-233.354 555.554,-243.354 562.554,-243.354"/>
+</g>
+<!-- Text:\nlabel -->
+<g id="node24" class="node"><title>Text:\nlabel</title>
+<ellipse fill="none" stroke="black" cx="653.054" cy="-206.35" rx="31.6406" ry="26.7407"/>
+<text text-anchor="middle" x="653.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="653.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">label</text>
+</g>
+<!-- Axis:\nx axis&#45;&gt;Text:\nlabel -->
+<g id="edge23" class="edge"><title>Axis:\nx axis-&gt;Text:\nlabel</title>
+<path fill="none" stroke="black" d="M580.856,-274.741C593.852,-262.61 610.497,-247.073 624.53,-233.975"/>
+<polygon fill="black" stroke="black" points="627.095,-236.368 632.017,-226.986 622.318,-231.251 627.095,-236.368"/>
+</g>
+<!-- Line:\nline -->
+<g id="node18" class="node"><title>Line:\nline</title>
+<ellipse fill="none" stroke="black" cx="464.054" cy="-116.61" rx="31.2258" ry="26.7407"/>
+<text text-anchor="middle" x="464.054" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="464.054" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">line</text>
+</g>
+<!-- Arrow3:\narrow&#45;&gt;Line:\nline -->
+<g id="edge17" class="edge"><title>Arrow3:\narrow-&gt;Line:\nline</title>
+<path fill="none" stroke="black" d="M535.081,-183.21C522.124,-171.242 506.041,-156.389 492.458,-143.844"/>
+<polygon fill="black" stroke="black" points="494.513,-140.977 484.792,-136.763 489.763,-146.119 494.513,-140.977"/>
+</g>
+<!-- Line:\nhead left -->
+<g id="node20" class="node"><title>Line:\nhead left</title>
+<ellipse fill="none" stroke="black" cx="559.054" cy="-116.61" rx="45.011" ry="26.7407"/>
+<text text-anchor="middle" x="559.054" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="559.054" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">head left</text>
+</g>
+<!-- Arrow3:\narrow&#45;&gt;Line:\nhead left -->
+<g id="edge19" class="edge"><title>Arrow3:\narrow-&gt;Line:\nhead left</title>
+<path fill="none" stroke="black" d="M559.054,-179.025C559.054,-171.059 559.054,-162.168 559.054,-153.679"/>
+<polygon fill="black" stroke="black" points="562.554,-153.614 559.054,-143.614 555.554,-153.614 562.554,-153.614"/>
+</g>
+<!-- Line:\nhead right -->
+<g id="node22" class="node"><title>Line:\nhead right</title>
+<ellipse fill="none" stroke="black" cx="672.054" cy="-116.61" rx="50.41" ry="26.7407"/>
+<text text-anchor="middle" x="672.054" y="-120.41" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="672.054" y="-105.41" font-family="Times New Roman,serif" font-size="14.00">head right</text>
+</g>
+<!-- Arrow3:\narrow&#45;&gt;Line:\nhead right -->
+<g id="edge21" class="edge"><title>Arrow3:\narrow-&gt;Line:\nhead right</title>
+<path fill="none" stroke="black" d="M585.547,-184.779C600.546,-173.133 619.519,-158.402 635.872,-145.704"/>
+<polygon fill="black" stroke="black" points="638.398,-148.174 644.15,-139.277 634.104,-142.645 638.398,-148.174"/>
+</g>
+<!-- Curve:\nline (3) -->
+<g id="node19" class="node"><title>Curve:\nline (3)</title>
+<ellipse fill="none" stroke="black" cx="463.054" cy="-26.8701" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="463.054" y="-30.6701" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="463.054" y="-15.6701" font-family="Times New Roman,serif" font-size="14.00">line (3)</text>
+</g>
+<!-- Line:\nline&#45;&gt;Curve:\nline (3) -->
+<g id="edge18" class="edge"><title>Line:\nline-&gt;Curve:\nline (3)</title>
+<path fill="none" stroke="black" d="M463.754,-89.2852C463.663,-81.3185 463.562,-72.4275 463.465,-63.9391"/>
+<polygon fill="black" stroke="black" points="466.964,-63.8335 463.35,-53.874 459.964,-63.9133 466.964,-63.8335"/>
+</g>
+<!-- Curve:\nline (4) -->
+<g id="node21" class="node"><title>Curve:\nline (4)</title>
+<ellipse fill="none" stroke="black" cx="559.054" cy="-26.8701" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="559.054" y="-30.6701" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="559.054" y="-15.6701" font-family="Times New Roman,serif" font-size="14.00">line (4)</text>
+</g>
+<!-- Line:\nhead left&#45;&gt;Curve:\nline (4) -->
+<g id="edge20" class="edge"><title>Line:\nhead left-&gt;Curve:\nline (4)</title>
+<path fill="none" stroke="black" d="M559.054,-89.2852C559.054,-81.3185 559.054,-72.4275 559.054,-63.9391"/>
+<polygon fill="black" stroke="black" points="562.554,-63.874 559.054,-53.874 555.554,-63.8741 562.554,-63.874"/>
+</g>
+<!-- Curve:\nline (5) -->
+<g id="node23" class="node"><title>Curve:\nline (5)</title>
+<ellipse fill="none" stroke="black" cx="672.054" cy="-26.8701" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="672.054" y="-30.6701" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="672.054" y="-15.6701" font-family="Times New Roman,serif" font-size="14.00">line (5)</text>
+</g>
+<!-- Line:\nhead right&#45;&gt;Curve:\nline (5) -->
+<g id="edge22" class="edge"><title>Line:\nhead right-&gt;Curve:\nline (5)</title>
+<path fill="none" stroke="black" d="M672.054,-89.2852C672.054,-81.3185 672.054,-72.4275 672.054,-63.9391"/>
+<polygon fill="black" stroke="black" points="675.554,-63.874 672.054,-53.874 668.554,-63.8741 675.554,-63.874"/>
+</g>
+<!-- Curve:\nline (6) -->
+<g id="node28" class="node"><title>Curve:\nline (6)</title>
+<ellipse fill="none" stroke="black" cx="814.054" cy="-296.09" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="814.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="814.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">line (6)</text>
+</g>
+<!-- Line:\nground&#45;&gt;Curve:\nline (6) -->
+<g id="edge27" class="edge"><title>Line:\nground-&gt;Curve:\nline (6)</title>
+<path fill="none" stroke="black" d="M815.454,-358.506C815.272,-350.539 815.069,-341.648 814.876,-333.159"/>
+<polygon fill="black" stroke="black" points="818.374,-333.012 814.647,-323.094 811.375,-333.172 818.374,-333.012"/>
+</g>
+<!-- Line:\narrow (2) -->
+<g id="node30" class="node"><title>Line:\narrow (2)</title>
+<ellipse fill="none" stroke="black" cx="919.054" cy="-296.09" rx="48.1667" ry="26.7407"/>
+<text text-anchor="middle" x="919.054" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Line:</text>
+<text text-anchor="middle" x="919.054" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">arrow (2)</text>
+</g>
+<!-- Gravity:\nmg&#45;&gt;Line:\narrow (2) -->
+<g id="edge29" class="edge"><title>Gravity:\nmg-&gt;Line:\narrow (2)</title>
+<path fill="none" stroke="black" d="M919.054,-358.506C919.054,-350.539 919.054,-341.648 919.054,-333.159"/>
+<polygon fill="black" stroke="black" points="922.554,-333.094 919.054,-323.094 915.554,-333.094 922.554,-333.094"/>
+</g>
+<!-- Text:\ntext (2) -->
+<g id="node32" class="node"><title>Text:\ntext (2)</title>
+<ellipse fill="none" stroke="black" cx="1025.05" cy="-296.09" rx="39.6962" ry="26.7407"/>
+<text text-anchor="middle" x="1025.05" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="1025.05" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">text (2)</text>
+</g>
+<!-- Gravity:\nmg&#45;&gt;Text:\ntext (2) -->
+<g id="edge31" class="edge"><title>Gravity:\nmg-&gt;Text:\ntext (2)</title>
+<path fill="none" stroke="black" d="M944.443,-363.815C958.943,-351.813 977.268,-336.645 992.78,-323.804"/>
+<polygon fill="black" stroke="black" points="995.129,-326.403 1000.6,-317.331 990.666,-321.011 995.129,-326.403"/>
+</g>
+<!-- Curve:\nline (7) -->
+<g id="node31" class="node"><title>Curve:\nline (7)</title>
+<ellipse fill="none" stroke="black" cx="919.054" cy="-206.35" rx="38.7821" ry="26.7407"/>
+<text text-anchor="middle" x="919.054" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="919.054" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">line (7)</text>
+</g>
+<!-- Line:\narrow (2)&#45;&gt;Curve:\nline (7) -->
+<g id="edge30" class="edge"><title>Line:\narrow (2)-&gt;Curve:\nline (7)</title>
+<path fill="none" stroke="black" d="M919.054,-268.765C919.054,-260.799 919.054,-251.908 919.054,-243.419"/>
+<polygon fill="black" stroke="black" points="922.554,-243.354 919.054,-233.354 915.554,-243.354 922.554,-243.354"/>
+</g>
+<!-- Arc:\narc -->
+<g id="node34" class="node"><title>Arc:\narc</title>
+<ellipse fill="none" stroke="black" cx="1112.05" cy="-296.09" rx="28.9828" ry="26.7407"/>
+<text text-anchor="middle" x="1112.05" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Arc:</text>
+<text text-anchor="middle" x="1112.05" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">arc</text>
+</g>
+<!-- Arc_wText:\nangle&#45;&gt;Arc:\narc -->
+<g id="edge33" class="edge"><title>Arc_wText:\nangle-&gt;Arc:\narc</title>
+<path fill="none" stroke="black" d="M1112.05,-358.506C1112.05,-350.539 1112.05,-341.648 1112.05,-333.159"/>
+<polygon fill="black" stroke="black" points="1115.55,-333.094 1112.05,-323.094 1108.55,-333.094 1115.55,-333.094"/>
+</g>
+<!-- Text:\ntext (3) -->
+<g id="node36" class="node"><title>Text:\ntext (3)</title>
+<ellipse fill="none" stroke="black" cx="1199.05" cy="-296.09" rx="39.6962" ry="26.7407"/>
+<text text-anchor="middle" x="1199.05" y="-299.89" font-family="Times New Roman,serif" font-size="14.00">Text:</text>
+<text text-anchor="middle" x="1199.05" y="-284.89" font-family="Times New Roman,serif" font-size="14.00">text (3)</text>
+</g>
+<!-- Arc_wText:\nangle&#45;&gt;Text:\ntext (3) -->
+<g id="edge35" class="edge"><title>Arc_wText:\nangle-&gt;Text:\ntext (3)</title>
+<path fill="none" stroke="black" d="M1135.83,-360.855C1146.47,-350.117 1159.12,-337.361 1170.3,-326.09"/>
+<polygon fill="black" stroke="black" points="1172.84,-328.499 1177.39,-318.934 1167.87,-323.571 1172.84,-328.499"/>
+</g>
+<!-- Curve:\narc -->
+<g id="node35" class="node"><title>Curve:\narc</title>
+<ellipse fill="none" stroke="black" cx="1112.05" cy="-206.35" rx="37.4533" ry="26.7407"/>
+<text text-anchor="middle" x="1112.05" y="-210.15" font-family="Times New Roman,serif" font-size="14.00">Curve:</text>
+<text text-anchor="middle" x="1112.05" y="-195.15" font-family="Times New Roman,serif" font-size="14.00">arc</text>
+</g>
+<!-- Arc:\narc&#45;&gt;Curve:\narc -->
+<g id="edge34" class="edge"><title>Arc:\narc-&gt;Curve:\narc</title>
+<path fill="none" stroke="black" d="M1112.05,-268.765C1112.05,-260.799 1112.05,-251.908 1112.05,-243.419"/>
+<polygon fill="black" stroke="black" points="1115.55,-243.354 1112.05,-233.354 1108.55,-243.354 1115.55,-243.354"/>
+</g>
+</g>
+</svg>

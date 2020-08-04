@@ -18,7 +18,7 @@ Benefits are the following:
 This example provides the yaml content to define the Dry Friction case
 
 ### The final sketch
-![dryfriction sketch](images/dryfriction.png)
+![dryfriction sketch](images/dryfriction.svg)
 
 An inclined plan (the A-B edge) supports a blue rectangle which is dragged down by gravity. The plan makes an angle $\theta$ with the ground level. Sketch implementation notebook includes a controller enabling the $\theta$ angle to change. The whole plan, including the body, can rotate arround point B.
 
@@ -179,4 +179,4 @@ sketchParse(friction,myfig)
 
 ### "friction" sketch hierarchy
 
-![](images/dotfriction.png)
+![](images/dotdryfriction.svg)

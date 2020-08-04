@@ -6,8 +6,8 @@ Any time you need to make a sketch while solving a mechanical problem with a jup
 
 A sketch capturing the "dry friction case"
 
-![](images/dryfriction.png)
+![](images/dryfriction.svg)
 
 How it is structured: the composition hierarchy
 
-![](images/dotfriction.png)
+![](images/dotdryfriction.svg)

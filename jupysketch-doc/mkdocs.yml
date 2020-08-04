@@ -3,7 +3,7 @@ nav:
     - Home: index.md
     - About: about.md
     - Presentation: presentation.md
-    - Learning by Example: sketcher.md
+    - Learning by Example: learningbyexample.md
     - Shapes Reference: shapereference.md
 theme:
   name: material
