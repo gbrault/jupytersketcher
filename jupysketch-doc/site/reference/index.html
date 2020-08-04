@@ -380,11 +380,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cross" class="md-nav__link">
-    Cross
+  <a href="#cross-self-designed" class="md-nav__link">
+    Cross (self designed)
   </a>
   
-    <nav class="md-nav" aria-label="Cross">
+    <nav class="md-nav" aria-label="Cross (self designed)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -407,11 +407,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-initialization" class="md-nav__link">
-    Code initialization
+  <a href="#cross-from-shapes" class="md-nav__link">
+    Cross (from shapes)
   </a>
   
-    <nav class="md-nav" aria-label="Code initialization">
+    <nav class="md-nav" aria-label="Cross (from shapes)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -423,6 +423,33 @@
         
           <li class="md-nav__item">
   <a href="#python_7" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-initialization" class="md-nav__link">
+    Code initialization
+  </a>
+  
+    <nav class="md-nav" aria-label="Code initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yaml_8" class="md-nav__link">
+    Yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_8" class="md-nav__link">
     Python
   </a>
   
@@ -626,11 +653,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cross" class="md-nav__link">
-    Cross
+  <a href="#cross-self-designed" class="md-nav__link">
+    Cross (self designed)
   </a>
   
-    <nav class="md-nav" aria-label="Cross">
+    <nav class="md-nav" aria-label="Cross (self designed)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -653,11 +680,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-initialization" class="md-nav__link">
-    Code initialization
+  <a href="#cross-from-shapes" class="md-nav__link">
+    Cross (from shapes)
   </a>
   
-    <nav class="md-nav" aria-label="Code initialization">
+    <nav class="md-nav" aria-label="Cross (from shapes)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -669,6 +696,33 @@
         
           <li class="md-nav__item">
   <a href="#python_7" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-initialization" class="md-nav__link">
+    Code initialization
+  </a>
+  
+    <nav class="md-nav" aria-label="Code initialization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yaml_8" class="md-nav__link">
+    Yaml
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_8" class="md-nav__link">
     Python
   </a>
   
@@ -775,7 +829,7 @@ dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
 </code></pre>
 
 <p><img alt="Text" src="text.svg" /></p>
-<h2 id="cross">Cross</h2>
+<h2 id="cross-self-designed">Cross (self designed)</h2>
 <h3 id="yaml_6">Yaml</h3>
 <pre><code class="yaml">c: point(0,0)
 l: 0.1
@@ -799,6 +853,16 @@ cross.set_linewidth(1)
 </code></pre>
 
 <p><img alt="Cross" src="cross.svg" /></p>
+<h2 id="cross-from-shapes">Cross (from shapes)</h2>
+<h3 id="yaml_7">Yaml</h3>
+<pre><code class="yaml">cross1: Cross(point(0,0))
+</code></pre>
+
+<h3 id="python_7">Python</h3>
+<pre><code class="python">cross = Cross(point(1,0))
+</code></pre>
+
+<p><img alt="Cross" src="cross.svg" /></p>
 <h2 id="code-initialization">Code initialization</h2>
 <p>Using the following framework in a jupyter notebook</p>
 <pre><code class="python">[1]: %matplotlib widget
@@ -815,7 +879,7 @@ myfig={}
 sketchParse(head,myfig)
 </code></pre>
 
-<h3 id="yaml_7">Yaml</h3>
+<h3 id="yaml_8">Yaml</h3>
 <pre><code class="python">myfig={}
 sketch=&quot;&quot;&quot;
 # put here the yaml 'object' definition
@@ -827,7 +891,7 @@ d = myfig['object'].draw()
 drawing_tool.display()
 </code></pre>
 
-<h3 id="python_7">Python</h3>
+<h3 id="python_8">Python</h3>
 <pre><code class="python">drawing_tool.erase()
 # put the code of the object case here
 # replace object by the actual name line, rectangle, circle...

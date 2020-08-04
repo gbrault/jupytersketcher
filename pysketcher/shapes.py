@@ -1653,6 +1653,9 @@ class Distance_wText(Shape):
         return d
 
 class Arc_wText(Shape):
+    """
+    Arc with text positionned arc half-way
+    """
     def __init__(self, text, center, radius,
                  start_angle, arc_angle, fontsize=0,
                  resolution=180, text_spacing=1/60.):
