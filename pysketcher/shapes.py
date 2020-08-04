@@ -1205,6 +1205,9 @@ class Circle(Arc):
 
 
 class Wall(Shape):
+    """
+    defines a plan with thickness, filled with a pattern
+    """
     def __init__(self, x, y, thickness, pattern='/', transparent=False):
         is_sequence(x, y, length=len(x))
         if isinstance(x[0], (tuple,list,ndarray)):
