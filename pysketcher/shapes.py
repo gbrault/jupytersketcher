@@ -1340,7 +1340,7 @@ class VelocityProfile(Shape):
 
 
 class Arrow1(Shape):
-    """Draw an arrow as Line with arrow."""
+    """Draw a Line with arrow(s)."""
     def __init__(self, start, end, style='->'):
         arrow = Line(start, end)
         arrow.set_arrow(style)
@@ -1654,7 +1654,7 @@ class Distance_wText(Shape):
 
 class Arc_wText(Shape):
     """
-    Arc with text positionned arc half-way
+    Arc with text positionned at the left of arc half-way
     """
     def __init__(self, text, center, radius,
                  start_angle, arc_angle, fontsize=0,

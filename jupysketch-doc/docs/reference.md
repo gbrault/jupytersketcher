@@ -11,8 +11,9 @@
 - [Cross](#cross): defines a cross positionned at the provided point
 - [Axis](#axis): defines an axis at the given point with a given label
 - [Arc](#arc): defines an Arc providing a center point, a radius, a starting angle and an angle (rotates clock-wise)
-- [](#)
-- [](#)
+- [Arc_wText](#arc_wtext): defines an arc with text positionned left (moving clock-wise) of arc half-way
+- [Arrow1](#arrow1): defines a line with arrow(s) given starting and ending point and arrow termination(s) ->, \<->, \<-
+- [Force](#force): defines an Indication of a force by an arrow and a text (symbol)
 - [](#)
 
 ## Line
@@ -143,7 +144,66 @@ start_angle = 180-angle
 arc_angle = angle
 arc = Arc(center, radius, start_angle, arc_angle)
 ```
-![Axis](reference/axis.svg)
+![Arc](reference/arc.svg)
+
+## Arc_wText
+[home](#list-of-shapes) Defines an arc with text positionned left (moving clock-wise) of arc half-way
+### Yaml
+```yaml
+center: point(0,0)
+radius: 1
+angle: 120
+start_angle: 180-angle
+arc_angle: angle
+arc_wtxt: "Arc_wText(r'$<bslash>theta$', center, radius, start_angle, arc_angle)"
+```
+### Python
+```python
+center = point(0,0)
+radius = 1
+angle = 120
+start_angle = 180-angle
+arc_angle = angle
+arc_wtxt = Arc_wText(r'$\theta$', center, radius, start_angle, arc_angle)
+```
+![Arc with Text](reference/arcwtext.svg)
+
+## Arrow1
+[home](#list-of-shapes) defines a line with arrow(s) given starting and ending point and arrow termination(s) ->, \<->, \<-
+### Yaml
+```yaml
+start: point(0,0)
+end: point(5,5)
+arrow1: Arrow1(start, end, style='<->')
+```
+### Python
+```python
+start = point(0,0)
+end = point(5,5)
+arrow1 = Arrow1(start, end, style='<->')
+```
+![Arrow1](reference/arrow1.svg)
+
+## Force
+[home](#list-of-shapes) defines an Indication of a force by an arrow and a text (symbol)
+
+### Yaml
+```yaml
+x: 0
+y: 0
+contact: point(x, y)
+vector: point(-3,-5)
+force: Force(contact - vector, contact, r'$Force$', text_pos='start')
+```
+### Python
+```python
+x = 0
+y = 0
+contact = point(x, y)
+vector = point(-3,-5)
+force = Force(contact - vector, contact, r'$Force$', text_pos='start')
+```
+![Force](reference/force.svg)
 
 ## Code to display the above defined shapes
 
