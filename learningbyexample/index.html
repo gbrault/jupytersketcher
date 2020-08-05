@@ -255,8 +255,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#libraries-construction-variables-frame" class="md-nav__link">
-    Libraries, Construction Variables, Frame
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constants-construction-parameters" class="md-nav__link">
+    Constants: Construction parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-core-geometric-parameters" class="md-nav__link">
+    Frame: core geometric parameters
   </a>
   
 </li>
@@ -386,8 +400,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#libraries-construction-variables-frame" class="md-nav__link">
-    Libraries, Construction Variables, Frame
+  <a href="#libraries" class="md-nav__link">
+    Libraries
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constants-construction-parameters" class="md-nav__link">
+    Constants: Construction parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-core-geometric-parameters" class="md-nav__link">
+    Frame: core geometric parameters
   </a>
   
 </li>
@@ -501,6 +529,12 @@ A skertcher object is composed as follow:</p>
 </ul>
 </li>
 <li>this is stored in the head string thereafter</li>
+<li>The example uses the following objects<ul>
+<li>libraries: setting the libraries used for this sketch</li>
+<li>constants: all the sketch dimensionning data</li>
+<li>frame: all the shapes or geometric objects which will be used by the other shapes</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><strong>Sketcher Objects</strong><ul>
@@ -508,7 +542,7 @@ A skertcher object is composed as follow:</p>
 <li>May be aggregated using the composition object</li>
 <li>Composition can be made of composition object (recursive behaviour)</li>
 <li>Grouping leafs and composition will be further used to apply transformation latter on (based on the "physics")</li>
-<li>The example presents three group of objects<ul>
+<li>The example uese three group of shapes<ul>
 <li>The body object</li>
 <li>The plan object</li>
 <li>The friction main object</li>
@@ -519,10 +553,16 @@ A skertcher object is composed as follow:</p>
 </ul>
 </li>
 </ul>
-<h4 id="libraries-construction-variables-frame">Libraries, Construction Variables, Frame</h4>
-<pre><code class="python">head = &quot;&quot;&quot;\
-libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;]
-fontsize: 18
+<h4 id="libraries">Libraries</h4>
+<pre><code class="python">libraries = {'name': &quot;head&quot;,
+'shapes':&quot;&quot;&quot;\
+libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;]&quot;&quot;&quot;}
+</code></pre>
+
+<h4 id="constants-construction-parameters">Constants: Construction parameters</h4>
+<pre><code class="python">constants = {'name': &quot;constants&quot;,
+'shapes':&quot;&quot;&quot;\
+fontsize: 18         # size of the characters
 g: 9.81              # constant gravity
 theta: 30.0          # inclined plane angle
 L: 10.0              # sketch sizing parameter
@@ -531,6 +571,12 @@ xmin: 0.0            # sketech min Abscissa
 ymin: -3.0           # sketech min Ordinate     
 rl: 2.0              # rectangle width
 rL: 1.0              # rectangle length
+&quot;&quot;&quot;}
+</code></pre>
+
+<h4 id="frame-core-geometric-parameters">Frame: core geometric parameters</h4>
+<pre><code class="python">frame = {'name': &quot;frame&quot;,
+'shapes':&quot;&quot;&quot;\
 setframe:            # sketch setup
     action: &quot;drawing_tool.set_coordinate_system(xmin=xmin-L/5, xmax=xmin+1.5*L,ymin=ymin, ymax=ymin+1.5*L,instruction_file='tmp_mpl_friction.py')&quot;
 setblackline:        # default frame values and actions
@@ -540,15 +586,16 @@ A: point(a,tan(radians(theta))*L)    # wall left end
 normal_vec: point(sin(radians(theta)),cos(radians(theta)))     # Vector normal to wall
 tangent_vec: point(cos(radians(theta)),-sin(radians(theta)))   # Vector tangent to wall
 help_line: Line(A,B)                 # wall line
-x: a + 3*L/10.
-y: help_line(x=x)    
-contact: point(x, y)    
+x: a + 3*L/10.                       # contact point Abscissa
+y: help_line(x=x)                    # contact point Ordinate
+contact: point(x, y)                 # contact point: middle of the rectangle bottom edge
 c: contact + rL/2*normal_vec
-&quot;&quot;&quot;
+&quot;&quot;&quot;}
 </code></pre>
 
 <h4 id="the-body-object">The body object</h4>
-<pre><code class="python">body=&quot;&quot;&quot;\
+<pre><code class="python">body={'name': &quot;body&quot;,
+'shapes':&quot;&quot;&quot;\
 rectangle: 
     formula: Rectangle(contact, rl, rL)
     style:
@@ -570,11 +617,12 @@ body:
     formula: &quot;Composition({'wheel': wheel, 'N': N, 'mc': mc})&quot;
     style:
         linecolor: black
-&quot;&quot;&quot;
+&quot;&quot;&quot;}
 </code></pre>
 
 <h4 id="the-plan-object">The plan object</h4>
-<pre><code class="python">plan=&quot;&quot;&quot;\
+<pre><code class="python">plan={'name': &quot;plan&quot;,
+'shapes':&quot;&quot;&quot;\
 mB:
     formula: Text(r'$B$',B)
 mA:
@@ -592,11 +640,12 @@ x_axis:
     formula: &quot;Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)&quot;
 plan: 
     formula: &quot;Composition({'body': body, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})&quot;
-&quot;&quot;&quot;
+&quot;&quot;&quot;}
 </code></pre>
 
 <h4 id="the-friction-sketch">The friction sketch</h4>
-<pre><code class="python">friction=&quot;&quot;&quot;\
+<pre><code class="python">friction={'name': &quot;friction&quot;,
+'shapes':&quot;&quot;&quot;\
 mg: 
     formula: Gravity(c, rl, text='$Mg$')
     style:
@@ -614,19 +663,25 @@ ground:
          linewidth: 1
 friction: 
     formula: &quot;Composition({'plan': plan, 'ground': ground, 'mg': mg, 'angle': angle})&quot;
-&quot;&quot;&quot;
+&quot;&quot;&quot;}
 </code></pre>
 
 <h3 id="using-the-parser">Using the parser</h3>
-<p>To parse the above example, the following code do the job.
-1. the head must be used first as all the other bits needs one or more variable it defines.
-2. After, any other string can be parsed, the order just need to respect precedence (if one object uses another one it must be parsed after)
-3. this setting allows naturally a modular definition of sketch objects</p>
+<p>To parse the above example, the following code do the job.</p>
+<ol>
+<li>libraries, constants and frame must be used first as all the other bits needs one or more variable they defines.</li>
+<li>After, any other sketch can be parsed, the order just need to respect precedence (if one object uses another it must be parsed after)</li>
+<li>this setting allows naturally a modular definition of sketch objects</li>
+</ol>
+<p>The parser checks for syntax precedence and warns of any detected error.</p>
 <pre><code class="python">myfig = {}
-sketchParse(head,myfig)
-sketchParse(body,myfig)
-sketchParse(plan,myfig)
-sketchParse(friction,myfig)
+if sketchParse(libraries,myfig):
+    if sketchParse(constants,myfig):
+        if sketchParse(frame,myfig):
+            if sketchParse(body,myfig):
+                if sketchParse(plan,myfig):
+                    if sketchParse(friction,myfig):
+                        print(&quot;success&quot;)
 </code></pre>
 
 <h3 id="friction-sketch-hierarchy">"friction" sketch hierarchy</h3>
