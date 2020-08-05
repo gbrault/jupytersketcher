@@ -16,6 +16,7 @@ from math import radians
 from io import BytesIO
 from ruamel.yaml import YAML
 from PIL import Image
+import ast
 
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
@@ -30,6 +31,14 @@ def sketch2PNG():
     drawing_tool.mpl.gcf().canvas.print_png(f)
     img = Image.open(f)
     return img
+
+def sVe(key, expression, container):
+    root = ast.parse(expression)
+    names = {node.id for node in ast.walk(root) if isinstance(node, ast.Name)}
+    for name in names:
+        if name not in container:
+            return f"in key {key}: {name} in {expression} is not defined"
+    return 1
 
 def sketchParse(sketch, container):
     yaml = YAML()
@@ -47,6 +56,9 @@ def sketchParse(sketch, container):
         _t == "<class 'str'>" or _t == "<class 'int'>":
             _formula = f"{_k} = {_c}".replace("<bslash>","\\") 
             #print(_formula)
+            if type(_r = sVe(_k, _formula, container)) == str:
+                print(_r)
+                break
             exec(_formula,container)
         elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
             #print(_c)
@@ -55,6 +67,9 @@ def sketchParse(sketch, container):
             if 'formula' in _keys:
                 _formula = f"{_k} = {_c['formula']}".replace("<bslash>","\\")
                 #print(_formula)
+                if type(_r = sVe(_k, _formula, container)) == str:
+                    print(_r)
+                    break
                 exec(_formula,container)
             if 'style' in _keys:
                 for _style in _c["style"]:
@@ -73,16 +88,25 @@ def sketchParse(sketch, container):
                 if str(type(_c['transform'])) == "<class 'str'>":
                     _t = f"{_k}.{_c['transform']}"
                     #print(_t)
+                    if type(_r = sVe(_k, _t, container)) == str:
+                        print(_r)
+                        break
                     exec(_t,container)
                 else:
                     for _transform in _c["transform"]:
                     #  x_const.rotate(-theta, contact)
                         _t = f"{_k}.{_transform}"
                         #print(_t)
+                        if type(_r = sVe(_k, _t, container)) == str:
+                            print(_r)
+                            break
                         exec(_t,container)
             if "action" in _keys:
                 _action = _c["action"]
                 #print(_action)
+                if type(_r = sVe(_k, _action, container)) == str:
+                    print(_r)
+                    break
                 exec(_action,container)
 
 def point(x, y, check_inside=False):
