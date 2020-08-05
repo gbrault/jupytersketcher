@@ -5,7 +5,7 @@ Tool for creating sketches of physics problems in terms of Python code. This wor
 Note: Use the term Pysketcher as jupytersketcher in this documentation
 
 - current [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gbrault/jupytersketcher.git/master?filepath=notebooks%2FDryFriction.ipynb)
-- 8h ago  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fgogs.seadev.online%2Fgbrault%2Fjupytersketcher/master)
+- morning snapshot  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fgogs.seadev.online%2Fgbrault%2Fjupytersketcher/master)
 
 ## Differences compared to Pysketcher
 
