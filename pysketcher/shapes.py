@@ -32,45 +32,74 @@ def sketch2PNG():
     img = Image.open(f)
     return img
 
-def sVe(key, expression, container):
-    root = ast.parse(expression)
+def sVe(key, expression, container, sketch):
+    """
+    sVe: sketch Validate expression
+    given an expression from a sketch, check if valid or not
+    provides a string feedback if error else return 1
+    """
+    try:
+        root = ast.parse(expression)
+    except Exception as e:
+        return f"{sketch}/{key}: '''{expression}''' parse error {str(e)}"
     names = {node.id for node in ast.walk(root) if isinstance(node, ast.Name)}
     for name in names:
         if name not in container:
-            return f"in key {key}: {name} in {expression} is not defined"
+            return f"{sketch}/{key}: {name} in {expression} is not defined"
     return 1
 
 def sketchParse(sketch, container):
+    """
+    Parse a string sketch into a container.
+    name specifices the 'name' of the sketch
+    A container is a name space which holds 
+        - all the libraries references needed to create pysketcher shapes
+        - all the variable providing shapes dimensions or position
+        - all the shapes needed to create the shapes it defines
+    """
     yaml = YAML()
-    gwd = yaml.load(sketch)
+    gwd = yaml.load(sketch["shapes"])
+    
     for _k in list(gwd.keys()):
         if _k == "stop":
-            break
+            return True
         _c = gwd[_k]
         _t = str(type(_c))
         if _k == "libraries":
             for l in _c:
+                _r = sVe(_k, l, container, sketch["name"])
+                if type(_r) == str:
+                    print(_r)
+                    return False
                 exec(l,container)
         #print(_k, _c, _t)
         if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
         _t == "<class 'str'>" or _t == "<class 'int'>":
-            _formula = f"{_k} = {_c}".replace("<bslash>","\\") 
+            _expression = f"{_c}".replace("<bslash>","\\") 
+            _formula = f"{_k} = {_expression}"
             #print(_formula)
-            if type(_r = sVe(_k, _formula, container)) == str:
+            _r = sVe(_k, _expression, container, sketch["name"])
+            if type(_r) == str:
                 print(_r)
-                break
+                return False
             exec(_formula,container)
         elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
             #print(_c)
             _keys = list(_c.keys())
             #print(_keys)
             if 'formula' in _keys:
-                _formula = f"{_k} = {_c['formula']}".replace("<bslash>","\\")
+                _expression = f"{_c['formula']}".replace("<bslash>","\\") 
+                _formula = f"{_k} = {_expression}"
                 #print(_formula)
-                if type(_r = sVe(_k, _formula, container)) == str:
+                _r = sVe(_k, _expression, container, sketch["name"])
+                if type(_r) == str:
                     print(_r)
-                    break
+                    return False
                 exec(_formula,container)
+                # if the new object is a shape and has the sketch name, set this shape name as the sketch name
+                if issubclass(type(container[_k]), Shape):
+                    if _k == sketch['name']:
+                        container[_k].set_name(sketch['name'])
             if 'style' in _keys:
                 for _style in _c["style"]:
                     #  x_const.set_linestyle('dotted')
@@ -88,26 +117,30 @@ def sketchParse(sketch, container):
                 if str(type(_c['transform'])) == "<class 'str'>":
                     _t = f"{_k}.{_c['transform']}"
                     #print(_t)
-                    if type(_r = sVe(_k, _t, container)) == str:
+                    _r = sVe(_k, _formula, container, sketch["name"])
+                    if type(_r) == str:
                         print(_r)
-                        break
+                        return False
                     exec(_t,container)
                 else:
                     for _transform in _c["transform"]:
                     #  x_const.rotate(-theta, contact)
                         _t = f"{_k}.{_transform}"
                         #print(_t)
-                        if type(_r = sVe(_k, _t, container)) == str:
+                        _r = sVe(_k, _t, container, sketch["name"])
+                        if type(_r) == str:
                             print(_r)
-                            break
+                            return False
                         exec(_t,container)
             if "action" in _keys:
                 _action = _c["action"]
                 #print(_action)
-                if type(_r = sVe(_k, _action, container)) == str:
+                _r = sVe(_k, _action, container, sketch["name"])
+                if type(_r) == str:
                     print(_r)
-                    break
+                    return False
                 exec(_action,container)
+    return True
 
 def point(x, y, check_inside=False):
     for obj, name in zip([x, y], ['x', 'y']):

@@ -51,23 +51,33 @@ The general layout of a sketcher file is as follow:
         * One mandatory action is the setting of the drawing frame (drawing_tool.set_coordinate_system): it must be declared before any other pysketcher object is used.
         * Other use case of action is the setting of global parameters like default line color: (drawing_tool.set_linecolor('black')) for example
     * this is stored in the head string thereafter
+    * The example uses the following objects
+        * libraries: setting the libraries used for this sketch
+        * constants: all the sketch dimensionning data
+        * frame: all the shapes or geometric objects which will be used by the other shapes
 * **Sketcher Objects**
     * Usually starting with the declaration of Pysketcher leaf objects (Geometry object like Line, Circle, Rectangle...)
     * May be aggregated using the composition object
     * Composition can be made of composition object (recursive behaviour)
     * Grouping leafs and composition will be further used to apply transformation latter on (based on the "physics")
-    * The example presents three group of objects
+    * The example uese three group of shapes
         * The body object
         * The plan object
         * The friction main object
     * The plan includes the body
     * The friction includes the plan (that will be able to rotate as a group) and the ground (will stay fixed)
 
-#### Libraries, Construction Variables, Frame
+#### Libraries
 ```python
-head = """\
-libraries: ["from math import tan, radians, sin, cos","from pysketcher import *"]
-fontsize: 18
+libraries = {'name': "head",
+'shapes':"""\
+libraries: ["from math import tan, radians, sin, cos","from pysketcher import *"]"""}
+```
+#### Constants: Construction parameters
+```python
+constants = {'name': "constants",
+'shapes':"""\
+fontsize: 18         # size of the characters
 g: 9.81              # constant gravity
 theta: 30.0          # inclined plane angle
 L: 10.0              # sketch sizing parameter
@@ -76,6 +86,12 @@ xmin: 0.0            # sketech min Abscissa
 ymin: -3.0           # sketech min Ordinate     
 rl: 2.0              # rectangle width
 rL: 1.0              # rectangle length
+"""}
+```
+#### Frame: core geometric parameters
+```python
+frame = {'name': "frame",
+'shapes':"""\
 setframe:            # sketch setup
     action: "drawing_tool.set_coordinate_system(xmin=xmin-L/5, xmax=xmin+1.5*L,ymin=ymin, ymax=ymin+1.5*L,instruction_file='tmp_mpl_friction.py')"
 setblackline:        # default frame values and actions
@@ -85,15 +101,16 @@ A: point(a,tan(radians(theta))*L)    # wall left end
 normal_vec: point(sin(radians(theta)),cos(radians(theta)))     # Vector normal to wall
 tangent_vec: point(cos(radians(theta)),-sin(radians(theta)))   # Vector tangent to wall
 help_line: Line(A,B)                 # wall line
-x: a + 3*L/10.
-y: help_line(x=x)    
-contact: point(x, y)    
+x: a + 3*L/10.                       # contact point Abscissa
+y: help_line(x=x)                    # contact point Ordinate
+contact: point(x, y)                 # contact point: middle of the rectangle bottom edge
 c: contact + rL/2*normal_vec
-"""
+"""}
 ```
 #### The body object
 ```python
-body="""\
+body={'name': "body",
+'shapes':"""\
 rectangle: 
     formula: Rectangle(contact, rl, rL)
     style:
@@ -115,11 +132,12 @@ body:
     formula: "Composition({'wheel': wheel, 'N': N, 'mc': mc})"
     style:
         linecolor: black
-"""
+"""}
 ```
 #### The plan object
 ```python
-plan="""\
+plan={'name': "plan",
+'shapes':"""\
 mB:
     formula: Text(r'$B$',B)
 mA:
@@ -137,11 +155,12 @@ x_axis:
     formula: "Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)"
 plan: 
     formula: "Composition({'body': body, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})"
-"""
+"""}
 ```
 #### The friction sketch
 ```python
-friction="""\
+friction={'name': "friction",
+'shapes':"""\
 mg: 
     formula: Gravity(c, rl, text='$Mg$')
     style:
@@ -159,22 +178,28 @@ ground:
          linewidth: 1
 friction: 
     formula: "Composition({'plan': plan, 'ground': ground, 'mg': mg, 'angle': angle})"
-"""
+"""}
 ```
 
 ### Using the parser
 
 To parse the above example, the following code do the job.
-1. the head must be used first as all the other bits needs one or more variable it defines.
-2. After, any other string can be parsed, the order just need to respect precedence (if one object uses another one it must be parsed after)
+
+1. libraries, constants and frame must be used first as all the other bits needs one or more variable they defines.
+2. After, any other sketch can be parsed, the order just need to respect precedence (if one object uses another it must be parsed after)
 3. this setting allows naturally a modular definition of sketch objects
+
+The parser checks for syntax precedence and warns of any detected error.
 
 ```python
 myfig = {}
-sketchParse(head,myfig)
-sketchParse(body,myfig)
-sketchParse(plan,myfig)
-sketchParse(friction,myfig)
+if sketchParse(libraries,myfig):
+    if sketchParse(constants,myfig):
+        if sketchParse(frame,myfig):
+            if sketchParse(body,myfig):
+                if sketchParse(plan,myfig):
+                    if sketchParse(friction,myfig):
+                        print("success")
 ```
 
 ### "friction" sketch hierarchy

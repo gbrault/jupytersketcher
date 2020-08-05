@@ -12,3 +12,6 @@
    In a point of time, we need to verify the syntax of yaml sketch definition, here are some parser which might help
    
    - Paul McGuire [pyparsing](https://github.com/pyparsing/pyparsing)
+
+   in fact this is solved (an now implemented this summer 8/5/2020) with the ast module
+   see the function sketchParse in the shapes.py module
