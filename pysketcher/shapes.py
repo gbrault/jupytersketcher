@@ -58,7 +58,10 @@ def sketchParse(sketch, container):
         - all the shapes needed to create the shapes it defines
     """
     yaml = YAML()
-    gwd = yaml.load(sketch["shapes"])
+    psketch = yaml.load(sketch)
+
+    sketch_name = psketch["name"]
+    gwd = psketch['shapes']
     
     for _k in list(gwd.keys()):
         if _k == "stop":
@@ -67,7 +70,7 @@ def sketchParse(sketch, container):
         _t = str(type(_c))
         if _k == "libraries":
             for l in _c:
-                _r = sVe(_k, l, container, sketch["name"])
+                _r = sVe(_k, l, container, sketch_name)
                 if type(_r) == str:
                     print(_r)
                     return False
@@ -78,7 +81,7 @@ def sketchParse(sketch, container):
             _expression = f"{_c}".replace("<bslash>","\\") 
             _formula = f"{_k} = {_expression}"
             #print(_formula)
-            _r = sVe(_k, _expression, container, sketch["name"])
+            _r = sVe(_k, _expression, container, sketch_name)
             if type(_r) == str:
                 print(_r)
                 return False
@@ -91,15 +94,15 @@ def sketchParse(sketch, container):
                 _expression = f"{_c['formula']}".replace("<bslash>","\\") 
                 _formula = f"{_k} = {_expression}"
                 #print(_formula)
-                _r = sVe(_k, _expression, container, sketch["name"])
+                _r = sVe(_k, _expression, container, sketch_name)
                 if type(_r) == str:
                     print(_r)
                     return False
                 exec(_formula,container)
                 # if the new object is a shape and has the sketch name, set this shape name as the sketch name
                 if issubclass(type(container[_k]), Shape):
-                    if _k == sketch['name']:
-                        container[_k].set_name(sketch['name'])
+                    if _k == sketch_name:
+                        container[_k].set_name(sketch_name)
             if 'style' in _keys:
                 for _style in _c["style"]:
                     #  x_const.set_linestyle('dotted')
@@ -117,7 +120,7 @@ def sketchParse(sketch, container):
                 if str(type(_c['transform'])) == "<class 'str'>":
                     _t = f"{_k}.{_c['transform']}"
                     #print(_t)
-                    _r = sVe(_k, _formula, container, sketch["name"])
+                    _r = sVe(_k, _formula, container, sketch_name)
                     if type(_r) == str:
                         print(_r)
                         return False
@@ -127,7 +130,7 @@ def sketchParse(sketch, container):
                     #  x_const.rotate(-theta, contact)
                         _t = f"{_k}.{_transform}"
                         #print(_t)
-                        _r = sVe(_k, _t, container, sketch["name"])
+                        _r = sVe(_k, _t, container, sketch_name)
                         if type(_r) == str:
                             print(_r)
                             return False
@@ -135,7 +138,7 @@ def sketchParse(sketch, container):
             if "action" in _keys:
                 _action = _c["action"]
                 #print(_action)
-                _r = sVe(_k, _action, container, sketch["name"])
+                _r = sVe(_k, _action, container, sketch_name)
                 if type(_r) == str:
                     print(_r)
                     return False

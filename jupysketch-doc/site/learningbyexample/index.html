@@ -554,116 +554,123 @@ A skertcher object is composed as follow:</p>
 </li>
 </ul>
 <h4 id="libraries">Libraries</h4>
-<pre><code class="python">libraries = {'name': &quot;head&quot;,
-'shapes':&quot;&quot;&quot;\
-libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;]&quot;&quot;&quot;}
+<pre><code class="python">libraries = &quot;&quot;&quot;\
+name: head
+shapes:
+    libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;]
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="constants-construction-parameters">Constants: Construction parameters</h4>
-<pre><code class="python">constants = {'name': &quot;constants&quot;,
-'shapes':&quot;&quot;&quot;\
-fontsize: 18         # size of the characters
-g: 9.81              # constant gravity
-theta: 30.0          # inclined plane angle
-L: 10.0              # sketch sizing parameter
-a: 1.0               #
-xmin: 0.0            # sketech min Abscissa
-ymin: -3.0           # sketech min Ordinate     
-rl: 2.0              # rectangle width
-rL: 1.0              # rectangle length
-&quot;&quot;&quot;}
+<pre><code class="python">constants = &quot;&quot;&quot;\
+name: constants
+shapes:
+    fontsize: 18         # size of the characters
+    g: 9.81              # constant gravity
+    theta: 30.0          # inclined plane angle
+    L: 10.0              # sketch sizing parameter
+    a: 1.0               #
+    xmin: 0.0            # sketech min Abscissa
+    ymin: -3.0           # sketech min Ordinate     
+    rl: 2.0              # rectangle width
+    rL: 1.0              # rectangle length
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="frame-core-geometric-parameters">Frame: core geometric parameters</h4>
-<pre><code class="python">frame = {'name': &quot;frame&quot;,
-'shapes':&quot;&quot;&quot;\
-setframe:            # sketch setup
-    action: &quot;drawing_tool.set_coordinate_system(xmin=xmin-L/5, xmax=xmin+1.5*L,ymin=ymin, ymax=ymin+1.5*L,instruction_file='tmp_mpl_friction.py')&quot;
-setblackline:        # default frame values and actions
-    action: &quot;drawing_tool.set_linecolor('black')&quot;
-B: point(a+L,0)                      # wall right end
-A: point(a,tan(radians(theta))*L)    # wall left end
-normal_vec: point(sin(radians(theta)),cos(radians(theta)))     # Vector normal to wall
-tangent_vec: point(cos(radians(theta)),-sin(radians(theta)))   # Vector tangent to wall
-help_line: Line(A,B)                 # wall line
-x: a + 3*L/10.                       # contact point Abscissa
-y: help_line(x=x)                    # contact point Ordinate
-contact: point(x, y)                 # contact point: middle of the rectangle bottom edge
-c: contact + rL/2*normal_vec
-&quot;&quot;&quot;}
+<pre><code class="python">frame = &quot;&quot;&quot;\
+name: frame
+shapes:
+    setframe:            # sketch setup
+        action: &quot;drawing_tool.set_coordinate_system(xmin=xmin-L/5, xmax=xmin+1.5*L,ymin=ymin, ymax=ymin+1.5*L,instruction_file='tmp_mpl_friction.py')&quot;
+    setblackline:        # default frame values and actions
+        action: &quot;drawing_tool.set_linecolor('black')&quot;
+    B: point(a+L,0)                      # wall right end
+    A: point(a,tan(radians(theta))*L)    # wall left end
+    normal_vec: point(sin(radians(theta)),cos(radians(theta)))     # Vector normal to wall
+    tangent_vec: point(cos(radians(theta)),-sin(radians(theta)))   # Vector tangent to wall
+    help_line: Line(A,B)                 # wall line
+    x: a + 3*L/10.                       # contact point Abscissa
+    y: help_line(x=x)                    # contact point Ordinate
+    contact: point(x, y)                 # contact point: middle of the rectangle bottom edge
+    c: contact + rL/2*normal_vec
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="the-body-object">The body object</h4>
-<pre><code class="python">body={'name': &quot;body&quot;,
-'shapes':&quot;&quot;&quot;\
-rectangle: 
-    formula: Rectangle(contact, rl, rL)
-    style:
-        linecolor: blue
-        filled_curves: blue
-    transform: [&quot;rotate(-theta, contact)&quot;,
-                &quot;translate(-rl/2*tangent_vec)&quot;]
-N: 
-    formula: Force(contact - rl*normal_vec, contact, r'$N$', text_pos='start')
-    style:
-        linecolor: black
-wheel: 
-    formula: &quot;Composition({'outer': rectangle})&quot;   
-    style:
-        shadow: 1
-mc:
-    formula: Text(r'$c$', c)
-body: 
-    formula: &quot;Composition({'wheel': wheel, 'N': N, 'mc': mc})&quot;
-    style:
-        linecolor: black
-&quot;&quot;&quot;}
+<pre><code class="python">body = &quot;&quot;&quot;\
+name: body
+shapes:
+    rectangle: 
+        formula: Rectangle(contact, rl, rL)
+        style:
+            linecolor: blue
+            filled_curves: blue
+        transform: [&quot;rotate(-theta, contact)&quot;,
+                    &quot;translate(-rl/2*tangent_vec)&quot;]
+    N: 
+        formula: Force(contact - rl*normal_vec, contact, r'$N$', text_pos='start')
+        style:
+            linecolor: black
+    wheel: 
+        formula: &quot;Composition({'outer': rectangle})&quot;   
+        style:
+            shadow: 1
+    mc:
+        formula: Text(r'$c$', c)
+    body: 
+        formula: &quot;Composition({'wheel': wheel, 'N': N, 'mc': mc})&quot;
+        style:
+            linecolor: black
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="the-plan-object">The plan object</h4>
-<pre><code class="python">plan={'name': &quot;plan&quot;,
-'shapes':&quot;&quot;&quot;\
-mB:
-    formula: Text(r'$B$',B)
-mA:
-    formula: Text(r'$A$', A)
-wall: 
-    formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.25,transparent=False)
-    style:
-        linecolor: black    
-x_const: 
-    formula: Line(contact, contact + point(0,4))
-    style:
-        linestyle: dotted
-    transform: rotate(-theta, contact)
-x_axis: 
-    formula: &quot;Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)&quot;
-plan: 
-    formula: &quot;Composition({'body': body, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})&quot;
-&quot;&quot;&quot;}
+<pre><code class="python">plan = &quot;&quot;&quot;\
+name: plan
+shapes:
+    mB:
+        formula: Text(r'$B$',B)
+    mA:
+        formula: Text(r'$A$', A)
+    wall: 
+        formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.25,transparent=False)
+        style:
+            linecolor: black    
+    x_const: 
+        formula: Line(contact, contact + point(0,4))
+        style:
+            linestyle: dotted
+        transform: rotate(-theta, contact)
+    x_axis: 
+        formula: &quot;Axis(start=contact+ 2*rl*normal_vec, length=2*rl,label='$x$', rotation_angle=-theta)&quot;
+    plan: 
+        formula: &quot;Composition({'body': body, 'inclined wall': wall, 'x start': x_const, 'x axis': x_axis, 'mA': mA, 'mB': mB})&quot;
+&quot;&quot;&quot;
 </code></pre>
 
 <h4 id="the-friction-sketch">The friction sketch</h4>
-<pre><code class="python">friction={'name': &quot;friction&quot;,
-'shapes':&quot;&quot;&quot;\
-mg: 
-    formula: Gravity(c, rl, text='$Mg$')
-    style:
-        linecolor: black
-angle: 
-    formula: &quot;Arc_wText(r'$&lt;bslash&gt;theta$', center=B, radius=3, start_angle=180-theta, arc_angle=theta, fontsize=fontsize)&quot;
-    style:
-        linecolor: black
-        linewidth: 1
-ground: 
-     formula: Line((B[0]-L/10., 0), (B[0]-L/2.,0))
-     stlye:
-         linecolor: black
-         linestyle: dashed
-         linewidth: 1
-friction: 
-    formula: &quot;Composition({'plan': plan, 'ground': ground, 'mg': mg, 'angle': angle})&quot;
-&quot;&quot;&quot;}
+<pre><code class="python">friction = &quot;&quot;&quot;\
+name: friction
+shapes:
+    mg: 
+        formula: Gravity(c, rl, text='$Mg$')
+        style:
+            linecolor: black
+    angle: 
+        formula: &quot;Arc_wText(r'$&lt;bslash&gt;theta$', center=B, radius=3, start_angle=180-theta, arc_angle=theta, fontsize=fontsize)&quot;
+        style:
+            linecolor: black
+            linewidth: 1
+    ground: 
+         formula: Line((B[0]-L/10., 0), (B[0]-L/2.,0))
+         stlye:
+             linecolor: black
+             linestyle: dashed
+             linewidth: 1
+    friction: 
+            formula: &quot;Composition({'plan': plan, 'ground': ground, 'mg': mg, 'angle': angle})&quot;
+&quot;&quot;&quot;
 </code></pre>
 
 <h3 id="using-the-parser">Using the parser</h3>
