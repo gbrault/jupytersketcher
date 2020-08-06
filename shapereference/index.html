@@ -1068,8 +1068,10 @@
 <h2 id="line">Line</h2>
 <p><a href="#list-of-shapes">home</a> Defines a line providing start and end point</p>
 <h3 id="yaml">Yaml</h3>
-<pre><code class="yaml">A: point(-5,-5)
-B: point(5,5)
+<pre><code class="yaml">name: line
+shapes:
+    A: point(-5,-5)
+    B: point(5,5)
 line: Line(A,B)
 </code></pre>
 
@@ -1077,16 +1079,19 @@ line: Line(A,B)
 <pre><code class="python">A = point(-5,-5)
 B = point(5,5)
 line = Line(A,B)
+line.set_name(&quot;line&quot;)
 </code></pre>
 
 <p><img alt="line" src="../reference/line.svg" /></p>
 <h2 id="rectangle">Rectangle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a rectangle providing bottom left corner, x dimension, y dimension</p>
 <h3 id="yaml_1">Yaml</h3>
-<pre><code class="yaml">L: 8
-h: 5
-p: point(-(L/2),-(h/2))
-rectangle: Rectangle(p,L,h)
+<pre><code class="yaml">name: rectangle
+shapes:
+    L: 8
+    h: 5
+    p: point(-(L/2),-(h/2))
+    rectangle: Rectangle(p,L,h)
 </code></pre>
 
 <h3 id="python_1">Python</h3>
@@ -1094,92 +1099,113 @@ rectangle: Rectangle(p,L,h)
 h = 5
 p = point(-(L/2),-(h/2))
 rectangle = Rectangle(p,L,h)
+rectangle.set_name(&quot;rectangle&quot;)
 </code></pre>
 
 <p><img alt="rectangle" src="../reference/rectangle.svg" /></p>
 <h2 id="circle">Circle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a circle proving center and radius</p>
 <h3 id="yaml_2">Yaml</h3>
-<pre><code class="yaml">circle: Circle(point(0,0),5)
+<pre><code class="yaml">name: circle
+shapes:
+    circle: Circle(point(0,0),5)
 </code></pre>
 
 <h3 id="python_2">Python</h3>
 <pre><code class="python">circle = Circle(point(0,0),5)
+circle.set_name(&quot;circle&quot;)
 </code></pre>
 
 <p><img alt="circle" src="../reference/circle.svg" /></p>
 <h2 id="triangle">Triangle</h2>
 <p><a href="#list-of-shapes">home</a> Defines a triangle providing three corner</p>
 <h3 id="yaml_3">Yaml</h3>
-<pre><code class="yaml">L: 3.0
-W: 4.0
-triangle: Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
+<pre><code class="yaml">name: triangle
+shapes:
+    L: 3.0
+    W: 4.0
+    triangle: Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
 </code></pre>
 
 <h3 id="python_3">Python</h3>
 <pre><code class="python">L = 3.0
 W = 4.0
 triangle = Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
+triangle.set_name(&quot;triangle&quot;)
 </code></pre>
 
 <p><img alt="triangle" src="../reference/triangle.svg" /></p>
 <h2 id="distance-with-text">Distance with text</h2>
 <p><a href="#list-of-shapes">home</a> Defines a sizing mark with a label </p>
 <h3 id="yaml_4">Yaml</h3>
-<pre><code class="yaml">fontsize: 14
-t: r'$ 2\pi R^2 $'  # sample text
-dwt: Distance_wText((-4,0), (8, 5), t, fontsize)
+<pre><code class="yaml">name: dwt
+shapes:
+    fontsize: 14
+    t: r'$ 2\pi R^2 $'  # sample text
+    dwt: Distance_wText((-4,0), (8, 5), t, fontsize)
 </code></pre>
 
 <h3 id="python_4">Python</h3>
 <pre><code class="python">fontsize=14
 t = r'$ 2\pi R^2 $'  # sample text
 dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
+dwt.set_name(&quot;dwt&quot;)
 </code></pre>
 
 <p><img alt="Distance with text" src="../reference/distancewithtext.svg" /></p>
 <h2 id="text">Text</h2>
 <p><a href="#list-of-shapes">home</a> Defines a given text positionned at the provided point</p>
 <h3 id="yaml_5">Yaml</h3>
-<pre><code class="yaml">text: Text(r'$c$', point(0,0))
+<pre><code class="yaml">name: text
+shapes:
+    text: Text(r'$c$', point(0,0))
 </code></pre>
 
 <h3 id="python_5">Python</h3>
 <pre><code class="python">text = Text(r'$c$', point(0,0))
+text.set_name(&quot;text&quot;)
 </code></pre>
 
 <p><img alt="Text" src="../reference/text.svg" /></p>
 <h2 id="cross">Cross</h2>
 <p><a href="#list-of-shapes">home</a> Defines a cross positionned at the provided point</p>
 <h3 id="yaml_6">Yaml</h3>
-<pre><code class="yaml">cross: Cross(point(0,0))
+<pre><code class="yaml">name: cross
+shapes:
+    cross: Cross(point(0,0))
 </code></pre>
 
 <h3 id="python_6">Python</h3>
 <pre><code class="python">cross = Cross(point(1,0))
+cross.set_name(&quot;cross&quot;)
 </code></pre>
 
 <p><img alt="Cross" src="../reference/cross.svg" /></p>
 <h2 id="axis">Axis</h2>
 <p><a href="#list-of-shapes">home</a> Defines an axis at the given point with a given label</p>
 <h3 id="yaml_7">Yaml</h3>
-<pre><code class="yaml">axis: Axis((0,0), 5, 'x', rotation_angle=0)
+<pre><code class="yaml">name: axis
+shapes:
+    axis: Axis((0,0), 5, 'x', rotation_angle=0)
 </code></pre>
 
 <h3 id="python_7">Python</h3>
 <pre><code class="python">axis = Axis((0,0), 5, 'x', rotation_angle=0)
+axis.set_name(&quot;axis&quot;)
 </code></pre>
 
 <p><img alt="Axis" src="../reference/axis.svg" /></p>
 <h2 id="arc">Arc</h2>
 <p><a href="#list-of-shapes">home</a> Defines an Arc providing a center point, a radius, a starting angle and an angle (rotates clock-wise)</p>
 <h3 id="yaml_8">Yaml</h3>
-<pre><code class="yaml">center: point(0,0)
-radius: 1
-angle: 120
-start_angle: 180-angle
-arc_angle: angle
-arc: Arc(center, radius, start_angle, arc_angle)
+<pre><code class="yaml">name: arc
+shapes:
+    center: point(0,0)
+    radius: 1
+    angle: 120
+    start_angle: 180-angle
+    arc_angle: angle
+    arc: Arc(center, radius, start_angle, arc_angle)
 </code></pre>
 
 <h3 id="python_8">Python</h3>
@@ -1189,18 +1215,21 @@ angle = 120
 start_angle = 180-angle
 arc_angle = angle
 arc = Arc(center, radius, start_angle, arc_angle)
+arc.set_name(&quot;arc&quot;)
 </code></pre>
 
 <p><img alt="Arc" src="../reference/arc.svg" /></p>
 <h2 id="arc_wtext">Arc_wText</h2>
 <p><a href="#list-of-shapes">home</a> Defines an arc with text positionned left (moving clock-wise) of arc half-way</p>
 <h3 id="yaml_9">Yaml</h3>
-<pre><code class="yaml">center: point(0,0)
-radius: 1
-angle: 120
-start_angle: 180-angle
-arc_angle: angle
-arc_wtxt: &quot;Arc_wText(r'$&lt;bslash&gt;theta$', center, radius, start_angle, arc_angle)&quot;
+<pre><code class="yaml">name: arc_wtxt
+shapes:
+    center: point(0,0)
+    radius: 1
+    angle: 120
+    start_angle: 180-angle
+    arc_angle: angle
+    arc_wtxt: &quot;Arc_wText(r'$&lt;bslash&gt;theta$', center, radius, start_angle, arc_angle)&quot;
 </code></pre>
 
 <h3 id="python_9">Python</h3>
@@ -1210,32 +1239,38 @@ angle = 120
 start_angle = 180-angle
 arc_angle = angle
 arc_wtxt = Arc_wText(r'$\theta$', center, radius, start_angle, arc_angle)
+arc_wtxt.set_name(&quot;arcwtxt&quot;)
 </code></pre>
 
 <p><img alt="Arc with Text" src="../reference/arcwtext.svg" /></p>
 <h2 id="arrow1">Arrow1</h2>
 <p><a href="#list-of-shapes">home</a> defines a line with arrow(s) given starting and ending point and arrow termination(s) -&gt;, \&lt;-&gt;, \&lt;-</p>
 <h3 id="yaml_10">Yaml</h3>
-<pre><code class="yaml">start: point(0,0)
-end: point(5,5)
-arrow1: Arrow1(start, end, style='&lt;-&gt;')
+<pre><code class="yaml">name: arrow1
+shapes:
+    start: point(0,0)
+    end: point(5,5)
+    arrow1: Arrow1(start, end, style='&lt;-&gt;')
 </code></pre>
 
 <h3 id="python_10">Python</h3>
 <pre><code class="python">start = point(0,0)
 end = point(5,5)
 arrow1 = Arrow1(start, end, style='&lt;-&gt;')
+arrow1.set_name(&quot;arrow1&quot;)
 </code></pre>
 
 <p><img alt="Arrow1" src="../reference/arrow1.svg" /></p>
 <h2 id="force">Force</h2>
 <p><a href="#list-of-shapes">home</a> defines an Indication of a force by an arrow and a text (symbol)</p>
 <h3 id="yaml_11">Yaml</h3>
-<pre><code class="yaml">x: 0
-y: 0
-contact: point(x, y)
-vector: point(-3,-5)
-force: Force(contact - vector, contact, r'$Force$', text_pos='start')
+<pre><code class="yaml">name: force
+shapes:
+    x: 0
+    y: 0
+    contact: point(x, y)
+    vector: point(-3,-5)
+    force: Force(contact - vector, contact, r'$Force$', text_pos='start')
 </code></pre>
 
 <h3 id="python_11">Python</h3>
@@ -1244,20 +1279,23 @@ y = 0
 contact = point(x, y)
 vector = point(-3,-5)
 force = Force(contact - vector, contact, r'$Force$', text_pos='start')
+force.set_name(&quot;force&quot;)
 </code></pre>
 
 <p><img alt="Force" src="../reference/force.svg" /></p>
 <h2 id="wall">Wall</h2>
 <p><a href="#list-of-shapes">home</a> defines an hached box given starting, ending point and thickness, filled with a pattern</p>
 <h3 id="yaml_12">Yaml</h3>
-<pre><code class="yaml">theta: 30
-L: 8
-B: point(L-4,-2)                      # wall right end
-A: point(-4,tan(radians(theta))*L-2)  # wall left end
-wall: 
-    formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
-    style:
-        linecolor: black
+<pre><code class="yaml">name: wall
+shapes:
+    theta: 30
+    L: 8
+    B: point(L-4,-2)                      # wall right end
+    A: point(-4,tan(radians(theta))*L-2)  # wall left end
+    wall: 
+        formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
+        style:
+            linecolor: black
 </code></pre>
 
 <h3 id="python_12">Python</h3>
@@ -1267,6 +1305,7 @@ B = point(L-4,-2)                      # wall right end
 A = point(-4,tan(radians(theta))*L-2)  # wall left end
 wall= Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
 wall.set_linecolor('black')
+wall.set_name(&quot;wall&quot;)
 </code></pre>
 
 <p><img alt="Wall" src="../reference/wall.svg" /></p>
