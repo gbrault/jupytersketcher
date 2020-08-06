@@ -20,6 +20,8 @@
 - [Moment](#moment): defines a Moment arrow with text given text, center and radius
 - [Text_wArrow](#text_warrow): defines Text, but an arrow is drawn from the mid part of the text to some point arrow_tip
 - [Wheel](#wheel): defines Hub and spokes Wheel given center, radius, spokes (default 10), inner_radius(default 1/5 of radius)
+- [Spring](#spring): defines a vertical spring, starting at start and with length as total vertical length
+- [Dashpot](#dashpot): defines a vertical dashpot of height `total_length` and `start` as bottom/starting point.
 
 ## Line
 [home](#list-of-shapes) Defines a line providing start and end point
@@ -377,6 +379,48 @@ wheel = Wheel(point(0,0), 5)
 wheel.set_name("wheel")
 ```
 ![Wheel](reference/wheel.svg)
+
+## Spring
+[home](#list-of-shapes) Specify a vertical spring, starting at start and with length as total vertical length
+
+### Yaml
+```yaml
+spring="""
+name: spring
+shapes: 
+    spring: 
+       formula: Spring(point(0,0),5)
+       style:
+           linecolor: black
+           linewidth: 1
+"""
+```
+### Python
+```python
+spring = Spring(point(0,0),5)
+spring.set_linecolor('black')
+spring.set_linewidth(1)
+spring.set_name("spring")
+```
+![Spring](reference/spring.svg)
+
+## Dashpot
+[home](#list-of-shapes) Defines a vertical dashpot of height `total_length` and `start` as bottom/starting point.
+
+### Yaml
+```yaml
+dashpot="""
+name: dashpot
+shapes:
+    dashpot: Dashpot(point(0,0),5)
+"""
+```
+### Python
+```python
+dashpot = Dashpot(point(0,0),5)
+dashpot.set_name("dashpot")
+```
+![Dashpot](reference/dashpot.svg)
 
 [home](#list-of-shapes) In order to display the various shapes, use the following code in a jupyter notebook
 
