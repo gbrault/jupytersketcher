@@ -22,11 +22,17 @@ from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
 
 def sketch2SVG():
+    """
+    Save sketch as a svg string
+    """
     f = BytesIO()
     drawing_tool.mpl.savefig(f, format="svg")
     return f.getvalue()
 
 def sketch2PNG():
+    """
+    Save sketch as a python .png image
+    """
     f = BytesIO()
     drawing_tool.mpl.gcf().canvas.print_png(f)
     img = Image.open(f)
@@ -603,7 +609,7 @@ class Shape(object):
 
 
 class Curve(Shape):
-    """General curve as a sequence of (x,y) coordintes."""
+    """General curve as a sequence of (x,y) coordinates."""
     def __init__(self, x, y):
         """
         `x`, `y`: arrays holding the coordinates of the curve.
@@ -789,8 +795,6 @@ class Spline(Shape):
 
     # Can easily find the derivative and the integral as
     # self.smooth.derivative(n=1) and self.smooth.antiderivative()
-
-
 
 
 class SketchyFunc1(Spline):
@@ -1826,6 +1830,10 @@ class ConstantBeamLoad(Shape):
 
 
 class Moment(Arc_wText):
+    """
+    defines a Moment arrow with text given text, center and radius
+    default direction is counter_clockwise, fontsize and text spacing as optional parameters
+    """
     def __init__(self, text, center, radius,
                  left=True, counter_clockwise=True,
                  fontsize=0, text_spacing=1/60.):
@@ -1840,6 +1848,9 @@ class Moment(Arc_wText):
 
 
 class Wheel(Shape):
+    """
+    Hub and spokes Wheel given center, radius, spokes (default 10), inner_radius(default 1/5 of radius)
+    """
     def __init__(self, center, radius, inner_radius=None, nlines=10):
         if inner_radius is None:
             inner_radius = radius/5.0
@@ -1847,6 +1858,7 @@ class Wheel(Shape):
         outer = Circle(center, radius)
         inner = Circle(center, inner_radius)
         lines = []
+        self.nlines = nlines
         # Draw nlines+1 since the first and last coincide
         # (then nlines lines will be visible)
         t = linspace(0, 2*pi, self.nlines+1)

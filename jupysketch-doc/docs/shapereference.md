@@ -15,7 +15,11 @@
 - [Arrow1](#arrow1): defines a line with arrow(s) given starting and ending point and arrow termination(s) ->, \<->, \<-
 - [Force](#force): defines an Indication of a force by an arrow and a text (symbol)
 - [Wall](#wall): defines an hached box given starting, ending point and thickness, filled with a pattern
-- [](#)
+- [Curve](#curve): defines a general curve as a sequence of (x,y) coordinates
+- [Gravity](#gravity): defines a downward-pointing gravity arrow with the symbol g or user given symbol.
+- [Moment](#moment): defines a Moment arrow with text given text, center and radius
+- [Text_wArrow](#text_warrow): defines Text, but an arrow is drawn from the mid part of the text to some point arrow_tip
+- [Wheel](#wheel): defines Hub and spokes Wheel given center, radius, spokes (default 10), inner_radius(default 1/5 of radius)
 
 ## Line
 [home](#list-of-shapes) Defines a line providing start and end point
@@ -270,7 +274,109 @@ wall.set_name("wall")
 ```
 ![Wall](reference/wall.svg)
 
+## Curve
+[home](#list-of-shapes) defines a general curve as a sequence of (x,y) coordinates
+
+### Yaml
+```yaml
+curve="""\
+name: curve
+shapes:
+    N: 100
+    x: np.linspace(-2.0, 2.0, N)
+    y: x**3
+    curve: Curve(x,y)
+"""
+```
+### Python
+```python
+N = 100
+x = np.linspace(-2.0, 2.0, N)
+y = x**3
+curve = Curve(x,y)
+curve.draw()
+curve.set_name("curve")
+```
+![Curve](reference/curve.svg)
+
+## Gravity
+[home](#list-of-shapes) defines a downward-pointing gravity arrow with the symbol g or user given symbol.
+
+### Yaml
+```yaml
+gravity="""
+name: gravity
+shapes:
+    c: point(0,0)
+    r: 2
+    gravity: 
+        formula: Gravity(c, r, text='$Mg$')
+"""
+```
+### Python
+```python
+c = point(0,0)
+r = 2
+gravity = Gravity(c, r, text='$Mg$')
+gravity.set_name("gravity")
+```
+![Gravity](reference/gravity.svg)
+
 ## Code to display the above defined shapes
+
+## Moment
+[home](#list-of-shapes) defines a Moment arrow with text given text, center and radius.
+
+### Yaml
+```yaml
+moment="""
+name: moment
+shapes:
+    moment: Moment("$T$", point(0,0), 2)
+"""
+```
+### Python
+```python
+moment = Moment("$T$", point(0,0), 2)
+moment.shape_name="moment"
+```
+![Moment](reference/moment.svg)
+
+## Text_wArrow
+[home](#list-of-shapes) Text, but an arrow is drawn from the mid part of the text to some point arrow_tip
+
+### Yaml
+```yaml
+txtarrow="""
+name: txtarrow
+shapes:
+    txtarrow: Text_wArrow("$Text$", point(0,0), point(2,2))
+"""
+```
+### Python
+```python
+txtarrow = Text_wArrow("$Text$", point(0,0), point(2,2))
+txtarrow.set_name("txtarrow")
+```
+![Text_wArrow](reference/textwarrow.svg)
+
+## Wheel
+[home](#list-of-shapes) Hub and spokes Wheel given center, radius, spokes (default 10), inner_radius(default 1/5 of radius)
+
+### Yaml
+```yaml
+wheel="""
+name: wheel
+shapes:
+    wheel: Wheel(point(0,0), 5)
+"""
+```
+### Python
+```python
+wheel = Wheel(point(0,0), 5)
+wheel.set_name("wheel")
+```
+![Wheel](reference/wheel.svg)
 
 [home](#list-of-shapes) In order to display the various shapes, use the following code in a jupyter notebook
 
@@ -279,18 +385,19 @@ wall.set_name("wall")
 [1]: %matplotlib widget
 [2]: from pysketcher import *
 [3]: from math import tan, radians, sin, cos # needed for python code
-[4]: drawing_tool.set_coordinate_system(xmin=-10, xmax=10,ymin=-10, ymax=10,axis=True)
+[4]: import numpy as np
+[6]: drawing_tool.set_coordinate_system(xmin=-10, xmax=10,ymin=-10, ymax=10,axis=True)
 [5]: drawing_tool.mpl.gcf().canvas
 ```
 for Yaml, you need to add those extra steps
 
 ```python
 head = """\
-libraries: ["from math import tan, radians, sin, cos","from pysketcher import *"]
+libraries: ["from math import tan, radians, sin, cos","from pysketcher import *","import numpy as np"]
 myfig={}
 sketchParse(head,myfig)
 ```
-The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher): this is used by the yaml definition of shapes
+The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher) and numpy as well: this is used by the yaml definition of shapes
 
 ### Yaml
 
