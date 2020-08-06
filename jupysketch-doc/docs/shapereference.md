@@ -21,8 +21,10 @@
 [home](#list-of-shapes) Defines a line providing start and end point
 ### Yaml
 ```yaml
-A: point(-5,-5)
-B: point(5,5)
+name: line
+shapes:
+    A: point(-5,-5)
+    B: point(5,5)
 line: Line(A,B)
 ```
 ### Python
@@ -30,16 +32,19 @@ line: Line(A,B)
 A = point(-5,-5)
 B = point(5,5)
 line = Line(A,B)
+line.set_name("line")
 ```
 ![line](reference/line.svg)
 ## Rectangle
 [home](#list-of-shapes) Defines a rectangle providing bottom left corner, x dimension, y dimension
 ### Yaml
 ```yaml
-L: 8
-h: 5
-p: point(-(L/2),-(h/2))
-rectangle: Rectangle(p,L,h)
+name: rectangle
+shapes:
+    L: 8
+    h: 5
+    p: point(-(L/2),-(h/2))
+    rectangle: Rectangle(p,L,h)
 ```
 ### Python
 ```python
@@ -47,69 +52,85 @@ L = 8
 h = 5
 p = point(-(L/2),-(h/2))
 rectangle = Rectangle(p,L,h)
+rectangle.set_name("rectangle")
 ```
 ![rectangle](reference/rectangle.svg)
 ## Circle
 [home](#list-of-shapes) Defines a circle proving center and radius
 ### Yaml
 ```yaml
-circle: Circle(point(0,0),5)
+name: circle
+shapes:
+    circle: Circle(point(0,0),5)
 ```
 ### Python
 ```python
 circle = Circle(point(0,0),5)
+circle.set_name("circle")
 ```
 ![circle](reference/circle.svg)
 ## Triangle
 [home](#list-of-shapes) Defines a triangle providing three corner
 ### Yaml
 ```yaml
-L: 3.0
-W: 4.0
-triangle: Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
+name: triangle
+shapes:
+    L: 3.0
+    W: 4.0
+    triangle: Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
 ```
 ### Python
 ```python
 L = 3.0
 W = 4.0
 triangle = Triangle(p1=(W/2,0), p2=(3*W/2,W/2), p3=(4*W/5.,L))
+triangle.set_name("triangle")
 ```
 ![triangle](reference/triangle.svg)
 ## Distance with text
 [home](#list-of-shapes) Defines a sizing mark with a label 
 ### Yaml
 ```yaml
-fontsize: 14
-t: r'$ 2\pi R^2 $'  # sample text
-dwt: Distance_wText((-4,0), (8, 5), t, fontsize)
+name: dwt
+shapes:
+    fontsize: 14
+    t: r'$ 2\pi R^2 $'  # sample text
+    dwt: Distance_wText((-4,0), (8, 5), t, fontsize)
 ```
 ### Python
 ```python
 fontsize=14
 t = r'$ 2\pi R^2 $'  # sample text
 dwt = Distance_wText((-4,0), (8, 5), t, fontsize)
+dwt.set_name("dwt")
 ```
 ![Distance with text](reference/distancewithtext.svg)
 ## Text
 [home](#list-of-shapes) Defines a given text positionned at the provided point
 ### Yaml
 ```yaml
-text: Text(r'$c$', point(0,0))
+name: text
+shapes:
+    text: Text(r'$c$', point(0,0))
 ```
 ### Python
 ```python
 text = Text(r'$c$', point(0,0))
+text.set_name("text")
 ```
 ![Text](reference/text.svg)
 ## Cross
 [home](#list-of-shapes) Defines a cross positionned at the provided point
 ### Yaml
 ```yaml
-cross: Cross(point(0,0))
+name: cross
+shapes:
+    cross: Cross(point(0,0))
 ```
 ### Python
 ```python
 cross = Cross(point(1,0))
+cross.set_name("cross")
 ```
 ![Cross](reference/cross.svg)
 
@@ -117,11 +138,14 @@ cross = Cross(point(1,0))
 [home](#list-of-shapes) Defines an axis at the given point with a given label
 ### Yaml
 ```yaml
-axis: Axis((0,0), 5, 'x', rotation_angle=0)
+name: axis
+shapes:
+    axis: Axis((0,0), 5, 'x', rotation_angle=0)
 ```
 ### Python
 ```python
 axis = Axis((0,0), 5, 'x', rotation_angle=0)
+axis.set_name("axis")
 ```
 ![Axis](reference/axis.svg)
 
@@ -129,12 +153,14 @@ axis = Axis((0,0), 5, 'x', rotation_angle=0)
 [home](#list-of-shapes) Defines an Arc providing a center point, a radius, a starting angle and an angle (rotates clock-wise)
 ### Yaml
 ```yaml
-center: point(0,0)
-radius: 1
-angle: 120
-start_angle: 180-angle
-arc_angle: angle
-arc: Arc(center, radius, start_angle, arc_angle)
+name: arc
+shapes:
+    center: point(0,0)
+    radius: 1
+    angle: 120
+    start_angle: 180-angle
+    arc_angle: angle
+    arc: Arc(center, radius, start_angle, arc_angle)
 ```
 ### Python
 ```python
@@ -144,6 +170,7 @@ angle = 120
 start_angle = 180-angle
 arc_angle = angle
 arc = Arc(center, radius, start_angle, arc_angle)
+arc.set_name("arc")
 ```
 ![Arc](reference/arc.svg)
 
@@ -151,12 +178,14 @@ arc = Arc(center, radius, start_angle, arc_angle)
 [home](#list-of-shapes) Defines an arc with text positionned left (moving clock-wise) of arc half-way
 ### Yaml
 ```yaml
-center: point(0,0)
-radius: 1
-angle: 120
-start_angle: 180-angle
-arc_angle: angle
-arc_wtxt: "Arc_wText(r'$<bslash>theta$', center, radius, start_angle, arc_angle)"
+name: arc_wtxt
+shapes:
+    center: point(0,0)
+    radius: 1
+    angle: 120
+    start_angle: 180-angle
+    arc_angle: angle
+    arc_wtxt: "Arc_wText(r'$<bslash>theta$', center, radius, start_angle, arc_angle)"
 ```
 ### Python
 ```python
@@ -166,6 +195,7 @@ angle = 120
 start_angle = 180-angle
 arc_angle = angle
 arc_wtxt = Arc_wText(r'$\theta$', center, radius, start_angle, arc_angle)
+arc_wtxt.set_name("arcwtxt")
 ```
 ![Arc with Text](reference/arcwtext.svg)
 
@@ -173,15 +203,18 @@ arc_wtxt = Arc_wText(r'$\theta$', center, radius, start_angle, arc_angle)
 [home](#list-of-shapes) defines a line with arrow(s) given starting and ending point and arrow termination(s) ->, \<->, \<-
 ### Yaml
 ```yaml
-start: point(0,0)
-end: point(5,5)
-arrow1: Arrow1(start, end, style='<->')
+name: arrow1
+shapes:
+    start: point(0,0)
+    end: point(5,5)
+    arrow1: Arrow1(start, end, style='<->')
 ```
 ### Python
 ```python
 start = point(0,0)
 end = point(5,5)
 arrow1 = Arrow1(start, end, style='<->')
+arrow1.set_name("arrow1")
 ```
 ![Arrow1](reference/arrow1.svg)
 
@@ -190,11 +223,13 @@ arrow1 = Arrow1(start, end, style='<->')
 
 ### Yaml
 ```yaml
-x: 0
-y: 0
-contact: point(x, y)
-vector: point(-3,-5)
-force: Force(contact - vector, contact, r'$Force$', text_pos='start')
+name: force
+shapes:
+    x: 0
+    y: 0
+    contact: point(x, y)
+    vector: point(-3,-5)
+    force: Force(contact - vector, contact, r'$Force$', text_pos='start')
 ```
 ### Python
 ```python
@@ -203,6 +238,7 @@ y = 0
 contact = point(x, y)
 vector = point(-3,-5)
 force = Force(contact - vector, contact, r'$Force$', text_pos='start')
+force.set_name("force")
 ```
 ![Force](reference/force.svg)
 
@@ -211,14 +247,16 @@ force = Force(contact - vector, contact, r'$Force$', text_pos='start')
 
 ### Yaml
 ```yaml
-theta: 30
-L: 8
-B: point(L-4,-2)                      # wall right end
-A: point(-4,tan(radians(theta))*L-2)  # wall left end
-wall: 
-    formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
-    style:
-        linecolor: black
+name: wall
+shapes:
+    theta: 30
+    L: 8
+    B: point(L-4,-2)                      # wall right end
+    A: point(-4,tan(radians(theta))*L-2)  # wall left end
+    wall: 
+        formula: Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
+        style:
+            linecolor: black
 ```
 ### Python
 ```python
@@ -228,6 +266,7 @@ B = point(L-4,-2)                      # wall right end
 A = point(-4,tan(radians(theta))*L-2)  # wall left end
 wall= Wall(x=[A[0], B[0]], y=[A[1], B[1]], thickness=-0.5,transparent=False)
 wall.set_linecolor('black')
+wall.set_name("wall")
 ```
 ![Wall](reference/wall.svg)
 
