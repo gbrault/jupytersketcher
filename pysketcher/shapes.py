@@ -21,135 +21,150 @@ import ast
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
 
-def sketch2SVG():
+class Sketch():
     """
-    Save sketch as a svg string
+    Yaml to Pysketcher native features implementation
     """
-    f = BytesIO()
-    drawing_tool.mpl.savefig(f, format="svg")
-    return f.getvalue()
-
-def sketch2PNG():
-    """
-    Save sketch as a python .png image
-    """
-    f = BytesIO()
-    drawing_tool.mpl.gcf().canvas.print_png(f)
-    img = Image.open(f)
-    return img
-
-def sVe(key, expression, container, sketch):
-    """
-    sVe: sketch Validate expression
-    given an expression from a sketch, check if valid or not
-    provides a string feedback if error else return 1
-    """
-    try:
-        root = ast.parse(expression)
-    except Exception as e:
-        return f"{sketch}/{key}: '''{expression}''' parse error {str(e)}"
-    names = {node.id for node in ast.walk(root) if isinstance(node, ast.Name)}
-    for name in names:
-        if name not in container:
-            return f"{sketch}/{key}: {name} in {expression} is not defined"
-    return 1
-
-def sketchParse(sketch, container):
-    """
-    Parse a string sketch into a container.
-    name specifices the 'name' of the sketch
-    A container is a name space which holds 
-        - all the libraries references needed to create pysketcher shapes
-        - all the variable providing shapes dimensions or position
-        - all the shapes needed to create the shapes it defines
-    """
-    yaml = YAML()
-    psketch = yaml.load(sketch)
-
-    sketch_name = psketch["name"]
-    gwd = psketch['shapes']
+    def __init__(self, container):
+        """
+        create a Sketch class instance providing the holding container
+        """
+        self.sketch = ""              # repository used to collect all sketch parts
+        self.container = container
     
-    for _k in list(gwd.keys()):
-        if _k == "stop":
-            return True
-        _c = gwd[_k]
-        _t = str(type(_c))
-        if _k == "libraries":
-            for l in _c:
-                _r = sVe(_k, l, container, sketch_name)
-                if type(_r) == str:
-                    print(_r)
-                    return False
-                exec(l,container)
-        #print(_k, _c, _t)
-        if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
-        _t == "<class 'str'>" or _t == "<class 'int'>":
-            _expression = f"{_c}".replace("<bslash>","\\") 
-            _formula = f"{_k} = {_expression}"
-            #print(_formula)
-            _r = sVe(_k, _expression, container, sketch_name)
-            if type(_r) == str:
-                print(_r)
-                return False
-            exec(_formula,container)
-        elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
-            #print(_c)
-            _keys = list(_c.keys())
-            #print(_keys)
-            if 'formula' in _keys:
-                _expression = f"{_c['formula']}".replace("<bslash>","\\") 
-                _formula = f"{_k} = {_expression}"
-                #print(_formula)
-                _r = sVe(_k, _expression, container, sketch_name)
-                if type(_r) == str:
-                    print(_r)
-                    return False
-                exec(_formula,container)
-                # if the new object is a shape and has the sketch name, set this shape name as the sketch name
-                if issubclass(type(container[_k]), Shape):
-                    if _k == sketch_name:
-                        container[_k].set_name(sketch_name)
-            if 'style' in _keys:
-                for _style in _c["style"]:
-                    #  x_const.set_linestyle('dotted')
-                    _param = _c["style"][_style]
-                    __t = str(type(_param))
-                    #print(__t)
-                    if __t == "<class 'int'>":
-                        _style = f"{_k}.set_{_style}({_param})"
-                    else:
-                        _style = f"{_k}.set_{_style}('{_param}')"
-                    #print(_style)
-                    exec(_style,container)
-            if 'transform' in _keys:
-                #print(_c['transform'])
-                if str(type(_c['transform'])) == "<class 'str'>":
-                    _t = f"{_k}.{_c['transform']}"
-                    #print(_t)
-                    _r = sVe(_k, _formula, container, sketch_name)
+    @staticmethod
+    def matplotlib2SVG():
+        """
+        Save sketch as a svg string
+        """
+        f = BytesIO()
+        drawing_tool.mpl.savefig(f, format="svg")
+        return f.getvalue()
+
+    @staticmethod
+    def matplotlib2PNG():
+        """
+        Save sketch as a python .png image
+        """
+        f = BytesIO()
+        drawing_tool.mpl.gcf().canvas.print_png(f)
+        img = Image.open(f)
+        return img
+
+    def sVe(self, key, expression, sketchpart):
+        """
+        sVe: Validate sketch part expression
+        given an expression from a sketch part, check if valid or not
+        provides a string feedback if error else return 1
+        """
+        try:
+            root = ast.parse(expression)
+        except Exception as e:
+            return f"{sketch}/{key}: '''{expression}''' parse error {str(e)}"
+        names = {node.id for node in ast.walk(root) if isinstance(node, ast.Name)}
+        for name in names:
+            if name not in self.container:
+                return f"{sketch}/{key}: {name} in {expression} is not defined"
+        return 1
+
+    def append(self, sketchpart):
+        """
+        Append and Parse a string sketch part into a sketch and its associated container.
+        A sketch is just the concatenation of all the sketch parts
+        name specifices the 'name' of the sketch part
+        A container is a name space which holds 
+            - all the libraries references needed to create pysketcher shapes
+            - all the variable providing shapes dimensions or position
+            - all the shapes needed to create the shapes it defines
+        """
+        self.sketch += sketchpart
+        yaml = YAML()
+        psketch = yaml.load(sketchpart)
+
+        sketch_name = psketch["name"]
+        gwd = psketch['shapes']
+        
+        for _k in list(gwd.keys()):
+            if _k == "stop":
+                return True
+            _c = gwd[_k]
+            _t = str(type(_c))
+            if _k == "libraries":
+                for l in _c:
+                    _r = self.sVe(_k, l, sketch_name)
                     if type(_r) == str:
                         print(_r)
                         return False
-                    exec(_t,container)
-                else:
-                    for _transform in _c["transform"]:
-                    #  x_const.rotate(-theta, contact)
-                        _t = f"{_k}.{_transform}"
-                        #print(_t)
-                        _r = sVe(_k, _t, container, sketch_name)
-                        if type(_r) == str:
-                            print(_r)
-                            return False
-                        exec(_t,container)
-            if "action" in _keys:
-                _action = _c["action"]
-                #print(_action)
-                _r = sVe(_k, _action, container, sketch_name)
+                    exec(l,self.container)
+            #print(_k, _c, _t)
+            if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
+            _t == "<class 'str'>" or _t == "<class 'int'>":
+                _expression = f"{_c}".replace("<bslash>","\\") 
+                _formula = f"{_k} = {_expression}"
+                #print(_formula)
+                _r = self.sVe(_k, _expression, sketch_name)
                 if type(_r) == str:
                     print(_r)
                     return False
-                exec(_action,container)
-    return True
+                exec(_formula,self.container)
+            elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
+                #print(_c)
+                _keys = list(_c.keys())
+                #print(_keys)
+                if 'formula' in _keys:
+                    _expression = f"{_c['formula']}".replace("<bslash>","\\") 
+                    _formula = f"{_k} = {_expression}"
+                    #print(_formula)
+                    _r = self.sVe(_k, _expression, sketch_name)
+                    if type(_r) == str:
+                        print(_r)
+                        return False
+                    exec(_formula,self.container)
+                    # if the new object is a shape and has the sketch name, set this shape name as the sketch name
+                    if issubclass(type(container[_k]), Shape):
+                        if _k == sketch_name:
+                            self.container[_k].set_name(sketch_name)
+                if 'style' in _keys:
+                    for _style in _c["style"]:
+                        #  x_const.set_linestyle('dotted')
+                        _param = _c["style"][_style]
+                        __t = str(type(_param))
+                        #print(__t)
+                        if __t == "<class 'int'>":
+                            _style = f"{_k}.set_{_style}({_param})"
+                        else:
+                            _style = f"{_k}.set_{_style}('{_param}')"
+                        #print(_style)
+                        exec(_style,self.container)
+                if 'transform' in _keys:
+                    #print(_c['transform'])
+                    if str(type(_c['transform'])) == "<class 'str'>":
+                        _t = f"{_k}.{_c['transform']}"
+                        #print(_t)
+                        _r = self.sVe(_k, _formula, sketch_name)
+                        if type(_r) == str:
+                            print(_r)
+                            return False
+                        exec(_t,self.container)
+                    else:
+                        for _transform in _c["transform"]:
+                        #  x_const.rotate(-theta, contact)
+                            _t = f"{_k}.{_transform}"
+                            #print(_t)
+                            _r = self.sVe(_k, _t, sketch_name)
+                            if type(_r) == str:
+                                print(_r)
+                                return False
+                            exec(_t,self.container)
+                if "action" in _keys:
+                    _action = _c["action"]
+                    #print(_action)
+                    _r = self.sVe(_k, _action, sketch_name)
+                    if type(_r) == str:
+                        print(_r)
+                        return False
+                    exec(_action,self.container)
+        return True
 
 def point(x, y, check_inside=False):
     for obj, name in zip([x, y], ['x', 'y']):
