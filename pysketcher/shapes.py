@@ -67,8 +67,27 @@ class Sketch():
             if name not in self.container:
                 return f"{sketch}/{key}: {name} in {expression} is not defined"
         return 1
+
+    def sketch2File(self, filePath):
+        """
+        dump a sketch to file
+        """
+        yaml = YAML()
+        file = open(filePath,"w")
+        yaml.dump(self.sketch,file)
+        file.close()
     
-    def getSketch(self):
+    def file2Sketch(self,filePath):
+        """
+        load a sketch from file
+        """
+        yaml = YAML()
+        file = open(filePath, "r")
+        sketchstring = file.read()
+        file.close()
+        return self.string2Sketch(sketchstring)
+    
+    def sketch2String(self):
         """
         dump sketch as a string
         """
@@ -77,7 +96,7 @@ class Sketch():
         yaml.dump(self.sketch,f)
         return f.getvalue()
 
-    def loadSketch(self,sketchstring):
+    def string2Sketch(self,sketchstring):
         """
         load a sketch from string
         """

@@ -642,13 +642,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-to-display-the-above-defined-shapes" class="md-nav__link">
-    Code to display the above defined shapes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#moment" class="md-nav__link">
     Moment
   </a>
@@ -778,6 +771,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-to-display-the-above-defined-shapes" class="md-nav__link">
+    Code to display the above defined shapes
+  </a>
+  
+    <nav class="md-nav" aria-label="Code to display the above defined shapes">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#yaml_20" class="md-nav__link">
     Yaml
@@ -801,6 +807,18 @@
   
 </nav>
     
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../yamlsketcher/" title="YAML files Reference" class="md-nav__link">
+      YAML files Reference
+    </a>
   </li>
 
     
@@ -1240,13 +1258,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-to-display-the-above-defined-shapes" class="md-nav__link">
-    Code to display the above defined shapes
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#moment" class="md-nav__link">
     Moment
   </a>
@@ -1375,6 +1386,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-to-display-the-above-defined-shapes" class="md-nav__link">
+    Code to display the above defined shapes
+  </a>
+  
+    <nav class="md-nav" aria-label="Code to display the above defined shapes">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#yaml_20" class="md-nav__link">
@@ -1725,7 +1749,6 @@ gravity.set_name(&quot;gravity&quot;)
 </code></pre>
 
 <p><img alt="Gravity" src="../reference/gravity.svg" /></p>
-<h2 id="code-to-display-the-above-defined-shapes">Code to display the above defined shapes</h2>
 <h2 id="moment">Moment</h2>
 <p><a href="#list-of-shapes">home</a> defines a Moment arrow with text given text, center and radius.</p>
 <h3 id="yaml_15">Yaml</h3>
@@ -1812,6 +1835,7 @@ dashpot.set_name(&quot;dashpot&quot;)
 </code></pre>
 
 <p><img alt="Dashpot" src="../reference/dashpot.svg" /></p>
+<h2 id="code-to-display-the-above-defined-shapes">Code to display the above defined shapes</h2>
 <p><a href="#list-of-shapes">home</a> In order to display the various shapes, use the following code in a jupyter notebook</p>
 <pre><code class="python">[1]: %matplotlib widget
 [2]: from pysketcher import *
@@ -1825,7 +1849,8 @@ dashpot.set_name(&quot;dashpot&quot;)
 <pre><code class="python">head = &quot;&quot;&quot;\
 libraries: [&quot;from math import tan, radians, sin, cos&quot;,&quot;from pysketcher import *&quot;,&quot;import numpy as np&quot;]
 myfig={}
-sketchParse(head,myfig)
+sketch = Sketch(myfig)
+sketch.append(head)
 </code></pre>
 
 <p>The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher) and numpy as well: this is used by the yaml definition of shapes</p>
@@ -1835,10 +1860,11 @@ sketch=&quot;&quot;&quot;
 # put here the yaml 'object' definition
 &quot;&quot;&quot;
 drawing_tool.erase()
-sketchParse(sketch,myfig)
+sketch.append(sketch)
 # replace 'object' by the actual one
 d = myfig['object'].draw() 
 drawing_tool.display()
+display(SVG(Sketch.matplotlib2SVG()))
 </code></pre>
 
 <h3 id="python_20">Python</h3>
@@ -1847,6 +1873,7 @@ drawing_tool.display()
 # replace object by the actual name line, rectangle, circle...
 object.draw()
 drawing_tool.display()
+display(SVG(Sketch.matplotlib2SVG()))
 </code></pre>
                 
               
@@ -1880,6 +1907,20 @@ drawing_tool.display()
             </div>
           </a>
         
+        
+          <a href="../yamlsketcher/" title="YAML files Reference" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                YAML files Reference
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>

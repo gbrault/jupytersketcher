@@ -324,8 +324,6 @@ gravity.set_name("gravity")
 ```
 ![Gravity](reference/gravity.svg)
 
-## Code to display the above defined shapes
-
 ## Moment
 [home](#list-of-shapes) defines a Moment arrow with text given text, center and radius.
 
@@ -422,6 +420,8 @@ dashpot.set_name("dashpot")
 ```
 ![Dashpot](reference/dashpot.svg)
 
+## Code to display the above defined shapes
+
 [home](#list-of-shapes) In order to display the various shapes, use the following code in a jupyter notebook
 
 
@@ -439,7 +439,8 @@ for Yaml, you need to add those extra steps
 head = """\
 libraries: ["from math import tan, radians, sin, cos","from pysketcher import *","import numpy as np"]
 myfig={}
-sketchParse(head,myfig)
+sketch = Sketch(myfig)
+sketch.append(head)
 ```
 The above code initialize myfig sketch space loading into it libraries references so samples can use tan, radians, si, cos and all the objects defined in pysketcher (the module name of jupytersketcher) and numpy as well: this is used by the yaml definition of shapes
 
@@ -451,10 +452,11 @@ sketch="""
 # put here the yaml 'object' definition
 """
 drawing_tool.erase()
-sketchParse(sketch,myfig)
+sketch.append(sketch)
 # replace 'object' by the actual one
 d = myfig['object'].draw() 
 drawing_tool.display()
+display(SVG(Sketch.matplotlib2SVG()))
 ```
 
 ### Python
@@ -465,4 +467,5 @@ drawing_tool.erase()
 # replace object by the actual name line, rectangle, circle...
 object.draw()
 drawing_tool.display()
+display(SVG(Sketch.matplotlib2SVG()))
 ```
