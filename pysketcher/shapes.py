@@ -17,6 +17,7 @@ from io import BytesIO
 from ruamel.yaml import YAML
 from PIL import Image
 import ast
+from collections import *
 
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
@@ -25,12 +26,12 @@ class Sketch():
     """
     Yaml to Pysketcher native features implementation
     """
-    def __init__(self, container):
+    def __init__(self, container, name="unknown"):
         """
         create a Sketch class instance providing the holding container
         """
-        self.sketch = ""              # repository used to collect all sketch parts
-        self.container = container
+        self.sketch = OrderedDict([('name',name),('parts',[])])   # repository used to collect all sketch parts
+        self.container = container    # save the container reference as an class instance variable
     
     @staticmethod
     def matplotlib2SVG():
@@ -66,6 +67,28 @@ class Sketch():
             if name not in self.container:
                 return f"{sketch}/{key}: {name} in {expression} is not defined"
         return 1
+    
+    def getSketch(self):
+        """
+        dump sketch as a string
+        """
+        yaml = YAML()
+        f = BytesIO()
+        yaml.dump(self.sketch,f)
+        return f.getvalue()
+
+    def loadSketch(self,sketchstring):
+        """
+        load a sketch from string
+        """
+        yaml = YAML()        
+        sketch = yaml.load(sketchstring)
+        self.sketch = OrderedDict([('name',sketch['name']),('parts',[])]) 
+        for part in  sketch['parts']:
+            self.sketch['parts'].append(part)
+            if not self.add(part['name'],part['shapes']):
+                return False
+        return True
 
     def append(self, sketchpart):
         """
@@ -77,13 +100,18 @@ class Sketch():
             - all the variable providing shapes dimensions or position
             - all the shapes needed to create the shapes it defines
         """
-        self.sketch += sketchpart
         yaml = YAML()
         psketch = yaml.load(sketchpart)
+        self.sketch['parts'].append(psketch)
 
         sketch_name = psketch["name"]
         gwd = psketch['shapes']
-        
+        return self.add(sketch_name, gwd)
+
+    def add(self, sketch_name, gwd):
+        """
+        actual append work common to various different calls
+        """
         for _k in list(gwd.keys()):
             if _k == "stop":
                 return True
@@ -121,7 +149,7 @@ class Sketch():
                         return False
                     exec(_formula,self.container)
                     # if the new object is a shape and has the sketch name, set this shape name as the sketch name
-                    if issubclass(type(container[_k]), Shape):
+                    if issubclass(type(self.container[_k]), Shape):
                         if _k == sketch_name:
                             self.container[_k].set_name(sketch_name)
                 if 'style' in _keys:
