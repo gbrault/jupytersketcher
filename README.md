@@ -1,3 +1,5 @@
+![Gallery](#fig/JupyterPySketcher.png)
+
 ## jupytersketcher
 
 Tool for creating sketches of physics problems in terms of Python code. This work is based upon [pysketcher](https://github.com/hplgit/pysketcher) originally developped by HPL [see Wikipedia](https://en.wikipedia.org/wiki/Hans_Petter_Langtangen).

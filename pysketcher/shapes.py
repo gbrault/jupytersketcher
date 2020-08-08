@@ -62,11 +62,11 @@ class Sketch():
         try:
             root = ast.parse(expression)
         except Exception as e:
-            return f"{sketch}/{key}: '''{expression}''' parse error {str(e)}"
+            return f"{sketchpart}/{key}: '''{expression}''' parse error {str(e)}"
         names = {node.id for node in ast.walk(root) if isinstance(node, ast.Name)}
         for name in names:
             if name not in self.container:
-                return f"{sketch}/{key}: {name} in {expression} is not defined"
+                return f"{sketchpart}/{key}: {name} in {expression} is not defined"
         return 1
 
     def url2Sketch(self, url):
@@ -138,6 +138,14 @@ class Sketch():
         gwd = psketch['shapes']
         return self.add(sketch_name, gwd)
 
+    def normalize(self, input):
+        # print(input,"  ",type(input))
+        t = str(type(input))
+        if t == "<class 'str'>" or t == "<class 'ruamel.yaml.scalarstring.LiteralScalarString'>":
+            return "".join([s.strip() for s in input.split("\n")])
+        else:
+            return input
+
     def add(self, sketch_name, gwd):
         """
         actual append work common to various different calls
@@ -156,8 +164,8 @@ class Sketch():
                     exec(l,self.container)
             #print(_k, _c, _t)
             if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
-            _t == "<class 'str'>" or _t == "<class 'int'>":
-                _expression = f"{_c}".replace("<bslash>","\\") 
+            _t == "<class 'str'>" or _t == "<class 'int'>" or _t == "<class 'ruamel.yaml.scalarstring.LiteralScalarString'>":
+                _expression = f"{self.normalize(_c)}".replace("<bslash>","\\") 
                 _formula = f"{_k} = {_expression}"
                 #print(_formula)
                 _r = self.sVe(_k, _expression, sketch_name)
@@ -170,7 +178,7 @@ class Sketch():
                 _keys = list(_c.keys())
                 #print(_keys)
                 if 'formula' in _keys:
-                    _expression = f"{_c['formula']}".replace("<bslash>","\\") 
+                    _expression = f"{self.normalize(_c['formula'])}".replace("<bslash>","\\") 
                     _formula = f"{_k} = {_expression}"
                     #print(_formula)
                     _r = self.sVe(_k, _expression, sketch_name)
@@ -189,15 +197,27 @@ class Sketch():
                         __t = str(type(_param))
                         #print(__t)
                         if __t == "<class 'int'>":
-                            _style = f"{_k}.set_{_style}({_param})"
+                            if _style == 'shadow':
+                                _style = f"{_k}.set_{_style}(pixel_displacement={_param})"
+                            else:
+                                _style = f"{_k}.set_{_style}({_param})"
+                            exec(_style,self.container)
                         else:
-                            _style = f"{_k}.set_{_style}('{_param}')"
-                        #print(_style)
-                        exec(_style,self.container)
+                            if 'filled_curves' == _style:
+                                if 'color' in list(_param.keys()):
+                                    _style = f"{_k}.set_{_style}(color='{_param['color']}')"
+                                    exec(_style,self.container)
+                                if 'pattern' in list(_param.keys()):
+                                    _style = f"{_k}.set_{_style}(pattern='{_param['pattern']}')"
+                                    exec(_style,self.container)
+                            else:
+                                _style = f"{_k}.set_{_style}('{_param}')"
+                                exec(_style,self.container)
+                        #print(_style)                        
                 if 'transform' in _keys:
                     #print(_c['transform'])
                     if str(type(_c['transform'])) == "<class 'str'>":
-                        _t = f"{_k}.{_c['transform']}"
+                        _t = f"{_k}.{self.normalize(_c['transform'])}"
                         #print(_t)
                         _r = self.sVe(_k, _formula, sketch_name)
                         if type(_r) == str:
@@ -207,7 +227,7 @@ class Sketch():
                     else:
                         for _transform in _c["transform"]:
                         #  x_const.rotate(-theta, contact)
-                            _t = f"{_k}.{_transform}"
+                            _t = f"{_k}.{self.normalize(_transform)}"
                             #print(_t)
                             _r = self.sVe(_k, _t, sketch_name)
                             if type(_r) == str:
@@ -215,7 +235,7 @@ class Sketch():
                                 return False
                             exec(_t,self.container)
                 if "action" in _keys:
-                    _action = _c["action"]
+                    _action = self.normalize(_c["action"])
                     #print(_action)
                     _r = self.sVe(_k, _action, sketch_name)
                     if type(_r) == str:

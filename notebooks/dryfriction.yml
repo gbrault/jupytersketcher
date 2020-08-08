@@ -1,5 +1,5 @@
 !!omap
-- name: unknown
+- name: dryfriction
 - parts:
   - name: head
     shapes:
@@ -38,7 +38,8 @@
         formula: Rectangle(contact, rl, rL)
         style:
           linecolor: blue
-          filled_curves: blue
+          filled_curves:
+              color: blue
         transform: ['rotate(-theta, contact)', translate(-rl/2*tangent_vec)]
       N:
         formula: Force(contact - rl*normal_vec, contact, r'$N$', text_pos='start')
