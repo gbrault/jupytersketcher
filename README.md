@@ -1,4 +1,4 @@
-![Gallery](#fig/JupyterPySketcher.png)
+![Gallery](fig/JupyterPySketcher.png)
 
 ## jupytersketcher
 
