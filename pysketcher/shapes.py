@@ -18,6 +18,7 @@ from ruamel.yaml import YAML
 from PIL import Image
 import ast
 from collections import *
+import requests
 
 from .MatplotlibDraw import MatplotlibDraw
 drawing_tool = MatplotlibDraw()
@@ -67,6 +68,16 @@ class Sketch():
             if name not in self.container:
                 return f"{sketch}/{key}: {name} in {expression} is not defined"
         return 1
+
+    def url2Sketch(self, url):
+        """
+        get a sketch given an url
+        """      
+        r = requests.get(url)  #, auth=('user', 'pass'))
+        if r.status_code == 200:
+            sketchstring = r.text
+            return self.string2Sketch(sketchstring)
+        return False
 
     def sketch2File(self, filePath):
         """
