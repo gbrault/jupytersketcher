@@ -16,6 +16,7 @@
 - [Force](#force): defines an Indication of a force by an arrow and a text (symbol)
 - [Wall](#wall): defines an hached box given starting, ending point and thickness, filled with a pattern
 - [Curve](#curve): defines a general curve as a sequence of (x,y) coordinates
+- [Trajectory](#trajectory): defines a general curve as a sequence of Point (subclass Curve)
 - [Gravity](#gravity): defines a downward-pointing gravity arrow with the symbol g or user given symbol.
 - [Moment](#moment): defines a Moment arrow with text given text, center and radius
 - [Text_wArrow](#text_warrow): defines Text, but an arrow is drawn from the mid part of the text to some point arrow_tip
@@ -300,6 +301,36 @@ curve.draw()
 curve.set_name("curve")
 ```
 ![Curve](reference/curve.svg)
+
+## Trajectory
+[home](#list-of-shapes) defines a general curve as a sequence of (x,y) coordinates
+
+### Yaml
+```yaml
+trajectory="""\
+name: trajectory
+shapes:
+    P1: Point(1,-1)
+    P2: P1 + Point(0,2)
+    P3: P2 + Point(-2,0)
+    P4: P3 + Point(0,-2)
+    psq: |
+       [P1,P2,P3,P4]  
+    trajectory: Trajectory(psq)
+"""
+```
+### Python
+```python
+P1 = Point(1,-1)
+P2 = P1 + Point(0,2)
+P3 = P2 + Point(-2,0)
+P4 = P3 + Point(0,-2)
+psq = [P1,P2,P3,P4]
+trajectory = Trajectory(psq)
+trajectory.draw()
+curve.set_name("trajectory")
+```
+![Curve](reference/trajectory.svg)
 
 ## Gravity
 [home](#list-of-shapes) defines a downward-pointing gravity arrow with the symbol g or user given symbol.
