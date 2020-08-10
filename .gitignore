@@ -25,6 +25,8 @@ temp*
 *.toc
 *.snm
 *.vrb
+# vscode files
+.vscode/settings.json
 # eclipse files:
 *.cproject
 *.project

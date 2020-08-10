@@ -1,0 +1,52 @@
+!!omap
+- name: pendulum
+- parts:
+  - name: head
+    shapes:
+      libraries: ['from math import tan, radians, sin, cos', 'from pysketcher import *']
+  - name: constants
+    shapes:
+        H: 7.0
+        W: 6.0
+  - name: frame
+    shapes:
+        setframe:          # sketch setup
+            action: drawing_tool.set_coordinate_system(xmin=0, xmax=W,
+                                   ymin=0, ymax=H,
+                                   axis=False)
+        setblackline:      # default frame values and actions
+            action: drawing_tool.set_linecolor('blue')
+        L: 5*H/7          # length
+        P: (W/6, 0.85*H)  # rotation point
+        a: 40             # angle
+        vertical: 
+            formula: Line(P, P-point(0,L))
+            style:
+                linecolor: black
+                linewidth: 1
+        path: 
+            formula: Arc(P, L, -90, a)
+            style:
+                linecolor: black
+                linewidth: 1
+        angle: Arc_wText(r'$\theta$', P, L/4, -90, a, text_spacing=1/30.)
+
+        #rod: Line(P, P + L*point(sin(radians(a)), -L*cos(radians(a)))) is a less reliable alternative
+        mass_pt: path.geometric_features()['end']
+        rod: Line(P, mass_pt)
+
+        mass: 
+            formula: Circle(center=mass_pt, radius=L/20.)
+            style:
+                filled_curves: 
+                    color: 'blue'
+        rod_vec: rod.geometric_features()['end'] - rod.geometric_features()['start']
+        unit_rod_vec: unit_vec(rod_vec)
+        mass_symbol: Text('$m$', mass_pt + L/10*unit_rod_vec)
+
+        length: 
+            formula: Distance_wText(P, mass_pt, '$L$') # Displace length indication
+            transform: translate(L/15*point(cos(radians(a)), sin(radians(a))))
+        gravity: Gravity(start=P+point(0.8*L,0), length=L/3)
+
+        pendulum: "Composition({'body': mass, 'rod': rod,'vertical': vertical, 'theta': angle, 'path': path,'g': gravity, 'L': length, 'm': mass_symbol})"
