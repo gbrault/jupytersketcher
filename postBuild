@@ -5,6 +5,6 @@ pip install git+https://github.com/pycontribs/ruyaml.git
 pip install ipywidgets
 jupyter labextension update --all
 jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
-jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
+jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
 pip install git+https://github.com/gbrault/jupytersketcher.git
 jupyter lab build
