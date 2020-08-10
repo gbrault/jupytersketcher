@@ -1,0 +1,56 @@
+!!omap
+- name: springdashpotmass
+- parts:
+  - name: head
+    shapes:
+      libraries: ['from math import tan, radians, sin, cos', 'from pysketcher import *']
+  - name: constants
+    shapes:
+        L: 12.
+  - name: frame
+    shapes:
+        H: L/6
+        W: L/6
+        xmax: L
+        x: 0        
+        setframe:
+            action: drawing_tool.set_coordinate_system(xmin=-L, xmax=xmax,
+                                   ymin=-1, ymax=L+H,
+                                   axis=False,
+                                   instruction_file='tmp_mpl_spring_mass.py')
+        globallinecolor:
+            action: drawing_tool.set_linecolor('black')
+        d_start: (-L,2*H)
+        dashpot:
+            formula: Dashpot(start=d_start, total_length=L+x, width=W,
+                bar_length=3*H/2, dashpot_length=L/2, piston_pos=H+x)
+            transform: rotate(-90, d_start)
+        s_start: (-L,4*H)
+        spring: 
+            formula: Spring(start=s_start, length=L+x, bar_length=3*H/2, teeth=True)
+            transform: rotate(-90, s_start)
+        M: Rectangle((0,H), 4*H, 4*H).set_linewidth(4)
+        left_wall: Rectangle((-L,0),H/10,L).set_filled_curves(pattern='/')
+        ground: Wall(x=[-L/2,L], y=[0,0], thickness=-H/10)
+        wheel1: Circle((H,H/2), H/2)
+        wheel2: 
+            formula: wheel1.copy()
+            transform: translate(point(2*H, 0))
+
+        fontsize: 18
+        text_m: Text('$m$', (2*H, H+2*H), fontsize=fontsize)
+        text_ku: Text('$ku$', (-L/2, H+4*H), fontsize=fontsize)
+        text_bv: Text("$bu'$", (-L/2, H), fontsize=fontsize)
+        x_axis: Axis((2*H, L), H, '$u(t)$', fontsize=fontsize,
+                     label_spacing=(0.04, -0.01))
+        x_axis_start: 
+            formula: Line((2*H, L-H/4), (2*H, L+H/4))
+            style:
+                linewidth: 4
+
+        springdashpotmass: |
+                      Composition({
+                        'spring': spring, 'dashpot': dashpot, 'mass': M, 'left wall': left_wall,
+                        'ground': ground, 'wheel1': wheel1, 'wheel2': wheel2,
+                        'text_m': text_m, 'text_ku': text_ku,
+                        'x_axis': x_axis, 'x_axis_start': x_axis_start})

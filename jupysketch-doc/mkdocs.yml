@@ -6,6 +6,7 @@ nav:
     - Learning by Example: learningbyexample.md
     - Shapes Reference: shapereference.md
     - YAML files Reference: yamlsketcher.md
+    - Gallery: gallerydoc.md
 theme:
   name: material
 markdown_extensions:

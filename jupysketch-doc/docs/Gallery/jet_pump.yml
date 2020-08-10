@@ -1,0 +1,157 @@
+!!omap
+- name: jet_pump
+- parts:
+  - name: head
+    shapes:
+      libraries: ['from math import tan, radians, degrees, sin, cos, atan2, pi', 'from pysketcher import *']
+  - name: constants
+    shapes:          # All dimenssions in cm angles in degrees
+        Ljp: 16.0    # Total length
+        Lcy: 1.5     # Lenght of input cylindre
+        Lcon: 3.0    # length of input cone
+        Lmix: 2.0    # Length of mixing chamber cylinder
+        Lct: 1.0     # Length of penetration of jet cone inside cone mixing chamber
+        Lt: 5.0      # Length of transit cylinder
+        Ld: 4.0      # length of diffussion cone
+        D: 4         # external diameter
+        Din: 2.5     # Input cylinder internal diameter
+        Dout: 2.5    # Output internal Diameter
+        Dn: 0.5      # Nozzle internal diametre
+        Dmix: 3.5    # Diameter mixing chamber
+        einc: 0.25   # Thickness of the jet cone
+        eain: 0.2    # air input pipe thickness
+        x0: 1        # x drawing padding
+        y0: 1        # y drawing padding
+        H: 2.0       # Air pipe heigth
+        N: 0.75      # position of the nozzle exit with respect to mixing chamber output cone start
+  - name: frame
+    shapes:
+        Dt: D/3
+        setframe:          # sketch setup
+            action: drawing_tool.set_coordinate_system(xmin=0, xmax=Ljp+2*x0,
+                                   ymin=0, ymax=H+2*y0+D*1.5,
+                                   axis=False)
+        setblackline:      # default frame values and actions
+            action: drawing_tool.set_linecolor('blue')
+  - name: part0
+    shapes:
+        P01: Point(x0,y0+H)
+        P02: P01 + Point(0,(D-Din)/2)
+        P03: P02 + Point(Lcy,0)
+        P04: P03 + Point(Lcon,(Din-Dn)/2)
+        alpha: atan2((P04.y-P03.y),(P04.x-P03.x))
+        P05: P04 - Point(0,einc/cos(alpha))
+        P06: P05 - Point((Lmix+N)*cos(alpha),(Lmix+N)*sin(alpha))
+        P07: Point(P06.x,y0)
+        P08: P07-Point(eain,0)
+        P09: P08+Point(0,H)
+        p0: |
+            [P01,P02,P03,P04,P05,P06,P07,P08,P09,P01]
+        part0: 
+            formula: Trajectory(p0)
+            style:
+                filled_curves: 
+                    pattern: '/'
+        Lmixcone: Ljp-Ld-Lt-2*eain-Lmix-(P09.x-P01.x) # length of the mixing chamber cone
+        P11: Point(P07.x+Lmix,y0)
+        P12: P11 + Point(0,H+(D-Dmix)/2)
+        P13: P12 + Point(Lmixcone,(Dmix-Dt)/2)
+        P14: P13 + Point(Lt,0)
+        P15: P14 + Point(Ld,-(Dout-Dt)/2)
+        P16: P15 - Point(0,(D-Dout)/2)
+        P17: P16 - Point(Ld+Lt+Lmixcone-eain,0)
+        P18: P17 - Point(0,H)
+        p1: |
+               [P11,P12,P13,P14,P15,P16,P17,P18,P11]        
+        part1:
+            formula: Trajectory(p1)
+            style:
+                filled_curves:
+                    pattern: '/'
+        P21: Point(x0,y0+H+D)
+        P22: P21 + Point(Ljp-eain,0)
+        P23: P22 + Point(0,-(D-Dout)/2)
+        P24: P23 + Point(-Ld,-(Dout-Dt)/2)
+        P25: P24 + Point(-Lt,0)
+        P26: P25 + Point(-Lmixcone, (Dmix-Dt)/2)
+        P27: P26 + Point(-(Lmix),0)
+        P2C: P21 + Point(0,-(D-Din)/2)
+        P2B: P2C + Point(Lcy,0)
+        P2A: P2B + Point((Lcon+eain)*cos(alpha),-(Lcon+eain)*sin(alpha))
+        P29: P2A + Point(0,einc/cos(alpha))
+        P28: P29 + Point(-(Lmix+N)*cos(alpha), (Lmix+N)*sin(alpha))
+        p2:  |
+               [P21,P22,P23,P24,P25,P26,P27,P28,P29,P2A,P2B,P2C]
+        part2:
+            formula: Trajectory(p2)
+            style:
+                filled_curves:
+                    pattern: '/'
+        venturi: |  
+            Composition({'part0':part0,'part1':part1, 'part2':part2})
+        dljp: 
+            formula: Distance_wText(P21+Point(0,0.5),P22+Point(0,0.5),r'$L<bslash>textsubscript{jp}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dld: 
+            formula: Distance_wText(Point(P14.x,P16.y)+Point(0,-1.5),P16+Point(0,-1.5),r'$L<bslash>textsubscript{d}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dlt: 
+            formula: Distance_wText(Point(P13.x,P16.y)+Point(0,-1.5),Point(P14.x,P16.y)+Point(0,-1.5),r'$L<bslash>textsubscript{t}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dlcm: 
+            formula: Distance_wText(Point(P12.x,P16.y)+Point(0,-1.5),Point(P13.x,P16.y)+Point(0,-1.5),r'$L<bslash>textsubscript{cm}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dlmix: 
+            formula: Distance_wText(Point(P06.x,P16.y)+Point(0,-1.5),Point(P11.x,P16.y)+Point(0,-1.5),r'$L<bslash>textsubscript{mix}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dlin: 
+            formula: Distance_wText(P02+Point(0,0.5),P03+Point(0,0.5),r'$L<bslash>textsubscript{in}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dd:
+            formula: Distance_wText(P01-Point(0.5,0),P21-Point(0.5,0),r'$D$',alignment='right')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dn:
+            formula: Distance_wText(P04+Point(0.5,0),P2A+Point(0.5,0),r'$D<bslash>textsubscript{n}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        ddmix:
+            formula: Distance_wText(P12,P26,r'$D<bslash>textsubscript{mix}$',alignment='right')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        ddin:
+            formula: Distance_wText(P02+Point(1.5,0),P2C+Point(1.5,0),r'$D<bslash>textsubscript{in}$',alignment='right')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        ddout:
+            formula: Distance_wText(P15+Point(0.5,0),P23+Point(0.5,0),r'$D<bslash>textsubscript{out}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        ddt:
+            formula: Distance_wText(P13,P25,r'$D<bslash>textsubscript{t}$')
+            style:
+                linecolor: 'black'
+                linewidth: 1
+        dim:  |
+            Composition({'dljp': dljp,'dld': dld,'dlt': dlt,'dlcm': dlcm,'dlmix': dlmix,'dlin': dlin,
+                        'ddin': ddin,'ddout': ddout,'ddt': ddt,'dd': dd,'dn':dn,'ddmix': ddmix})
+        jet_pump: |
+            Composition({'venturi':venturi, 'dim':dim})
+        

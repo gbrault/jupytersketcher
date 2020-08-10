@@ -161,7 +161,11 @@ class Sketch():
                     if type(_r) == str:
                         print(_r)
                         return False
-                    exec(l,self.container)
+                    try:
+                        exec(l,self.container)
+                    except Exception as e:
+                        print(f"{_k} / {l} error: {str(e)}")
+                        return False
             #print(_k, _c, _t)
             if _t == "<class 'ruamel.yaml.scalarfloat.ScalarFloat'>" or \
             _t == "<class 'str'>" or _t == "<class 'int'>" or _t == "<class 'ruamel.yaml.scalarstring.LiteralScalarString'>":
@@ -172,7 +176,11 @@ class Sketch():
                 if type(_r) == str:
                     print(_r)
                     return False
-                exec(_formula,self.container)
+                try:
+                    exec(_formula,self.container)
+                except Exception as e:
+                    print(f"{_formula} error: {str(e)}")
+                    return False
             elif _t == "<class 'ruamel.yaml.comments.CommentedMap'>":
                 #print(_c)
                 _keys = list(_c.keys())
@@ -185,7 +193,11 @@ class Sketch():
                     if type(_r) == str:
                         print(_r)
                         return False
-                    exec(_formula,self.container)
+                    try:
+                        exec(_formula,self.container)
+                    except Exception as e:
+                        print(f"{_formula} error: {str(e)}")
+                        return False
                     # if the new object is a shape and has the sketch name, set this shape name as the sketch name
                     if issubclass(type(self.container[_k]), Shape):
                         if _k == sketch_name:
@@ -201,18 +213,34 @@ class Sketch():
                                 _style = f"{_k}.set_{_style}(pixel_displacement={_param})"
                             else:
                                 _style = f"{_k}.set_{_style}({_param})"
-                            exec(_style,self.container)
+                            try:
+                                exec(_style,self.container)
+                            except Exception as e:
+                                print(f"{_style} error: {str(e)}")
+                                return False
                         else:
                             if 'filled_curves' == _style:
                                 if 'color' in list(_param.keys()):
                                     _style = f"{_k}.set_{_style}(color='{_param['color']}')"
-                                    exec(_style,self.container)
+                                    try:
+                                        exec(_style,self.container)
+                                    except Exception as e:
+                                        print(f"{_style} error: {str(e)}")
+                                        return False
                                 if 'pattern' in list(_param.keys()):
                                     _style = f"{_k}.set_{_style}(pattern='{_param['pattern']}')"
-                                    exec(_style,self.container)
+                                    try:
+                                        exec(_style,self.container)
+                                    except Exception as e:
+                                        print(f"{_style} error: {str(e)}")
+                                        return False
                             else:
                                 _style = f"{_k}.set_{_style}('{_param}')"
-                                exec(_style,self.container)
+                                try:
+                                    exec(_style,self.container)
+                                except Exception as e:
+                                    print(f"{_style} error: {str(e)}")
+                                    return False
                         #print(_style)                        
                 if 'transform' in _keys:
                     #print(_c['transform'])
@@ -223,7 +251,11 @@ class Sketch():
                         if type(_r) == str:
                             print(_r)
                             return False
-                        exec(_t,self.container)
+                        try:
+                            exec(_t,self.container)
+                        except Exception as e:
+                            print(f"{_t} error: {str(e)}")
+                            return False
                     else:
                         for _transform in _c["transform"]:
                         #  x_const.rotate(-theta, contact)
@@ -233,7 +265,11 @@ class Sketch():
                             if type(_r) == str:
                                 print(_r)
                                 return False
-                            exec(_t,self.container)
+                            try:
+                                exec(_t,self.container)
+                            except Exception as e:
+                                print(f"{_t} error: {str(e)}")
+                                return False
                 if "action" in _keys:
                     _action = self.normalize(_c["action"])
                     #print(_action)
@@ -241,7 +277,11 @@ class Sketch():
                     if type(_r) == str:
                         print(_r)
                         return False
-                    exec(_action,self.container)
+                    try:
+                        exec(_action,self.container)
+                    except Exception as e:
+                        print(f"{_k}/{_action} error: {str(e)}")
+                        return False
         return True
 
 def point(x, y, check_inside=False):
@@ -286,8 +326,12 @@ def arr2D(x, check_inside=False):
         else:
             raise ValueError('x=%s has length %d, not 2' % (x, len(x)))
     else:
-        raise TypeError('x=%s must be list/tuple/ndarray, not %s' %
-                        (x, type(x)))
+        if isinstance(x, (Point)):
+            x = (x.x,x.y)
+        else:
+            raise TypeError('x=%s must be list/tuple/ndarray, not %s' %
+                            (x, type(x)))
+
     if check_inside:
         ok, msg = drawing_tool.inside(x, exception=True)
         if not ok:
@@ -700,7 +744,6 @@ class Shape(object):
         return self.show_hierarchy(format='dict')
         #return pprint.pformat(self.shapes)
 
-
 class Curve(Shape):
     """General curve as a sequence of (x,y) coordinates."""
     def __init__(self, x, y):
@@ -866,6 +909,18 @@ class Curve(Shape):
     def __repr__(self):
         return str(self)
 
+class Trajectory(Curve):
+    def __init__(self,points):
+        self.x = asarray([p.x for p in points], dtype=float)
+        self.y = asarray([p.y for p in points], dtype=float)
+        self.linestyle = None
+        self.linewidth = None
+        self.linecolor = None
+        self.fillcolor = None
+        self.fillpattern = None
+        self.arrow = None
+        self.shadow = False
+        self.name = None  # name of object that this Curve represents
 
 class Spline(Shape):
     # Note: UnivariateSpline interpolation may not work if
@@ -983,6 +1038,11 @@ class Point(Shape):
         if isinstance(other, (list,tuple)):
             other = Point(other)
         return Point(self.x+other.x, self.y+other.y)
+
+    def __sub__(self, other):
+        if isinstance(other, (list,tuple)):
+            other = Point(other)
+        return Point(self.x-other.x, self.y-other.y)
 
     # class Point is an abstract class - only subclasses are useful
     # and must implement draw
