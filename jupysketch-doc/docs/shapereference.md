@@ -303,7 +303,7 @@ curve.set_name("curve")
 ![Curve](reference/curve.svg)
 
 ## Trajectory
-[home](#list-of-shapes) defines a general curve as a sequence of (x,y) coordinates
+[home](#list-of-shapes) defines a general curve as a sequence of Point (subclass Curve)
 
 ### Yaml
 ```yaml
