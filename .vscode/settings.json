@@ -1,4 +1,4 @@
 {
-    "python.pythonPath": "/home/gilbert/Github/venv/bin/python3",
+    "python.pythonPath": "c:\\Users\\gilbe\\Documents\\GitHub\\venv\\Scripts\\python.exe",
     "python.dataScience.jupyterServerURI": "local"
 }
