@@ -434,18 +434,37 @@
 </ul>
 <h2 id="yaml-sketcher-file-grammar">YAML sketcher file grammar</h2>
 <p>Sketcher file EBNF Grammar is</p>
-<pre><code class="EBNF">Sketch::= Sketch_Name Parts
-Sketch_Name::= &quot;-&quot; &quot; &quot; &quot;name: &quot; Identifier Comment? &quot;\n&quot;
-Parts::= &quot;-&quot; &quot; &quot; &quot;parts:\n&quot; Comment? Part+
-Part::= Part_Name Shapes
-Part_Name::= INDENT &quot;-&quot; &quot; &quot; &quot;name: &quot; Identifier Comment? &quot;\n&quot; DEDENT
-Shapes::= INDENT &quot; &quot; &quot; &quot; &quot;shapes:\n&quot; Comment? Shape+ DEDENT
-Shape::= Simple | DoAction | SketchObject
-Simple::= INDENT Identifier &quot;:&quot; PyRightHandExpression Comment? &quot;\n&quot; DEDENT
-DoAction::= INDENT Identifier &quot;:&quot; Comment? &quot;\n&quot; Action DEDENT
-Action::= INDENT &quot;action:&quot; PyExpression Comment? &quot;\n&quot; DEDENT 
-Identifier::= [A-Za-z][_A-Za-z0-9]+
-Comment::= &quot;#&quot; STRING
+<pre><code class="EBNF">Sketch         ::= Sketch_Name Parts
+Sketch_Name    ::= &quot;-&quot; &quot; &quot; &quot;name: &quot; Identifier Comment? &quot;\n&quot;
+Parts          ::= &quot;-&quot; &quot; &quot; &quot;parts:\n&quot; Comment? Part+
+Part           ::= Part_Name Shapes
+Part_Name      ::= INDENT &quot;-&quot; &quot; &quot; &quot;name: &quot; Identifier Comment? &quot;\n&quot; DEDENT
+Shapes         ::= INDENT &quot; &quot; &quot; &quot; &quot;shapes:\n&quot; Comment? Shape+ DEDENT
+Shape          ::= Expression| DoAction | SketchObject
+Expression     ::= INDENT Identifier &quot;:&quot; &quot;|\n&quot;? PyRightHandExpression Comment? &quot;\n&quot; DEDENT
+DoAction       ::= INDENT Identifier &quot;:&quot; Comment? &quot;\n&quot; Action DEDENT
+Action         ::= INDENT &quot;action:&quot; PyExpression Comment? &quot;\n&quot; DEDENT
+SketchObject   ::= INDENT Formula Styles? Transforms? DEDENT
+Formula        ::= INDENT &quot;|\n&quot;? SketcherCreator Comment? &quot;\n&quot; DEDENT
+SketcherCreator::= SketcherClass &quot;(&quot; PyFunctionArgs &quot;)&quot;
+SketcherClass  ::= &quot;Line&quot; | &quot;Rectangle&quot; | &quot;Triangle&quot; | &quot;Circle&quot; | &quot;Distance_wText&quot; | &quot;Text&quot; | &quot;Cross&quot; | &quot;Axis&quot; |
+&quot;Arc&quot; | &quot;Arc_wText&quot; | &quot;Arrow1&quot; | &quot;Force&quot; | &quot;Wall&quot; | &quot;Curve&quot; | &quot;Trajectory&quot; | &quot;Gravity&quot; | &quot;Moment&quot; | &quot;Text_wArrow&quot; | &quot;Wheel&quot; | &quot;Spring&quot; | &quot;Dashpot&quot;
+Styles         ::= INDENT &quot;style:\n&quot; Style+ DEDENT
+Style          ::= LineStyle | LineWidth | LineColor | Arrow | Filled_Curves | Shadow
+LineStyle      ::= INDENT &quot;linestyle:&quot; &quot; &quot; (&quot;solid&quot; | &quot;dashed&quot; | &quot;dashdot&quot; | &quot;dotted&quot;) &quot;\n&quot; DEDENT
+LineWidth      ::= INDENT &quot;linewidth:&quot; &quot; &quot; Integer &quot;\n&quot; DEDENT
+LineColor      ::= INDENT &quot;linescolor:&quot; &quot; &quot; MatplotLibLine_Colors &quot;\n&quot; DEDENT
+Filled_Curves  ::= INDENT &quot;filled_curves:&quot; (Color | Pattern | Color Pattern) Comment? &quot;\n&quot; DEDENT
+Color          ::= INDENT &quot;color:&quot; MatplotLibLine_Colors Comment? &quot;\n&quot; DEDENT
+Pattern        ::= INDENT &quot;pattern:&quot; MatplotLibPattern Comment? &quot;\n&quot; DEDENT
+Arrow          ::= INDENT &quot;linestyle:&quot; &quot; &quot; (&quot;-&gt;&quot; | &quot;&lt;-&quot; | &quot;&lt;-&gt;&quot;) Comment? &quot;\n&quot; DEDENT
+Shadow         ::= INDENT &quot;shadow:&quot; &quot; &quot; Integer Comment? &quot;\n&quot; DEDENT
+Transforms     ::= INDENT &quot;transform:&quot; &quot;|\n&quot;? Transform+ &quot;\n&quot; DEDENT
+Transform      ::= Sketchertransform | &quot;[&quot; Sketchertransform+ &quot;]&quot;
+Sketchertransform ::= (&quot;rotate&quot; | &quot;translate&quot; | &quot;...&quot; ) &quot;(&quot; PyFunctionArgs &quot;)&quot;
+Integer        ::=[1-9][0-9]*
+Identifier     ::= [A-Za-z][_A-Za-z0-9]+
+Comment        ::= &quot;#&quot; STRING
 </code></pre>
 
 <p>Here is the railroad grammar diagram:</p>

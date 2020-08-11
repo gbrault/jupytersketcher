@@ -10,18 +10,37 @@ Content
 Sketcher file EBNF Grammar is
 
 ```EBNF
-Sketch::= Sketch_Name Parts
-Sketch_Name::= "-" " " "name: " Identifier Comment? "\n"
-Parts::= "-" " " "parts:\n" Comment? Part+
-Part::= Part_Name Shapes
-Part_Name::= INDENT "-" " " "name: " Identifier Comment? "\n" DEDENT
-Shapes::= INDENT " " " " "shapes:\n" Comment? Shape+ DEDENT
-Shape::= Simple | DoAction | SketchObject
-Simple::= INDENT Identifier ":" PyRightHandExpression Comment? "\n" DEDENT
-DoAction::= INDENT Identifier ":" Comment? "\n" Action DEDENT
-Action::= INDENT "action:" PyExpression Comment? "\n" DEDENT 
-Identifier::= [A-Za-z][_A-Za-z0-9]+
-Comment::= "#" STRING
+Sketch         ::= Sketch_Name Parts
+Sketch_Name    ::= "-" " " "name: " Identifier Comment? "\n"
+Parts          ::= "-" " " "parts:\n" Comment? Part+
+Part           ::= Part_Name Shapes
+Part_Name      ::= INDENT "-" " " "name: " Identifier Comment? "\n" DEDENT
+Shapes         ::= INDENT " " " " "shapes:\n" Comment? Shape+ DEDENT
+Shape          ::= Expression| DoAction | SketchObject
+Expression     ::= INDENT Identifier ":" "|\n"? PyRightHandExpression Comment? "\n" DEDENT
+DoAction       ::= INDENT Identifier ":" Comment? "\n" Action DEDENT
+Action         ::= INDENT "action:" PyExpression Comment? "\n" DEDENT
+SketchObject   ::= INDENT Formula Styles? Transforms? DEDENT
+Formula        ::= INDENT "|\n"? SketcherCreator Comment? "\n" DEDENT
+SketcherCreator::= SketcherClass "(" PyFunctionArgs ")"
+SketcherClass  ::= "Line" | "Rectangle" | "Triangle" | "Circle" | "Distance_wText" | "Text" | "Cross" | "Axis" |
+"Arc" | "Arc_wText" | "Arrow1" | "Force" | "Wall" | "Curve" | "Trajectory" | "Gravity" | "Moment" | "Text_wArrow" | "Wheel" | "Spring" | "Dashpot"
+Styles         ::= INDENT "style:\n" Style+ DEDENT
+Style          ::= LineStyle | LineWidth | LineColor | Arrow | Filled_Curves | Shadow
+LineStyle      ::= INDENT "linestyle:" " " ("solid" | "dashed" | "dashdot" | "dotted") "\n" DEDENT
+LineWidth      ::= INDENT "linewidth:" " " Integer "\n" DEDENT
+LineColor      ::= INDENT "linescolor:" " " MatplotLibLine_Colors "\n" DEDENT
+Filled_Curves  ::= INDENT "filled_curves:" (Color | Pattern | Color Pattern) Comment? "\n" DEDENT
+Color          ::= INDENT "color:" MatplotLibLine_Colors Comment? "\n" DEDENT
+Pattern        ::= INDENT "pattern:" MatplotLibPattern Comment? "\n" DEDENT
+Arrow          ::= INDENT "linestyle:" " " ("->" | "<-" | "<->") Comment? "\n" DEDENT
+Shadow         ::= INDENT "shadow:" " " Integer Comment? "\n" DEDENT
+Transforms     ::= INDENT "transform:" "|\n"? Transform+ "\n" DEDENT
+Transform      ::= Sketchertransform | "[" Sketchertransform+ "]"
+Sketchertransform ::= ("rotate" | "translate" | "..." ) "(" PyFunctionArgs ")"
+Integer        ::=[1-9][0-9]*
+Identifier     ::= [A-Za-z][_A-Za-z0-9]+
+Comment        ::= "#" STRING
 ```
 
 Here is the railroad grammar diagram:
