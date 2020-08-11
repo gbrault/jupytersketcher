@@ -7,14 +7,29 @@ Content
 
 ## YAML sketcher file grammar
 
-This is the wireframe grammar:
+Sketcher file EBNF Grammar is
 
-* starts with S
-* each time you see two "embedded" rectangles, this is the text to write
-* follow the arrows and iterate as needed
-* end with E
+```EBNF
+Sketch::= Sketch_Name Parts
+Sketch_Name::= "-" " " "name: " Identifier Comment? "\n"
+Parts::= "-" " " "parts:\n" Comment? Part+
+Part::= Part_Name Shapes
+Part_Name::= INDENT "-" " " "name: " Identifier Comment? "\n" DEDENT
+Shapes::= INDENT " " " " "shapes:\n" Comment? Shape+ DEDENT
+Shape::= Simple | DoAction | SketchObject
+Simple::= INDENT Identifier ":" PyRightHandExpression Comment? "\n" DEDENT
+DoAction::= INDENT Identifier ":" Comment? "\n" Action DEDENT
+Action::= INDENT "action:" PyExpression Comment? "\n" DEDENT 
+Identifier::= [A-Za-z][_A-Za-z0-9]+
+Comment::= "#" STRING
+```
 
-![Yaml Sketcher Definition](reference/yamlpysketchergrammar.svg)
+Here is the railroad grammar diagram:
+
+<a href="/resources/yamlpysketchergrammar.xhtml" target="_blank">Yaml Sketcher Definition</a>
+<iframe src="/resources/yamlpysketchergrammar.xhtml" style="border:none;height:50vh;width:100vw;">
+
+<small><a href="https://bottlecaps.de/rr/ui"target="_blank">[Built thanks]</a></small>
 
 ## Libraries, Pysketcher Object creation, Styles, Transform
 
