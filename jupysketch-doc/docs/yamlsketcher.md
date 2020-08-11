@@ -26,7 +26,7 @@ Comment::= "#" STRING
 
 Here is the railroad grammar diagram:
 
-<a href="/resources/yamlpysketchergrammar.xhtml" target="_blank">Yaml Sketcher Definition</a>
+[Yaml Sketcher railroad diagram](resources/yamlpysketchergrammar.xhtml)
 
 <small><a href="https://bottlecaps.de/rr/ui"target="_blank">[Built thanks]</a></small>
 
