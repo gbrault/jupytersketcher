@@ -433,7 +433,7 @@
 <li><a href="#code-to-read-or-write-a-yaml-sketcher-file">Code to read or write a yaml sketcher file</a></li>
 </ul>
 <h2 id="yaml-sketcher-file-grammar">YAML sketcher file grammar</h2>
-<p>The EBNF Grammar is</p>
+<p>Sketcher file EBNF Grammar is</p>
 <pre><code class="EBNF">Sketch::= Sketch_Name Parts
 Sketch_Name::= &quot;-&quot; &quot; &quot; &quot;name: &quot; Identifier Comment? &quot;\n&quot;
 Parts::= &quot;-&quot; &quot; &quot; &quot;parts:\n&quot; Comment? Part+
@@ -448,9 +448,10 @@ Identifier::= [A-Za-z][_A-Za-z0-9]+
 Comment::= &quot;#&quot; STRING
 </code></pre>
 
-<p>Here is the wireframe grammar:</p>
-<p><img alt="Yaml Sketcher Definition" src="../resources/yamlpysketchergrammar.xhtml" /></p>
-<p><a href="https://bottlecaps.de/rr/ui">Built thanks</a></p>
+<p>Here is the railroad grammar diagram:</p>
+<p><a href="/resources/yamlpysketchergrammar.xhtml" target="_blank">Yaml Sketcher Definition</a>
+<iframe src="/resources/yamlpysketchergrammar.xhtml" style="border:none;height:50vh;width:100vw;"></p>
+<p><small><a href="https://bottlecaps.de/rr/ui"target="_blank">[Built thanks]</a></small></p>
 <h2 id="libraries-pysketcher-object-creation-styles-transform">Libraries, Pysketcher Object creation, Styles, Transform</h2>
 <h3 id="libraries">Libraries</h3>
 <p>The libraries token defined in the grammar is</p>
