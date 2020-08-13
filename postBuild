@@ -4,6 +4,7 @@ conda update -y jupyterlab
 pip install jupyter-server-proxy
 pip install mkdocs
 pip install mkdocs-material
+pip install mkdocs-jupyter
 pip install git+https://github.com/pycontribs/ruyaml.git
 pip install ipywidgets
 jupyter labextension update --all

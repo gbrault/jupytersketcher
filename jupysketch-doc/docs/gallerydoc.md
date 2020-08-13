@@ -1,3 +1,5 @@
+[The notebook](resources/Gallery.ipynb)
+
 | Dry Friction                           | Car                         | Pendulum                         |
 |:--------------------------------------:|:---------------------------:|:--------------------------------:|
 | ![](Gallery/dryfriction.svg)           |  ![](Gallery/car.svg)       | ![](Gallery/pendulum.svg)        |
