@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/284307852.svg)](https://zenodo.org/badge/latestdoi/284307852)
 ![Gallery](fig/JupyterPySketcher.png)
 
 ## jupytersketcher
