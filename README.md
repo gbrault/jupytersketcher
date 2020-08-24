@@ -1,5 +1,6 @@
-[![DOI](https://zenodo.org/badge/284307852.svg)](https://zenodo.org/badge/latestdoi/284307852)
-[dual project: sketches repository](https://github.com/gbrault/jupytersketches.git)
+* [![DOI](https://zenodo.org/badge/284307852.svg)](https://zenodo.org/badge/latestdoi/284307852)
+* [dual project: sketches repository](https://github.com/gbrault/jupytersketches.git)
+
 ![Gallery](fig/JupyterPySketcher.png)
 
 ## jupytersketcher
