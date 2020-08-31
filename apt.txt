@@ -14,3 +14,4 @@ imagemagick
 libfreetype6-dev
 libqhull-dev
 graphviz
+cm-super
