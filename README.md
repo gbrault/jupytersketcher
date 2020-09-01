@@ -12,6 +12,12 @@ Note: Use the term Pysketcher as jupytersketcher in this documentation
 - current [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gbrault/jupytersketcher.git/master?filepath=notebooks%2FDryFriction.ipynb)
 - morning snapshot  [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fgogs.seadev.online%2Fgbrault%2Fjupytersketcher/master)
 
+Install apt.txt files
+
+```
+sudo apt-get install $(awk '{print $1'} apt.txt) 
+```
+
 ## Differences compared to Pysketcher
 
 The main goals are:

@@ -1,5 +1,4 @@
 texlive-fonts-recommended
-texlive-generic-recommended
 texlive-latex-base
 texlive-latex-extra
 texlive-latex-recommended
@@ -14,4 +13,3 @@ imagemagick
 libfreetype6-dev
 libqhull-dev
 graphviz
-cm-super
