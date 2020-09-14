@@ -16,15 +16,15 @@
         g: 9.81       # gravity constant 
   - name: variables
     shapes:
-        h: 1.0        # Current tank heigth
+        h: 1.5        # Current tank heigth
         V: sqrt(2*g*(h-d_o))
-        X: np.linspace(0.0, 2.0, 20)
+        X: np.linspace(0.0, 1.2, 12)
         Y: -g/2*(X/V)**2
   - name: frame
     shapes:
         setframe:
             action: drawing_tool.set_coordinate_system(xmin=-l*1.2, xmax=l*3,
-                                   ymin=-H, ymax= H,
+                                   ymin=-2.8, ymax= H,
                                    axis=False)
   - name: scene
     shapes:
