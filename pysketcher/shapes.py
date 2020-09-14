@@ -1240,29 +1240,6 @@ class Line(Shape):
             self.c = None
             self.d = None
 
-    def compute_formulas(self):
-        x, y = self.shapes['line'].x, self.shapes['line'].y
-
-        tol = 1E-14
-        # Define equations for line:
-        # y = a*x + b,  x = c*y + d
-        if abs(x[1] - x[0]) > tol:
-            self.a = (y[1] - y[0])/(x[1] - x[0])
-            self.b = y[0] - self.a*x[0]
-        else:
-            # Vertical line, y is not a function of x
-            self.a = None
-            self.b = None
-        if self.a is None:
-            self.c = 0
-        elif abs(self.a) > tol:
-            self.c = 1/float(self.a)
-            self.d = x[1]
-        else:  # self.a is 0
-            # Horizontal line, x is not a function of y
-            self.c = None
-            self.d = None
-
     def __call__(self, x=None, y=None):
         """Given x, return y on the line, or given y, return x."""
         self.compute_formulas()
@@ -1309,7 +1286,6 @@ class Circle(Shape):
         """
         return self.center[0] + self.radius*cos(theta), \
                self.center[1] + self.radius*sin(theta)
-
 
 class Arc(Shape):
     def __init__(self, center, radius,
@@ -1415,10 +1391,27 @@ class Parabola(Shape):
     def _L2y(self, y, pi, pj, pk):
         return (y - pi[1])*(y - pj[1])/((pk[1] - pi[1])*(pk[1] - pj[1]))
 
+class Ellipse(Shape):
+    def __init__(self, center, width, height, resolution=180):
+        self.center = center
+        self.width = width
+        self.height = height
+        self.resolution = resolution
 
-class Circle(Arc):
-    def __init__(self, center, radius, resolution=180):
-        Arc.__init__(self, center, radius, 0, 360, resolution)
+        t = linspace(0, 2*pi, resolution+1)
+        x0 = center[0];  y0 = center[1]
+        
+        x = x0 + self.width*cos(t)
+        y = y0 + self.height*sin(t)
+        self.shapes = {'ellipse': Curve(x, y)}
+
+    def __call__(self, theta):
+        """
+        Return (x, y) point corresponding to angle theta.
+        Not valid after a translation, rotation, or scaling.
+        """
+        return self.center[0] + self.width*cos(theta), \
+               self.center[1] + self.height*sin(theta)
 
 
 class Wall(Shape):
