@@ -1,0 +1,82 @@
+!!omap
+- name: tank
+- parts:
+  - name: head
+    shapes:
+      libraries: ['from math import sqrt, tan, radians, degrees, sin, cos, atan2, pi', 'import numpy as np', 'from pysketcher import *']
+  - name: constants
+    shapes:           # MKS system in use
+        H: 2.0        # Total Tank heigth
+        l: 1.0        # Tank width
+        ratio: 0.3    # ratio (elipsis small radius = 30% of big radius)
+        d_l: 0.2      # draining tub length
+        d_d: 0.05     # draining tube diameter
+        d_o: 0.1      # tube offset from tank base
+        e: 0.01       # for filling effect
+        g: 9.81       # gravity constant 
+  - name: variables
+    shapes:
+        h: 1.0        # Current tank heigth
+        V: sqrt(2*g*(h-d_o))
+        X: np.linspace(0.0, 2.0, 20)
+        Y: -g/2*(X/V)**2
+  - name: frame
+    shapes:
+        setframe:
+            action: drawing_tool.set_coordinate_system(xmin=-l*1.2, xmax=l*3,
+                                   ymin=-H, ymax= H,
+                                   axis=False)
+  - name: scene
+    shapes:
+        shell: 
+          formula: Rectangle( point(-(l/2),-(H/2)), l, H)
+          style:
+            linecolor: black
+            linewidth: 2
+        tube:
+          formula: Rectangle( point( +(l/2), -(H/2)+d_o), d_l, d_d )
+          style:
+            linecolor: black
+            linewidth: 2
+        interieur: 
+          formula: Rectangle( point(-(l/2)+e,-(H/2)), l-2*e, h)
+          style:
+            linecolor: blue
+            linewidth: 1
+            filled_curves: 
+              color: blue
+        vidange:
+          formula: Rectangle( point( +(l/2), -(H/2)+d_o+e), d_l, d_d-2*e )
+          style:
+            linecolor: blue
+            linewidth: 2
+            filled_curves: 
+              color: blue
+        hauteur:
+          formula: Distance_wText(Point(-(l/2)*1.3,-(H/2)),Point(-(l/2)*1.3,H/2),r'$H$', alignment = 'right', text_spacing=-0.03)
+          style:
+                linecolor: 'black'
+                linewidth: 1
+        hc:
+          formula: Distance_wText(Point(-(l/2)*2,-(H/2)),Point(-(l/2)*2,h-(H/2)),r'$h$', alignment = 'right', text_spacing=-0.05)
+          style:
+                linecolor: 'black'
+                linewidth: 1
+        largeur:
+          formula: Distance_wText(Point(-(l/2),+(H/2)*1.2),Point((l/2),(H/2)*1.2),r'$l$', alignment = 'left', text_spacing=1/60)
+          style:
+                linecolor: 'black'
+                linewidth: 1
+        jet: 
+          formula: Curve(X+(l/2+d_l),Y-(H/2)+d_o+d_d/2)
+          style:
+                linecolor: 'blue'
+                linewidth: 2
+        contenu: |
+            Composition({ 'interieur': interieur, 'vidange': vidange})
+        frame: |
+            Composition({ 'shell':shell, 'tube': tube })
+        dim: |
+            Composition({ 'hauteur': hauteur, 'hc': hc, 'largeur': largeur})
+        tank: |
+            Composition({ 'frame':frame, 'contenu': contenu, 'dim':dim, 'jet':jet })

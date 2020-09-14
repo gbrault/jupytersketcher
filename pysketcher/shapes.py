@@ -92,7 +92,6 @@ class Sketch():
         """
         load a sketch from file
         """
-        yaml = YAML()
         file = open(filePath, "r")
         sketchstring = file.read()
         file.close()
@@ -138,6 +137,9 @@ class Sketch():
         gwd = psketch['shapes']
         return self.add(sketch_name, gwd)
 
+    def refresh(self, partname):
+        exec(self.container['formulas'][partname], self.container)
+
     def normalize(self, input):
         # print(input,"  ",type(input))
         t = str(type(input))
@@ -178,6 +180,9 @@ class Sketch():
                     return False
                 try:
                     exec(_formula,self.container)
+                    if 'formulas' not in self.container:
+                        self.container['formulas'] = {}
+                    self.container['formulas'][_k] = _formula + "\n"                   
                 except Exception as e:
                     print(f"{_formula} error: {str(e)}")
                     return False
@@ -195,6 +200,9 @@ class Sketch():
                         return False
                     try:
                         exec(_formula,self.container)
+                        if 'formulas' not in self.container:
+                            self.container['formulas'] = {}
+                        self.container['formulas'][_k] = _formula +"\n"
                     except Exception as e:
                         print(f"{_formula} error: {str(e)}")
                         return False
@@ -210,11 +218,12 @@ class Sketch():
                         #print(__t)
                         if __t == "<class 'int'>":
                             if _style == 'shadow':
-                                _style = f"{_k}.set_{_style}(pixel_displacement={_param})"
+                                _style = f"{_k}.set_{_style}(pixel_displacement={_param})"                                
                             else:
                                 _style = f"{_k}.set_{_style}({_param})"
                             try:
                                 exec(_style,self.container)
+                                self.container['formulas'][_k] = self.container['formulas'][_k] + _style + "\n"
                             except Exception as e:
                                 print(f"{_style} error: {str(e)}")
                                 return False
@@ -224,6 +233,7 @@ class Sketch():
                                     _style = f"{_k}.set_{_style}(color='{_param['color']}')"
                                     try:
                                         exec(_style,self.container)
+                                        self.container['formulas'][_k] = self.container['formulas'][_k] + _style + "\n"
                                     except Exception as e:
                                         print(f"{_style} error: {str(e)}")
                                         return False
@@ -231,6 +241,7 @@ class Sketch():
                                     _style = f"{_k}.set_{_style}(pattern='{_param['pattern']}')"
                                     try:
                                         exec(_style,self.container)
+                                        self.container['formulas'][_k] = self.container['formulas'][_k] + _style + "\n"
                                     except Exception as e:
                                         print(f"{_style} error: {str(e)}")
                                         return False
@@ -238,6 +249,7 @@ class Sketch():
                                 _style = f"{_k}.set_{_style}('{_param}')"
                                 try:
                                     exec(_style,self.container)
+                                    self.container['formulas'][_k] = self.container['formulas'][_k] + _style + "\n"
                                 except Exception as e:
                                     print(f"{_style} error: {str(e)}")
                                     return False
@@ -253,6 +265,7 @@ class Sketch():
                             return False
                         try:
                             exec(_t,self.container)
+                            self.container['formulas'][_k] = self.container['formulas'][_k] + _t + "\n"
                         except Exception as e:
                             print(f"{_t} error: {str(e)}")
                             return False
@@ -267,6 +280,7 @@ class Sketch():
                                 return False
                             try:
                                 exec(_t,self.container)
+                                self.container['formulas'][_k] = self.container['formulas'][_k] + _t + "\n"
                             except Exception as e:
                                 print(f"{_t} error: {str(e)}")
                                 return False
@@ -1344,17 +1358,17 @@ class Parabola(Shape):
 
         # y as function of x? (no point on line x=const?)
         tol = 1E-14
-        if abs(self.p1[0] - self.p2[0]) > 1E-14 and \
-           abs(self.p2[0] - self.p3[0]) > 1E-14 and \
-           abs(self.p3[0] - self.p1[0]) > 1E-14:
+        if abs(self.p1[0] - self.p2[0]) > tol and \
+           abs(self.p2[0] - self.p3[0]) > tol and \
+           abs(self.p3[0] - self.p1[0]) > tol:
             self.y_of_x = True
         else:
             self.y_of_x = False
         # x as function of y? (no point on line y=const?)
         tol = 1E-14
-        if abs(self.p1[1] - self.p2[1]) > 1E-14 and \
-           abs(self.p2[1] - self.p3[1]) > 1E-14 and \
-           abs(self.p3[1] - self.p1[1]) > 1E-14:
+        if abs(self.p1[1] - self.p2[1]) > tol and \
+           abs(self.p2[1] - self.p3[1]) > tol and \
+           abs(self.p3[1] - self.p1[1]) > tol:
             self.x_of_y = True
         else:
             self.x_of_y = False
@@ -1419,6 +1433,7 @@ class Wall(Shape):
     defines an hached box given starting, ending point and thickness, filled with a pattern
     """
     def __init__(self, x, y, thickness, pattern='/', transparent=False):
+        from numpy import concatenate
         is_sequence(x, y, length=len(x))
         if isinstance(x[0], (tuple,list,ndarray)):
             # x is list of curves
@@ -1436,7 +1451,7 @@ class Wall(Shape):
         x2 = x1
         y2 = y1 + thickness
         # Combine x1,y1 with x2,y2 reversed
-        from numpy import concatenate
+        
         x = concatenate((x1, x2[-1::-1]))
         y = concatenate((y1, y2[-1::-1]))
         wall = Curve(x, y)
@@ -1460,6 +1475,7 @@ class Wall(Shape):
 
 class Wall2(Shape):
     def __init__(self, x, y, thickness, pattern='/'):
+        from numpy import concatenate
         is_sequence(x, y, length=len(x))
         if isinstance(x[0], (tuple,list,ndarray)):
             # x is list of curves
