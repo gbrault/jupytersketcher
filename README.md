@@ -123,7 +123,7 @@ Terminal> sudo python setup.py install
 
 Pysketcher demands installation of the following packages:
 
- * Matplotlib (`sudp pip install matplotlib`)
+ * Matplotlib (`sudo pip install matplotlib`)
  * Future (`sudo pip install future`)
  * NumPy (`sudo pip install numpy`)
 
